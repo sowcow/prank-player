@@ -7,12 +7,11 @@ import Button from '@material-ui/core/Button';
 import { Flex, Box } from 'reflexbox'
 import Asterisk from '@material-ui/icons/InfoOutlined'
 
-import Note from '../Note'
+import Notes, { Note } from '../Note'
 
 
-class MyDropzone extends React.Component {
+class Uploading extends React.Component {
    onDrop = (acceptedFiles, rejectedFiles) => {
-     console.log(acceptedFiles, rejectedFiles)
      this.props.gotFiles(acceptedFiles)
    }
 
@@ -47,10 +46,13 @@ class MyDropzone extends React.Component {
         }}
       </Dropzone>
       </Box>
-            <Note text='This is a 100% offline application' />
+        <Notes>
+          <Note text='This is a 100% offline application' />
+          <Note text='You may want to press F11 before using it' />
+        </Notes>
       </Flex>
     );
   }
 }
 
-export default MyDropzone;
+export default Uploading

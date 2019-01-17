@@ -39,5 +39,22 @@ class Note extends Component {
   }
 }
 
+class Notes extends Component {
+  // static Note = Note
 
-export default styled(Note)(style)
+  render() {
+    let { className } = this.props
+
+    return (
+      <Flex column={ true }
+      className={classnames('Notes', className)}
+      >
+        { this.props.children }
+      </Flex>
+    )
+  }
+}
+
+
+export default styled(Notes)(style)
+export { Note as Note } // omg

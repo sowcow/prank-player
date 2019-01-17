@@ -16,8 +16,8 @@ It can be used to create soundboards for phone pranking.
 
 - [x] directory uploader works
 - [x] can play uploaded files
+- [x] single playing stream (no howlerjs)
 - [ ] initial grid for buttons
-- [ ] single audio element, howlerjs?
 
 ## Features
 
@@ -37,8 +37,9 @@ It can be used to create soundboards for phone pranking.
 - [ ] renaming buttons
 - [ ] move groups of buttons
 
-## Non features
+## Other ideas
 
+- [ ] maybe to use storybook
 - [ ] ogg could be used but whatever
 - [ ] to investigate a good end-to-end testing option?
 - [ ] can have undo without using redux?
