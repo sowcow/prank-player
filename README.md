@@ -1,7 +1,7 @@
 # Prank Player v3
 
-Rewrite of my old app "Prank Player" using more modern technology.
-It can be used to create sound boards for phone pranks.
+Rewrite of my old app using more modern technology.
+It can be used to create soundboards for phone pranking.
 
 ## Main usage scenario
 
