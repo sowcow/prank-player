@@ -1,36 +1,54 @@
 import React from 'react'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import Dropzone from 'react-dropzone'
+
+import Button from '@material-ui/core/Button';
+
+import { Flex, Box } from 'reflexbox'
+import Asterisk from '@material-ui/icons/InfoOutlined'
+
+import Note from '../Note'
+
 
 class MyDropzone extends React.Component {
    onDrop = (acceptedFiles, rejectedFiles) => {
      console.log(acceptedFiles, rejectedFiles)
-      acceptedFiles.forEach(file => {
-        this.props.gotFile(file)
-       // console.log(file.name, file.fileObject)
-      });
-     // Do something with files
+     this.props.gotFiles(acceptedFiles)
    }
 
    render() {
     return (
+      <Flex className='Uploading' >
+      <Box m='auto'>
       <Dropzone onDrop={this.onDrop}>
         {({getRootProps, getInputProps, isDragActive}) => {
+     console.log(getInputProps())
+          let btn =
+            <>
+      <Button variant="contained" color="primary">
+        Choose a directory with mp3s
+      </Button>
+            </>
           return (
             <div
               {...getRootProps()}
-              className={classNames('dropzone', {'dropzone--isActive': isDragActive})}
+              className={classnames('dropzone', {'dropzone--isActive': isDragActive})}
             >
-              <input {...getInputProps()} webkitdirectory='true' mozdirectory='true' />
+              <input id='file-upload' {...getInputProps()} webkitdirectory='true' mozdirectory='true' />
               {
                 isDragActive ?
                   <p>Drop files here...</p> :
-                  <p>Try dropping some files here, or click to select files to upload.</p>
+                  btn
+
+                  // <p>Try dropping some files here, or click to select files to upload.</p>
               }
             </div>
           )
         }}
       </Dropzone>
+      </Box>
+            <Note text='This is a 100% offline application' />
+      </Flex>
     );
   }
 }

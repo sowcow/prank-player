@@ -16,13 +16,16 @@ It can be used to create soundboards for phone pranking.
 
 - [x] directory uploader works
 - [x] can play uploaded files
+- [ ] initial grid for buttons
+- [ ] single audio element, howlerjs?
 
 ## Features
 
 - [x] javascript
 - [x] react.js with create-react-app
-- [ ] 100% offline app (should be explicit)
-- [ ] uploading
+- [x] material ui
+- [x] 100% offline app (should be explicit)
+- [x] uploading
 - [ ] playing using left click - play/pause/stopping previous sound
 - [ ] editing
 - [ ] saving
@@ -34,8 +37,9 @@ It can be used to create soundboards for phone pranking.
 - [ ] renaming buttons
 - [ ] move groups of buttons
 
----
+## Non features
 
+- [ ] ogg could be used but whatever
 - [ ] to investigate a good end-to-end testing option?
 - [ ] can have undo without using redux?
 - [ ] use local-storage at all?
