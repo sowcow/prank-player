@@ -14,8 +14,8 @@ It can be used to create sound boards for phone pranks.
 
 ## Stuff to check
 
-- [ ] directory uploader works
-- [ ] can play uploaded files
+- [x] directory uploader works
+- [x] can play uploaded files
 
 ## Features
 
@@ -34,6 +34,8 @@ It can be used to create sound boards for phone pranks.
 - [ ] renaming buttons
 - [ ] move groups of buttons
 
+---
+
 - [ ] to investigate a good end-to-end testing option?
 - [ ] can have undo without using redux?
 - [ ] use local-storage at all?
@@ -43,3 +45,5 @@ It can be used to create sound boards for phone pranks.
 - [ ] buttons styles options?
 - [ ] skins?
 - [ ] maybe there a case for the right click? - like for second audio stream, or always play from the beginning
+- [ ] unlikely but I may want to look into making an electron app,
+      or there may be interesting alternatives to electron
