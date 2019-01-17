@@ -26,7 +26,7 @@ It can be used to create soundboards for phone pranking.
 - [x] material ui
 - [x] 100% offline app (should be explicit)
 - [x] uploading
-- [ ] playing using left click - play/pause/stopping previous sound
+- [x] playing using left click - play/pause/stopping previous sound
 - [ ] editing
 - [ ] saving
 - [ ] saved file name = directory name + '.json'
