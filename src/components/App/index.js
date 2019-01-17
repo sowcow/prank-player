@@ -4,7 +4,7 @@ import Playing from '../Playing'
 import './style.css';
 
 const PLAYING = 'playing'
-
+const MP3s = /\.mp3$/
 
 class App extends Component {
   state = {
@@ -19,7 +19,9 @@ class App extends Component {
     files = []
     // maybe to refactor it to create/revoke on component lifecycle
 
-    console.log(newFiles)
+    newFiles = newFiles.filter(
+      x => MP3s.test(x.name)
+    )
     newFiles.forEach( x => {
       if (!uris[x.name]) {
         uris[x.name] = URL.createObjectURL(x)

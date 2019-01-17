@@ -12,7 +12,7 @@ It can be used to create soundboards for phone pranking.
 - after page reload: user loads that directory and positions
 - buttons for newly added files are highlighted and in front of others
 
-## Stuff to check
+## Stuff to check first
 
 - [x] directory uploader works
 - [x] can play uploaded files
@@ -49,6 +49,5 @@ It can be used to create soundboards for phone pranking.
 - [ ] static typing? (typescript was slow when I tried it)
 - [ ] buttons styles options?
 - [ ] skins?
-- [ ] maybe there a case for the right click? - like for second audio stream, or always play from the beginning
 - [ ] unlikely but I may want to look into making an electron app,
       or there may be interesting alternatives to electron
