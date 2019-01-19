@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
 
-import { Flex, Box } from 'reflexbox'
 // import Asterisk from '@material-ui/icons/InfoOutlined'
 
 import { styled } from '@material-ui/styles'
 // import styled from 'styled-components'
 
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -23,7 +19,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-import { useState } from 'react';
 
 let style = {
   '& .button': {
@@ -66,18 +61,35 @@ const sideList = (
 );
 
 class MainMenu extends Component {
-  render() {
-    let [ isOpen, setOpen ] = useState(false)
+  state = {
+    isOpen: false,
+  }
+  openIt = () => this.setState({ isOpen: true })
+  closeIt = () => this.setState({ isOpen: false })
 
-    let { text, children, className } = this.props
+  render() {
+    // let [ isOpen, setOpen ] = useState(false)
+    let { isOpen } = this.state
+
+    let { className } = this.props
 
     return (
       <div className={className}>
-      <IconButton className='button'
-        onClick={() => setOpen(true)}
-      >
-        <MenuIcon />
-      </IconButton>
+        <IconButton className='button'
+          onClick={this.openIt}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Drawer open={isOpen} onClose={this.closeIt}>
+          <div
+            tabIndex={0}
+            role="button"
+            onClick={this.closeIt}
+            onKeyDown={this.closeIt}
+          >
+            {sideList}
+          </div>
+        </Drawer>
       </div>
     )
   }

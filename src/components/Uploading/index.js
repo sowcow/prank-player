@@ -5,7 +5,6 @@ import Dropzone from 'react-dropzone'
 import Button from '@material-ui/core/Button';
 
 import { Flex, Box } from 'reflexbox'
-import Asterisk from '@material-ui/icons/InfoOutlined'
 
 import Notes, { Note } from '../Note'
 import Link from '@material-ui/core/Link';

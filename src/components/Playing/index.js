@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 // import classnames from 'classnames'
-import Dropzone from 'react-dropzone'
 
-import { Flex, Box } from 'reflexbox'
 import Button from '@material-ui/core/Button';
 
 import Player from '../../lib/Player'

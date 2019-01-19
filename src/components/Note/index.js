@@ -58,4 +58,4 @@ class Notes extends Component {
 
 
 export default styled(Notes)(style)
-export { Note as Note } // omg
+export { Note }
