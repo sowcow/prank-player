@@ -21,7 +21,7 @@ let style = {
 
 class Note extends Component {
   render() {
-    let { text, className } = this.props
+    let { text, children, className } = this.props
 
     return (
       <Flex
@@ -32,7 +32,7 @@ class Note extends Component {
       >
         <Asterisk className='asterisk' />
         <Box className='text'>
-          { text }
+          { text || children }
         </Box>
       </Flex>
     )
@@ -48,6 +48,7 @@ class Notes extends Component {
     return (
       <Flex column={ true }
       className={classnames('Notes', className)}
+      mb={1}
       >
         { this.props.children }
       </Flex>

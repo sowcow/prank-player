@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Uploading from '../Uploading'
 import Playing from '../Playing'
 import './style.css';
+import {Helmet} from "react-helmet";
+import MainMenu from '../MainMenu'
 
 const PLAYING = 'playing'
 const MP3s = /\.mp3$/
@@ -48,6 +50,8 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Helmet title='PPv3' />
+        <MainMenu />
         {
           this.contents()
         }
@@ -57,7 +61,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// TODO:
-                // <source src="horse.ogg" type="audio/ogg" />

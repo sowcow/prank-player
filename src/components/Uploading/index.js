@@ -8,6 +8,7 @@ import { Flex, Box } from 'reflexbox'
 import Asterisk from '@material-ui/icons/InfoOutlined'
 
 import Notes, { Note } from '../Note'
+import Link from '@material-ui/core/Link';
 
 
 class Uploading extends React.Component {
@@ -21,7 +22,7 @@ class Uploading extends React.Component {
       <Box m='auto'>
       <Dropzone onDrop={this.onDrop}>
         {({getRootProps, getInputProps, isDragActive}) => {
-     console.log(getInputProps())
+     // console.log(getInputProps())
           let btn =
             <>
       <Button variant="contained" color="primary">
@@ -49,6 +50,9 @@ class Uploading extends React.Component {
         <Notes>
           <Note text='This is a 100% offline application' />
           <Note text='You may want to press F11 before using it' />
+          <Note>
+            Find the source code at <Link href='https://github.com/sowcow/prank-player'>github</Link>
+          </Note>
         </Notes>
       </Flex>
     );

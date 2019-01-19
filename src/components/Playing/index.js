@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 
 import Player from '../../lib/Player'
 
+import {Helmet} from "react-helmet";
 
 class Playing extends Component {
 
@@ -51,11 +52,19 @@ class Playing extends Component {
   render() {
     let { files, uris } = this.props
 
+    let dirName = files[0].webkitRelativePath
+    if (dirName) {
+      dirName = dirName.replace(/\/.+/, '')
+    } else {
+      dirName = 'directory_name'
+    }
+
     return <>
+      <Helmet title={dirName} />
       {
         files.map( file =>
           <div key={ file.name }>
-            <Button variant="contained"
+            <Button
               onMouseDown={ e => this.buttonClick(file, e) }
               onContextMenu={ e => e.preventDefault() }
             >

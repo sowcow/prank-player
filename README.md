@@ -17,6 +17,9 @@ It can be used to create soundboards for phone pranking.
 - [x] directory uploader works
 - [x] can play uploaded files
 - [x] single playing stream (no howlerjs)
+- [x] title reflects directory name
+- [ ] small top bar or just a button? - just a button!
+- [ ] standard + autoformatting
 - [ ] initial grid for buttons
 
 ## Features
@@ -36,9 +39,12 @@ It can be used to create soundboards for phone pranking.
 - [ ] new buttons highlighting
 - [ ] renaming buttons
 - [ ] move groups of buttons
+- [ ] options - audio output, persist
 
 ## Other ideas
 
+- [ ] images / svg uploading?
+- [ ] is there an option for nice vector editor?
 - [ ] maybe to use storybook
 - [ ] ogg could be used but whatever
 - [ ] to investigate a good end-to-end testing option?
