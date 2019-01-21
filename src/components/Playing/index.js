@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 // import classnames from 'classnames'
 
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 
 import Player from '../../lib/Player'
 
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet'
 
 class Playing extends Component {
-
   player = new Player()
 
   buttonClick = (file, e, options = {}) => {
@@ -23,7 +22,8 @@ class Playing extends Component {
 
     if (rightButton) {
       this.player.playFromStart(audio)
-    } if (leftButton) {
+    }
+    if (leftButton) {
       this.player.playOrPause(audio)
     }
 
@@ -47,7 +47,7 @@ class Playing extends Component {
     */
   }
 
-  render() {
+  render () {
     let { files, uris } = this.props
 
     let dirName = files[0].webkitRelativePath
@@ -57,30 +57,30 @@ class Playing extends Component {
       dirName = 'directory_name'
     }
 
-    return <>
-      <Helmet title={dirName} />
-      {
-        files.map( file =>
-          <div key={ file.name }>
+    return (
+      <>
+        <Helmet title={dirName} />
+        {files.map(file => (
+          <div key={file.name}>
             <Button
-              onMouseDown={ e => this.buttonClick(file, e) }
-              onContextMenu={ e => e.preventDefault() }
+              onMouseDown={e => this.buttonClick(file, e)}
+              onContextMenu={e => e.preventDefault()}
             >
-              { file.name }
-          <audio preload='auto'
-            // onPlay={ this.onPlay }
-            // onLoad={ this.onLoad }
-          >
-                <source src={ uris[file.name] } type="audio/mpeg" />
+              {file.name}
+              <audio
+                preload='auto'
+                // onPlay={ this.onPlay }
+                // onLoad={ this.onLoad }
+              >
+                <source src={uris[file.name]} type='audio/mpeg' />
                 Your browser does not support the audio tag.
               </audio>
             </Button>
           </div>
-        )
-      }
-    </>
+        ))}
+      </>
+    )
   }
 }
-
 
 export default Playing

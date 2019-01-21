@@ -5,26 +5,24 @@ import React, { Component } from 'react'
 import { styled } from '@material-ui/styles'
 // import styled from 'styled-components'
 
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton'
+import MenuIcon from '@material-ui/icons/Menu'
 
+import Drawer from '@material-ui/core/Drawer'
+import List from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
+import InboxIcon from '@material-ui/icons/MoveToInbox'
+import MailIcon from '@material-ui/icons/Mail'
 
 let style = {
   '& .button': {
     marginLeft: -12,
-    marginRight: 20,
-  },
+    marginRight: 20
+  }
   // '& .button': {
   //   position: 'fixed',
   //   left: 0,
@@ -42,13 +40,14 @@ let style = {
   // right: 0,
 }
 
-
 const sideList = (
   <div>
     <List>
       {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
         <ListItem button key={text}>
-          <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItemIcon>
+            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+          </ListItemIcon>
           <ListItemText primary={text} />
         </ListItem>
       ))}
@@ -57,22 +56,24 @@ const sideList = (
     <List>
       {['All mail', 'Trash', 'Spam'].map((text, index) => (
         <ListItem button key={text}>
-          <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItemIcon>
+            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+          </ListItemIcon>
           <ListItemText primary={text} />
         </ListItem>
       ))}
     </List>
   </div>
-);
+)
 
 class MainMenu extends Component {
   state = {
-    isOpen: false,
+    isOpen: false
   }
   openIt = () => this.setState({ isOpen: true })
   closeIt = () => this.setState({ isOpen: false })
 
-  render() {
+  render () {
     // let [ isOpen, setOpen ] = useState(false)
     let { isOpen } = this.state
 
@@ -80,16 +81,13 @@ class MainMenu extends Component {
 
     return (
       <div className={className}>
-        <IconButton className='button'
-          onClick={this.openIt}
-          color='inherit'
-        >
+        <IconButton className='button' onClick={this.openIt} color='inherit'>
           <MenuIcon />
         </IconButton>
         <Drawer open={isOpen} onClose={this.closeIt}>
           <div
             tabIndex={0}
-            role="button"
+            role='button'
             onClick={this.closeIt}
             onKeyDown={this.closeIt}
           >

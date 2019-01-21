@@ -21,7 +21,7 @@ It can be used to create soundboards for phone pranking.
 - [x] top bar
 - [ ] manually place each button instead of automatic grid
 - [ ] grouping buttons - modal-like containers
-- [ ] standard + autoformatting
+- [x] code: prettier + standard
 - [ ] initial grid for buttons
 
 ## Features

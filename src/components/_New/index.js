@@ -3,16 +3,11 @@ import React, { Component } from 'react'
 // import { Flex, Box } from 'reflexbox'
 import { styled } from '@material-ui/styles'
 
-
-let style = {
-}
+let style = {}
 
 class New extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    )
+  render () {
+    return <div />
   }
 }
 

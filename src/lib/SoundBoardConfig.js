@@ -1,7 +1,7 @@
 const INITIAL_CONFIG = { buttons: [] }
 
 class SoundBoardConfig {
-  constructor(width, height, files, configData = INITIAL_CONFIG) {
+  constructor (width, height, files, configData = INITIAL_CONFIG) {
     super()
     this.width = width
     this.height = height
@@ -9,17 +9,17 @@ class SoundBoardConfig {
     this.initGrid(files)
   }
 
-  buttonData(name) {
+  buttonData (name) {
     return this.configData.buttons[name]
   }
 
   // private
 
-  initGrid(files) {
+  initGrid (files) {
     let { buttons } = this.configData
 
     let newFiles = []
-    files.forEach( x => {
+    files.forEach(x => {
       let neu = !this.buttonData(x.name)
       if (neu) {
         newFiles.push(x)

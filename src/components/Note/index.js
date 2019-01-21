@@ -10,31 +10,29 @@ import { styled } from '@material-ui/styles'
 let style = {
   '& .asterisk': {
     color: '#444',
-    'margin-right': 4,
+    'margin-right': 4
   },
   '& .text': {
-    color: '#444',
+    color: '#444'
   },
   position: 'fixed',
   bottom: 0,
-  right: 0,
+  right: 0
 }
 
 class Note extends Component {
-  render() {
+  render () {
     let { text, children, className } = this.props
 
     return (
       <Flex
-      className={classnames('Note', className)}
-      align='center'
-      mt={1}
-      mr={1}
+        className={classnames('Note', className)}
+        align='center'
+        mt={1}
+        mr={1}
       >
         <Asterisk className='asterisk' />
-        <Box className='text'>
-          { text || children }
-        </Box>
+        <Box className='text'>{text || children}</Box>
       </Flex>
     )
   }
@@ -43,20 +41,16 @@ class Note extends Component {
 class Notes extends Component {
   // static Note = Note
 
-  render() {
+  render () {
     let { className } = this.props
 
     return (
-      <Flex column={ true }
-      className={classnames('Notes', className)}
-      mb={1}
-      >
-        { this.props.children }
+      <Flex column={true} className={classnames('Notes', className)} mb={1}>
+        {this.props.children}
       </Flex>
     )
   }
 }
-
 
 export default styled(Notes)(style)
 export { Note }

@@ -3,7 +3,7 @@
 class Player {
   last = null
 
-  playOrPause(audio) {
+  playOrPause (audio) {
     if (this.isPlaying(audio)) {
       audio.pause()
     } else {
@@ -11,7 +11,7 @@ class Player {
     }
   }
 
-  playFromStart(audio) {
+  playFromStart (audio) {
     this.stop()
     this.stop(audio)
     this.start(audio)
@@ -19,7 +19,7 @@ class Player {
 
   // private
 
-  start(audio) {
+  start (audio) {
     if (this.last !== audio) {
       this.stop(this.last)
     }
@@ -28,7 +28,7 @@ class Player {
     this.last = audio
   }
 
-  stop(audio) {
+  stop (audio) {
     audio = audio || this.last
     if (audio) {
       audio.pause()
@@ -36,7 +36,7 @@ class Player {
     }
   }
 
-  isPlaying(audio) {
+  isPlaying (audio) {
     return audio.duration > 0 && !audio.paused
   }
 }
