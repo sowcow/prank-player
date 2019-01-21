@@ -18,7 +18,9 @@ It can be used to create soundboards for phone pranking.
 - [x] can play uploaded files
 - [x] single playing stream (no howlerjs)
 - [x] title reflects directory name
-- [ ] small top bar or just a button? - just a button!
+- [x] top bar
+- [ ] manually place each button instead of automatic grid
+- [ ] grouping buttons - modal-like containers
 - [ ] standard + autoformatting
 - [ ] initial grid for buttons
 
@@ -29,6 +31,7 @@ It can be used to create soundboards for phone pranking.
 - [x] material ui
 - [x] 100% offline app (should be explicit)
 - [x] uploading
+- [ ] new buttons tray at the top
 - [x] playing using left click - play/pause/stopping previous sound
 - [ ] editing
 - [ ] saving
@@ -40,6 +43,7 @@ It can be used to create soundboards for phone pranking.
 - [ ] renaming buttons
 - [ ] move groups of buttons
 - [ ] options - audio output, persist
+- [ ] check https for git pages, use service worker in production
 
 ## Other ideas
 

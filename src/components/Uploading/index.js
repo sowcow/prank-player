@@ -47,7 +47,7 @@ class Uploading extends React.Component {
       </Dropzone>
       </Box>
         <Notes>
-          <Note text='This is a 100% offline application' />
+          <Note text='This is a 100% offline application*' />
           <Note text='You may want to press F11 before using it' />
           <Note>
             Find the source code at <Link href='https://github.com/sowcow/prank-player'>github</Link>

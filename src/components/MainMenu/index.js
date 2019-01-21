@@ -22,10 +22,15 @@ import MailIcon from '@material-ui/icons/Mail';
 
 let style = {
   '& .button': {
-    position: 'fixed',
-    left: 0,
-    top: 0,
-  }
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  // '& .button': {
+  //   position: 'fixed',
+  //   left: 0,
+  //   top: 0,
+  //   'z-index': 10,
+  // }
   // '& .asterisk': {
   //   color: '#444',
   // },
@@ -77,6 +82,7 @@ class MainMenu extends Component {
       <div className={className}>
         <IconButton className='button'
           onClick={this.openIt}
+          color='inherit'
         >
           <MenuIcon />
         </IconButton>

@@ -5,6 +5,11 @@ html, body,
   background-color: #eee;
 }
 
+/* body, */
+/* .body-bg { */
+/*   background-color: #eee !important; */
+/* } */
+
 body {
   margin: 0;
   padding: 0;

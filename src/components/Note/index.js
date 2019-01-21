@@ -10,6 +10,7 @@ import { styled } from '@material-ui/styles'
 let style = {
   '& .asterisk': {
     color: '#444',
+    'margin-right': 4,
   },
   '& .text': {
     color: '#444',
