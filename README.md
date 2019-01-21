@@ -18,7 +18,7 @@ It can be used to create soundboards for phone pranking.
 - [x] can play uploaded files
 - [x] single playing stream (no howlerjs)
 - [x] title reflects directory name
-- [ ] no top bar
+- [x] no top bar
 - [x] code: prettier + standard
 - [ ] manual placing from tray vs (virtual) button with icon -> modal tray
       it is movable but always visible, is not saved to file

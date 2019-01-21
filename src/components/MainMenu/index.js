@@ -19,16 +19,18 @@ import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 
 let style = {
-  '& .button': {
-    marginLeft: -12,
-    marginRight: 20
-  }
   // '& .button': {
-  //   position: 'fixed',
-  //   left: 0,
-  //   top: 0,
-  //   'z-index': 10,
+  //   marginLeft: -12,
+  //   marginRight: 20
   // }
+
+  '& .button': {
+    position: 'fixed',
+    left: 0,
+    top: 0,
+    'z-index': 10,
+  }
+
   // '& .asterisk': {
   //   color: '#444',
   // },
@@ -81,7 +83,7 @@ class MainMenu extends Component {
 
     return (
       <div className={className}>
-        <IconButton className='button' onClick={this.openIt} color='inherit'>
+        <IconButton className='button body-bg' onClick={this.openIt} color='inherit'>
           <MenuIcon />
         </IconButton>
         <Drawer open={isOpen} onClose={this.closeIt}>

@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 
 import Player from '../../lib/Player'
+import MainMenu from '../MainMenu'
 
 import { Helmet } from 'react-helmet'
 
@@ -59,6 +60,7 @@ class Playing extends Component {
 
     return (
       <>
+        <MainMenu />
         <Helmet title={dirName} />
         {files.map(file => (
           <div key={file.name}>

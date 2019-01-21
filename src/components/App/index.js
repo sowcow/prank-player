@@ -3,7 +3,7 @@ import Uploading from '../Uploading'
 import Playing from '../Playing'
 import './style.css'
 import { Helmet } from 'react-helmet'
-import TopBar from '../TopBar'
+// import TopBar from '../TopBar'
 
 const PLAYING = 'playing'
 const MP3s = /\.mp3$/
@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Helmet title='PPv3' />
-        <TopBar />
+      {/*<TopBar />*/}
         {this.contents()}
       </div>
     )
