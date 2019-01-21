@@ -18,11 +18,15 @@ It can be used to create soundboards for phone pranking.
 - [x] can play uploaded files
 - [x] single playing stream (no howlerjs)
 - [x] title reflects directory name
-- [x] top bar
-- [ ] manually place each button instead of automatic grid
-- [ ] grouping buttons - modal-like containers
+- [ ] no top bar
 - [x] code: prettier + standard
-- [ ] initial grid for buttons
+- [ ] manual placing from tray vs (virtual) button with icon -> modal tray
+      it is movable but always visible, is not saved to file
+- [ ] editing: move - left button, play - right one, resize - marker?
+      resize in tray - resize all in tray
+      resize one in multiselect - apply delta to all, collapse gaps?
+- [ ] manually place each button instead of automatic grid
+- [ ] editing: create grouping buttons - modal-like containers
 
 ## Features
 
