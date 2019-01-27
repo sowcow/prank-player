@@ -20,17 +20,17 @@ It can be used to create soundboards for phone pranking.
 - [x] title reflects directory name
 - [x] no top bar
 - [x] code: prettier + standard
-- [ ] redux + some automation:
-- [ ] redux-actions
-- [ ] indexr -> combineReducers
+- [x] redux + some automation:
+- [x] redux-actions
+- [ ] combineReducers
 - [ ] directory structure
 - [ ] code: flow (faster than typescript)
-- [ ] manual placing from tray vs (virtual) button with icon -> modal tray
+- [ ] manual placing from tray vs (virtual) button with icon -> button...
       it is movable but always visible, is not saved to file
 - [ ] editing: move - left button, play - right one, resize - marker?
       resize in tray - resize all in tray
       resize one in multiselect - apply delta to all, collapse gaps?
-- [ ] manually place each button instead of automatic grid
+- [x] manually place each button instead of automatic grid
 - [ ] editing: create grouping buttons - modal-like containers
 
 ## Features
