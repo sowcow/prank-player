@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 
 import { Flex, Box } from 'reflexbox'
 
-import Notes, { Note } from '../Note'
+import Notes, { Note } from './Note'
 import Link from '@material-ui/core/Link'
 
 class Uploading extends React.Component {

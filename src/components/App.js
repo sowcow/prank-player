@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Uploading from '../Uploading'
-import Playing from '../Playing'
-import './style.css'
+import Uploading from './Uploading'
+import Playing from './Playing'
 import { Helmet } from 'react-helmet'
 // import TopBar from '../TopBar'
+import { connect } from 'react-redux'
+import SoundBoard from './ui/SoundBoard'
 
 const PLAYING = 'playing'
 const MP3s = /\.mp3$/
@@ -45,9 +46,10 @@ class App extends Component {
         <Helmet title='PPv3' />
         {/*<TopBar />*/}
         {this.contents()}
+        <SoundBoard />
       </div>
     )
   }
 }
 
-export default App
+export default connect()(App)
