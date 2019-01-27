@@ -20,6 +20,11 @@ It can be used to create soundboards for phone pranking.
 - [x] title reflects directory name
 - [x] no top bar
 - [x] code: prettier + standard
+- [ ] redux + some automation:
+- [ ] redux-actions
+- [ ] indexr -> combineReducers
+- [ ] directory structure
+- [ ] code: flow (faster than typescript)
 - [ ] manual placing from tray vs (virtual) button with icon -> modal tray
       it is movable but always visible, is not saved to file
 - [ ] editing: move - left button, play - right one, resize - marker?
@@ -31,7 +36,7 @@ It can be used to create soundboards for phone pranking.
 ## Features
 
 - [x] javascript
-- [x] react.js with create-react-app
+- [x] redux/create-react-app
 - [x] material ui
 - [x] 100% offline app (should be explicit)
 - [x] uploading

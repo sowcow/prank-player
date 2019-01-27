@@ -7,18 +7,28 @@
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.8",
     "classnames": "^2.2.6",
+    "create-index": "^2.4.0",
+    "flow-bin": "^0.91.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-dropzone": "^8.0.3",
     "react-helmet": "^5.2.0",
+    "react-redux": "^6.0.0",
     "react-scripts": "2.1.3",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.4",
+    "redux-devtools-extension": "^2.13.7",
+    "redux-thunk": "^2.3.0",
     "reflexbox": "^3.0.1",
     "styled-components": "^4.1.3",
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {
+    "dev1": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn gen1",
+    "gen1": "create-index src/state/",
     "format": "prettier-standard 'src/**/*.js'",
-
+    "flow": "flow",
+    "flow:watch": "flow-watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -34,6 +44,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "flow-watch": "^1.1.4",
+    "onchange": "^5.2.0",
     "prettier-standard": "^9.1.1"
   }
 }

@@ -43,7 +43,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Helmet title='PPv3' />
-      {/*<TopBar />*/}
+        {/*<TopBar />*/}
         {this.contents()}
       </div>
     )

@@ -28,7 +28,7 @@ let style = {
     position: 'fixed',
     left: 0,
     top: 0,
-    'z-index': 10,
+    'z-index': 10
   }
 
   // '& .asterisk': {
@@ -83,7 +83,11 @@ class MainMenu extends Component {
 
     return (
       <div className={className}>
-        <IconButton className='button body-bg' onClick={this.openIt} color='inherit'>
+        <IconButton
+          className='button body-bg'
+          onClick={this.openIt}
+          color='inherit'
+        >
           <MenuIcon />
         </IconButton>
         <Drawer open={isOpen} onClose={this.closeIt}>
