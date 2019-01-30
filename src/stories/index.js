@@ -1,18 +1,20 @@
 import { Box, Flex } from 'reflexbox'
 import { CheckBox, CheckBoxOutlineBlank } from '@material-ui/icons'
 import {
+  Divider,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Paper
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { darken, desaturate } from 'polished';
 import React from 'react'
+import withStyles from 'react-jss'
 
 import { storiesOf } from '@storybook/react'
 
 import SoundBoard from '../components/ui/SoundBoard'
-import withStyles from 'react-jss'
 
 let ExampleArea = ({ children, classes }) => (
   <Paper className={classes.paper}>{children}</Paper>
@@ -38,7 +40,7 @@ let ShowList = ({ contents }) => (
         <Box>
           <div
             style={{
-              backgroundColor: '#018786',
+              backgroundColor: '#2196f3', //desaturate(0.5, lighten(0.5, '#08a')),
               width: 10,
               height: '100%',
               borderRadius: '4px 0 0 4px'
@@ -52,6 +54,8 @@ let ShowList = ({ contents }) => (
               .map(x => x.trim())
               .filter(x => !!x)
               .map(x => {
+                let breakRegex = /^-+$/
+                if (breakRegex.test(x)) return { break: true }
                 let regex = /^x /
                 if (regex.test(x)) {
                   x = x.replace(regex, '')
@@ -61,6 +65,7 @@ let ShowList = ({ contents }) => (
                 }
               })
               .map(x => (
+                x.break ? <Divider /> :
                 <ListItem dense>
                   <ListItemIcon>
                     {x.done ? <CheckBox /> : <CheckBoxOutlineBlank />}
@@ -84,6 +89,10 @@ storiesOf('SoundBoard', module)
           They take space from the button to the right or left side (the longest part)
           They are clickable buttons that play audio
           They can be dragged to the main area where they are positioned this way
+          ---
+          The component fills the given space
+          There is a way to put a menu button in the corner?
+          New
       `}
     >
       <SoundBoard
