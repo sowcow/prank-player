@@ -1,0 +1,14 @@
+name: development env for PPv3
+
+root: ~/MY/CODE/JAN/prank-player
+
+startup_window: editing
+
+windows:
+  - running:
+      layout: tiled
+      panes:
+        - yarn autorun-dev-stuff
+        - yarn flow:watch
+        - yarn start
+  - editing: toilet -t Happy coding!

@@ -25,8 +25,9 @@
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {
-    "dev1": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn gen1",
-    "gen1": "create-index src/state/",
+    "dev": "tmuxinator start -p ./tmuxinator.yml",
+    "autorun-dev-stuff": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn generate-index-js",
+    "generate-index-js": "create-index src/state/",
     "format": "prettier-standard 'src/**/*.js'",
     "flow": "flow",
     "flow:watch": "flow-watch",
