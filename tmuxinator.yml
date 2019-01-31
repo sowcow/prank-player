@@ -1,6 +1,6 @@
 name: development env for PPv3
 
-root: ~/MY/CODE/JAN/prank-player
+root: ~/MY/CODE/JAN/prank-player/src
 
 startup_window: editing
 
