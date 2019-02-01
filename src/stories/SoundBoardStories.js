@@ -8,8 +8,7 @@ featuresFor(
   'editing with new entries',
   `
   x User sees a button that hides new entries
-    User can click it to see them
-    They take space from the button to the right or left side (the longest part)
+  x User can click it to see them
     They are clickable buttons that play audio
     They can be dragged to the main area where they are positioned this way
     ---
