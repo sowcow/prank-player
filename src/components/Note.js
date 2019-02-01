@@ -45,7 +45,11 @@ class Notes extends Component {
     let { className } = this.props
 
     return (
-      <Flex column={true} className={classnames('Notes', className)} mb={1}>
+      <Flex
+        column={true}
+        className={classnames('Notes', className)}
+        mb={1}
+      >
         {this.props.children}
       </Flex>
     )

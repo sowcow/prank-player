@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { Helmet } from 'react-helmet'
 
-import MainMenu from '../MainMenu'
+import MainMenu from './MainMenu'
 
 let style = {}
 
@@ -24,7 +24,9 @@ class TopBar extends Component {
       <div>
         <Helmet
           onChangeClientState={newState =>
-            this.setState({ title: newState.title })
+            this.setState({
+              title: newState.title
+            })
           }
         />
         <AppBar position='static'>

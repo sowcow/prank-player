@@ -14,6 +14,7 @@ It can be used to create soundboards for phone pranking.
 
 ## Stuff to check first
 
+- [ ] some stuff is being rewritten
 - [x] directory uploader works
 - [x] can play uploaded files
 - [x] single playing stream (no howlerjs)
@@ -65,6 +66,7 @@ It can be used to create soundboards for phone pranking.
 - [ ] use local-storage at all?
 - [ ] playing progress bar?
 - [ ] animations?
+- [ ] spinner
 - [ ] static typing? (typescript was slow when I tried it)
 - [ ] buttons styles options?
 - [ ] skins?

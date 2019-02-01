@@ -19,11 +19,18 @@ class Uploading extends React.Component {
       <Flex className='Uploading'>
         <Box m='auto'>
           <Dropzone onDrop={this.onDrop}>
-            {({ getRootProps, getInputProps, isDragActive }) => {
+            {({
+              getRootProps,
+              getInputProps,
+              isDragActive
+            }) => {
               // console.log(getInputProps())
               let btn = (
                 <>
-                  <Button variant='contained' color='primary'>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                  >
                     Choose a directory with mp3s
                   </Button>
                 </>
@@ -41,7 +48,11 @@ class Uploading extends React.Component {
                     webkitdirectory='true'
                     mozdirectory='true'
                   />
-                  {isDragActive ? <p>Drop files here...</p> : btn
+                  {isDragActive ? (
+                    <p>Drop files here...</p>
+                  ) : (
+                    btn
+                  )
 
                   // <p>Try dropping some files here, or click to select files to upload.</p>
                   }
@@ -55,7 +66,9 @@ class Uploading extends React.Component {
           <Note text='You may want to press F11 before using it' />
           <Note>
             Find the source code at{' '}
-            <Link href='https://github.com/sowcow/prank-player'>github</Link>
+            <Link href='https://github.com/sowcow/prank-player'>
+              github
+            </Link>
           </Note>
         </Notes>
       </Flex>

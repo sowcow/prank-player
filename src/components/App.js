@@ -36,8 +36,10 @@ class App extends Component {
   contents () {
     let { files, uris, scene } = this.state
 
-    if (!files.length) return <Uploading gotFiles={this.gotFiles} />
-    if (scene === PLAYING) return <Playing files={files} uris={uris} />
+    if (!files.length)
+      return <Uploading gotFiles={this.gotFiles} />
+    if (scene === PLAYING)
+      return <Playing files={files} uris={uris} />
   }
 
   render () {

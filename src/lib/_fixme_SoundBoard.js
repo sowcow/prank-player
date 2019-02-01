@@ -48,7 +48,10 @@ class SoundBoard {
     return new SoundBoard(config, mediaFiles)
   }
 
-  constructor (config: Config, mediaFiles: Array<MediaFile>) {
+  constructor (
+    config: Config,
+    mediaFiles: Array<MediaFile>
+  ) {
     this.config = config
     this.mediaFiles = mediaFiles
   }

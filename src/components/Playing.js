@@ -74,7 +74,10 @@ class Playing extends Component {
                 // onPlay={ this.onPlay }
                 // onLoad={ this.onLoad }
               >
-                <source src={uris[file.name]} type='audio/mpeg' />
+                <source
+                  src={uris[file.name]}
+                  type='audio/mpeg'
+                />
                 Your browser does not support the audio tag.
               </audio>
             </Button>
