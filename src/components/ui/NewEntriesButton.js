@@ -1,4 +1,4 @@
-import { Add, Close } from '@material-ui/icons';
+import { Add, Close } from '@material-ui/icons'
 import { Fab } from '@material-ui/core'
 import { connect } from 'react-redux'
 import React from 'react'
@@ -24,10 +24,7 @@ let NewEntriesButton = ({
       <NewEntriesList entries={entries} show={opened} />
       <div className={classes.root}>
         <Fab color={color} onClick={toggleNewButton}>
-          { !opened ?
-            <Add /> :
-            <Close />
-          }
+          {!opened ? <Add /> : <Close />}
         </Fab>
       </div>
     </>

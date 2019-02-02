@@ -9,8 +9,8 @@ featuresFor(
   `
   x User sees a button that hides new entries
   x User can click it to see them
-    They are clickable buttons that play audio
     They can be dragged to the main area where they are positioned this way
+    They are clickable buttons that play audio
     ---
   x The component fills the given space
   x New stuff button is shown if there is something
@@ -26,8 +26,11 @@ featuresFor(
       { name: 'First entry' },
       { name: 'Second entry' },
       { name: 'Third entry goes here' },
-      { name: 'Now it\'s time for the fourth entry' },
-      { name: 'And the fifth entry shall take it\' place here' },
+      { name: "Now it's time for the fourth entry" },
+      {
+        name:
+          "And the fifth entry shall take it' place here"
+      }
     ]}
   />
 )
