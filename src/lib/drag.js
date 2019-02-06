@@ -1,0 +1,1 @@
+export const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'

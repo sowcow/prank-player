@@ -1,20 +1,19 @@
+import 'typeface-roboto'
+
 import './firstThings'
+import './style.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './style.css'
-import App from './components/App'
-import * as serviceWorker from './serviceWorker'
-import { StoreProvider } from './redux/store'
 
-import 'typeface-roboto'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import AppContext from './AppContext'
+import DummyApp from './components/DummyApp'
+import * as serviceWorker from './serviceWorker'
 
 let app = (
-  <StoreProvider>
-    <CssBaseline />
-    <App />
-  </StoreProvider>
+  <AppContext>
+    <DummyApp />
+  </AppContext>
 )
 
 let element = document.getElementById('root')

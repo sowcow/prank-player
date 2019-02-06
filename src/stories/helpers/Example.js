@@ -14,6 +14,8 @@ import {
 import React from 'react'
 import withStyles from 'react-jss'
 
+import AppContext from '../../AppContext'
+
 let ExampleArea = ({ children, classes }) => (
   <Paper className={classes.paper}>{children}</Paper>
 )
@@ -25,14 +27,16 @@ ExampleArea = withStyles({
 })(ExampleArea)
 
 let Example = ({ features, children }) => (
-  <Flex p={2}>
-    <Box w='50%' p={1}>
-      <ExampleArea>{children}</ExampleArea>
-    </Box>
-    <Box w='50%' p={1}>
-      <ShowList contents={features} />
-    </Box>
-  </Flex>
+  <AppContext>
+    <Flex p={2}>
+      <Box w='50%' p={1}>
+        <ExampleArea>{children}</ExampleArea>
+      </Box>
+      <Box w='50%' p={1}>
+        <ShowList contents={features} />
+      </Box>
+    </Flex>
+  </AppContext>
 )
 
 let ShowList = ({ contents }) => {

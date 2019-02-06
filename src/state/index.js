@@ -1,3 +1,4 @@
 // @create-index
 
-export { default as ui } from './ui.js'
+export { default as newEntries } from './newEntries.js';
+

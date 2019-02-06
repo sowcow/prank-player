@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import React from 'react'
 import withStyles from 'react-jss'
 
-import {
-  getNewButtonOpened,
-  toggleNewButton
-} from '../../state/ui'
+// import {
+//   getNewButtonOpened,
+//   toggleNewButton
+// } from '../../state/ui'
 import NewEntriesList from './NewEntriesList'
+let getNewButtonOpened = () => {}
+let toggleNewButton = () => {}
 
 // connected component in ui dir...
 

@@ -1,42 +1,19 @@
-import { Box, Flex } from 'reflexbox'
+import { Flex } from 'reflexbox'
 import { Paper, Slide } from '@material-ui/core'
 import { connect } from 'react-redux'
 import React from 'react'
 import indigo from '@material-ui/core/colors/indigo'
 import withStyles from 'react-jss'
 
-import {
-  getNewButtonOpened,
-  toggleNewButton
-} from '../../state/ui'
+// import {
+//   getNewButtonOpened,
+//   toggleNewButton
+// } from '../../state/ui'
+import Entry from './Entry'
+let getNewButtonOpened = () => {}
+let toggleNewButton = () => {}
 
 // connected component in ui dir...
-
-let ellipsis = {
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis'
-}
-
-let NewEntry = ({ entry }) => (
-  <Box
-    mr={2}
-    ml={2}
-    w={150}
-    style={{
-      flexShrink: 0,
-      color: 'white',
-      textAlign: 'center'
-    }}
-  >
-    <div style={{ height: '100%', display: 'flex' }}>
-      <span style={{ margin: 'auto', ...ellipsis }}>
-        {entry.name}
-      </span>
-    </div>
-  </Box>
-)
-//<Chip color='primary' label={entry.name} />
 
 let NewEntriesList = ({
   entries,
@@ -57,7 +34,7 @@ let NewEntriesList = ({
         <Paper>
           <Flex className={classes.insidePaper}>
             {entries.map((x, i) => (
-              <NewEntry entry={x} key={i} />
+              <Entry entry={x} key={i} />
             ))}
           </Flex>
         </Paper>
