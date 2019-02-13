@@ -72,3 +72,29 @@ It can be used to create soundboards for phone pranking.
 - [ ] skins?
 - [ ] unlikely but I may want to look into making an electron app,
       or there may be interesting alternatives to electron
+
+## technical notes
+
+- I may try to use purescript somewhere here
+- js libraries are reliable base still
+
+- baobab looks great for the state handling
+- the state is built in a very dynamical, decoupled and DRY way
+- unit testing for state handling using ava
+
+- the process:
+  - scenario(input,sketchy,user/world-wise)
+  - feature(skill,details,project-wise)
+  - modules(prediction,code-base-wise)
+  - TDD (GOOS way?)
+
+### main modules
+
+- UserUpload component,service -> state
+- EditMode
+- NewEntries
+- PositionedEntries
+- Entry
+- UserDownload service
+- Configuration
+- Menu

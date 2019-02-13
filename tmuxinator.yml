@@ -9,7 +9,7 @@ windows:
       layout: tiled
       panes:
         - yarn autorun-dev-stuff
-        #- yarn flow:watch
-        #- yarn start
-        - yarn storybook
+        - yarn flow:watch
+        - yarn start
+        # - yarn storybook
   - editing: toilet -t Happy coding!

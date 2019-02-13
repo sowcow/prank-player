@@ -1,0 +1,31 @@
+#+TODO: TODO(t) WIP(w) | DONE(d) NOPE(n)
+#+TAGS: home(h) work(w) @computer(c) @phone(p) errants(e)
+#+STARTUP: indent
+#+STARTUP: hidestars
+
+* process and tools
+- [X] two step TDD
+- [X] usage scenario
+- [X] watir for e2e scenarios
+- [X] unit tests using default create-react-app way
+- [X] react + baobab + materail-ui
+* meta
+** to decide if the storybook is still relevant
+this BDD approach seems to make it less useful to have storybook
+because I develop incomplete vertical paths and not trying stuff in units
+* [0/7] main scenario
+** WIP [1/2] user uploads a directory with mp3 files
+*** DONE e2e test
+*** WIP [2/5] code
+- [X] user uploads directory
+- [X] get new architectural idea
+- [X] old code -> trash
+- [ ] define structure & domain
+- [ ] state & unit tests
+- [ ] user sees new entries
+** TODO meta: refactoring + ui improvement
+** TODO user sees buttons that play sounds
+** TODO user sets positions of buttons
+** TODO user saves changes as a file into the same directory
+** TODO after page reload: user loads that directory and positions
+** TODO user can assign positions for newly added files

@@ -1,18 +1,18 @@
 import 'typeface-roboto'
 
-import './firstThings'
-import './style.css'
+import './basement/loadFirst'
+import './basement/style.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import AppContext from './AppContext'
-import DummyApp from './components/DummyApp'
-import * as serviceWorker from './serviceWorker'
+import App from './structure/App'
+import AppContext from './basement/AppContext'
+import * as serviceWorker from './basement/serviceWorker'
 
 let app = (
   <AppContext>
-    <DummyApp />
+    <App />
   </AppContext>
 )
 

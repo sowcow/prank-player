@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "tmuxinator start -p ./tmuxinator.yml",
     "autorun-dev-stuff": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn generate-index-js",
-    "generate-index-js": "create-index src/state/ src/stories",
+    "generate-index-js": "create-index src/stories",
     "format": "prettier-standard 'src/**/*.js'",
     "flow": "flow",
     "flow:watch": "flow-watch",
