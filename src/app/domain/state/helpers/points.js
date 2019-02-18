@@ -18,18 +18,23 @@ class Points {
     this.reset()
     this.state.commit()
   }
-  mapSet(fun) {
+  mapSet (fun) {
     return this.setter(UNSET, fun)
   }
-  setter(value = UNSET, mapping = ID) { // messy since it was copied from helpers/nestedAt.js
+  setter (value = UNSET, mapping = ID) {
+    // messy since it was copied from helpers/nestedAt.js
     return (tree, given = UNSET) => {
-      let usedState = tree ? tree.select(this.path) : this.state
+      let usedState = tree
+        ? tree.select(this.path)
+        : this.state
       if (value !== UNSET) {
         usedState.set(mapping(value))
       } else if (given !== UNSET) {
         usedState.set(mapping(given))
       } else {
-        console.log('FIXME: give value in .setter() or on use!')
+        console.log(
+          'FIXME: give value in .setter() or on use!'
+        )
       }
     }
   }

@@ -2,9 +2,7 @@ const Container = styled.div`
   text-align: center;
 `
 
-export default () =>
-  <Container>
-  </Container>
+export default () => <Container />
 
 // let component = ({ classes }) =>
 //   <div className={classes.root}>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CentralLayout from '../app/layout/CentralLayout';
+import CentralLayout from '../app/layout/CentralLayout'
 import featuresFor from './helpers/featuresFor'
 import styled from 'styled-components'
 
@@ -9,21 +9,21 @@ let Distinct = styled.div`
   color: #333;
   padding: 10px;
   white-space: pre;
-  background-color: ${p => randomColor() };
+  background-color: ${p => randomColor()};
   text-align: center;
 `
 
-function randomColor() {
-  let result = "#"
+function randomColor () {
+  let result = '#'
   result += randomLetter()
   result += randomLetter()
   result += randomLetter()
   return result
 }
 const LETTERS = ['9', 'c', 'f']
-function randomLetter() {
+function randomLetter () {
   let items = LETTERS
-  return items[Math.floor(Math.random()*items.length)]
+  return items[Math.floor(Math.random() * items.length)]
 }
 
 featuresFor(
@@ -37,7 +37,7 @@ featuresFor(
     rightTop={<Distinct>rightTop</Distinct>}
     leftBottom={<Distinct>leftBottom</Distinct>}
     rightBottom={<Distinct>rightBottom</Distinct>}
-    center={<Distinct>{"center\ngoes\nhere"}</Distinct>}
+    center={<Distinct>{'center\ngoes\nhere'}</Distinct>}
   />
 )
 
@@ -50,8 +50,8 @@ featuresFor(
   <CentralLayout
     leftBottom={<Distinct>leftBottom</Distinct>}
     rightBottom={<Distinct>rightBottom</Distinct>}
-    center={<Distinct>{"center\ngoes\nhere"}</Distinct>}
-    top={<Distinct>{"top!"}</Distinct>}
+    center={<Distinct>{'center\ngoes\nhere'}</Distinct>}
+    top={<Distinct>{'top!'}</Distinct>}
   />
 )
 featuresFor(
@@ -61,12 +61,12 @@ featuresFor(
   x top
 `,
   <CentralLayout
-    leftTop={<Distinct>{"leftTop\ngoes\nhere"}</Distinct>}
-    rightTop={<Distinct>{"rightTop\ngoes\nhere"}</Distinct>}
+    leftTop={<Distinct>{'leftTop\ngoes\nhere'}</Distinct>}
+    rightTop={<Distinct>{'rightTop\ngoes\nhere'}</Distinct>}
     leftBottom={<Distinct>leftBottom</Distinct>}
     rightBottom={<Distinct>rightBottom</Distinct>}
-    center={<Distinct>{"center\ngoes\nhere"}</Distinct>}
-    top={<Distinct>{"top!"}</Distinct>}
+    center={<Distinct>{'center\ngoes\nhere'}</Distinct>}
+    top={<Distinct>{'top!'}</Distinct>}
   />
 )
 
@@ -79,8 +79,8 @@ featuresFor(
   <CentralLayout
     leftTop={<Distinct>leftTop</Distinct>}
     rightTop={<Distinct>rightTop</Distinct>}
-    center={<Distinct>{"center\ngoes\nhere"}</Distinct>}
-    bottom={<Distinct>{"bottom!"}</Distinct>}
+    center={<Distinct>{'center\ngoes\nhere'}</Distinct>}
+    bottom={<Distinct>{'bottom!'}</Distinct>}
   />
 )
 
@@ -95,8 +95,8 @@ featuresFor(
     rightTop={<Distinct>rightTop</Distinct>}
     leftBottom={<Distinct>leftBottom</Distinct>}
     rightBottom={<Distinct>rightBottom</Distinct>}
-    center={<Distinct>{"center\ngoes\nhere"}</Distinct>}
-    bottom={<Distinct>{"bottom!"}</Distinct>}
+    center={<Distinct>{'center\ngoes\nhere'}</Distinct>}
+    bottom={<Distinct>{'bottom!'}</Distinct>}
   />
 )
 

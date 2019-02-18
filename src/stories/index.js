@@ -1,4 +1,5 @@
 // @create-index
 
-export { default as LayoutsStories } from './LayoutsStories.js';
-
+export {
+  default as LayoutsStories
+} from './LayoutsStories.js'

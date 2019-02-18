@@ -9,7 +9,7 @@ import Example from './Example'
 function featuresFor (name, details, features, component) {
   return storiesOf(name, module).add(details, () => (
     // <StoreProvider>
-      <Example features={features}>{component}</Example>
+    <Example features={features}>{component}</Example>
     // </StoreProvider>
   ))
 }

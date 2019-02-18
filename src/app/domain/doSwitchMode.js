@@ -1,3 +1,3 @@
-export default function(files) {
+export default function (files) {
   // changes state etc...
 }

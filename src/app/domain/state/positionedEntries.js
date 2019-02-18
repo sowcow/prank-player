@@ -1,7 +1,6 @@
-import { useInternalUid } from './helpers/uid';
-import nestedAt from './helpers/nestedAt';
-import treeRoot from './tree/treeRoot';
-
+import { useInternalUid } from './helpers/uid'
+import nestedAt from './helpers/nestedAt'
+import treeRoot from './tree/treeRoot'
 
 // boilerplate
 //

@@ -59,41 +59,24 @@ const Top = styled.div`
   top: 0;
 `
 
-export default ({ top, bottom, leftTop, rightTop, leftBottom, rightBottom, center }) =>
+export default ({
+  top,
+  bottom,
+  leftTop,
+  rightTop,
+  leftBottom,
+  rightBottom,
+  center
+}) => (
   <Root>
-    { top &&
-      <Top>
-        { top }
-      </Top>
-    }
-    { bottom &&
-      <Bottom>
-        { bottom }
-      </Bottom>
-    }
-    { leftTop &&
-      <LeftTop>
-        { leftTop }
-      </LeftTop>
-    }
-    { rightTop &&
-      <RightTop>
-        { rightTop }
-      </RightTop>
-    }
-    { leftBottom &&
-      <LeftBottom>
-        { leftBottom }
-      </LeftBottom>
-    }
-    { rightBottom &&
-      <RightBottom>
-        { rightBottom }
-      </RightBottom>
-    }
-    { center &&
-      <Center>
-        { center }
-      </Center>
-    }
+    {top && <Top>{top}</Top>}
+    {bottom && <Bottom>{bottom}</Bottom>}
+    {leftTop && <LeftTop>{leftTop}</LeftTop>}
+    {rightTop && <RightTop>{rightTop}</RightTop>}
+    {leftBottom && <LeftBottom>{leftBottom}</LeftBottom>}
+    {rightBottom && (
+      <RightBottom>{rightBottom}</RightBottom>
+    )}
+    {center && <Center>{center}</Center>}
   </Root>
+)

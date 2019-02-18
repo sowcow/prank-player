@@ -6,7 +6,7 @@ import './basement/style.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './app/structure/App';
+import App from './app/structure/App'
 import AppContext from './basement/AppContext'
 import * as serviceWorker from './basement/serviceWorker'
 

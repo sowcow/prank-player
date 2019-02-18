@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { connectTree } from '../domain/state/tree/react'
-import UploadButton from '../ui/UploadButton';
-import doUpload from '../domain/doUpload';
-import getFilesDirName from '../misc/getFilesDirName';
+import UploadButton from '../ui/UploadButton'
+import doUpload from '../domain/doUpload'
+import getFilesDirName from '../misc/getFilesDirName'
 
 const gotFiles = files => {
   let dirName = getFilesDirName(files)

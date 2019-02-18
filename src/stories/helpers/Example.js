@@ -14,8 +14,7 @@ import {
 import React from 'react'
 import withStyles from 'react-jss'
 
-import AppContext from '../../basement/AppContext';
-
+import AppContext from '../../basement/AppContext'
 
 let ExampleArea = ({ children, classes }) => (
   <Paper className={classes.paper}>{children}</Paper>

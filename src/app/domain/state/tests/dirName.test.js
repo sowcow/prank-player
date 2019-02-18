@@ -1,4 +1,4 @@
-import { uploadDirName, uploadDirNameSet } from '../dirName';
+import { uploadDirName, uploadDirNameSet } from '../dirName'
 
 beforeEach(() => {
   ;[uploadDirName].forEach(x => x.reset())

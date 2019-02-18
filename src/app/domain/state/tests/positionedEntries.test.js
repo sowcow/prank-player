@@ -1,9 +1,8 @@
 import {
   positionedEntriesDrop,
   positionedEntriesList,
-  positionedEntriesPush,
-} from '../positionedEntries';
-
+  positionedEntriesPush
+} from '../positionedEntries'
 
 // let tree   // maybe at some point, also reset has to react to it
 
