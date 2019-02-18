@@ -10,19 +10,20 @@
 - [X] unit tests using default create-react-app way
 - [X] react + baobab + materail-ui
 * meta
-** to decide if the storybook is still relevant
+** DONE is storybook relevant? - yes - for layouts
 this BDD approach seems to make it less useful to have storybook
 because I develop incomplete vertical paths and not trying stuff in units
+
 * [0/7] main scenario
 ** WIP [1/2] user uploads a directory with mp3 files
 *** DONE e2e test
-*** WIP [2/5] code
+*** WIP [5/6] code
 - [X] user uploads directory
 - [X] get new architectural idea
 - [X] old code -> trash
-- [ ] define structure & domain
-- [ ] state & unit tests
-- [ ] user sees new entries
+- [X] define some structure & domain
+- [X] enter the cycle
+- [ ] test passes
 ** TODO meta: refactoring + ui improvement
 ** TODO user sees buttons that play sounds
 ** TODO user sets positions of buttons

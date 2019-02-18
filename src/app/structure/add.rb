@@ -1,12 +1,49 @@
 #!/bin/ruby
 
 name = ARGV.pop
+return puts "give me a name for the new file" unless name
+
+file = File.join __dir__, name
+file += '.js'
+return puts "this file already existis" if File.exist? file
+
+$NAME = name
+$PURE = "#{name}Pure"
+
+TEXT = <<END.strip
+const #$PURE = () =>
+  <>
+    <div>TODO: #{$NAME}</div>
+  </>
+
+let connection = [
+]
+
+export { #$PURE }
+export default connectTree(connection)(#$PURE)
+END
+
+def main file, text
+  File.write file, text
+  process_js file
+end
+
+def process_js file
+  system 'importjs fix --overwrite %s' % file.inspect
+  system 'yarn prettier-standard %s' % file.inspect
+end
+
+main file, TEXT
+
+__END__
+name = ARGV.pop
 return puts "give me a name for the new directory" unless name
 
 dir = File.join __dir__, name
 # return puts "this directory already existis" if Dir.exist? dir
 
 $NAME = name
+$PURE = "#{name}Pure"
 
 END {
   add dir, files: {
@@ -33,20 +70,18 @@ def add(dir, files:)
 end
 
 
+
 STATEFUL = <<END.strip
-const #{$NAME}Pure = () =>
+const #$PURE = () =>
   <>
-    <div>TODO</div>
+    <div>TODO: #{$NAME}</div>
   </>
 
-let connected = connectTree(
-)
+let connection = [
+]
 
-const #$NAME = connected(#{$NAME}Pure)
-
-export { #{$NAME}Pure }
-
-export default #$NAME
+export { #$PURE }
+export default connectTree(connection)(#$PURE)
 END
 
 

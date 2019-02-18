@@ -6,10 +6,14 @@ startup_window: editing
 
 windows:
   - running:
+      # layout: even-horizontal
       layout: tiled
       panes:
-        - yarn autorun-dev-stuff
-        - yarn flow:watch
         - yarn start
+        - yarn test
+        - emacs ../process.org
+        - cd ../e2e; rake
+        # - yarn autorun-dev-stuff
+        # - yarn flow:watch
         # - yarn storybook
   - editing: toilet -t Happy coding!

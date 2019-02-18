@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Subj from './'
+import UploadButton from './UploadButton'
 
-it('renders without crashing', () => {
+it('renders without crashing: UploadButton', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<Subj />, div)
+  ReactDOM.render(<UploadButton />, div)
   ReactDOM.unmountComponentAtNode(div)
 })

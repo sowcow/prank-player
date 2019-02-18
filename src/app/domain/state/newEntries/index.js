@@ -1,5 +1,5 @@
-import nestedAt from './helpers/nestedAt'
-import treeRoot from './tree/treeRoot'
+import nestedAt from '../helpers/nestedAt';
+import treeRoot from '../tree/treeRoot';
 
 // constants
 //
