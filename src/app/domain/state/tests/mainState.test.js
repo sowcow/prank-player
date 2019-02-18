@@ -1,4 +1,4 @@
-import { isUploadingState, setUploadingState } from './';
+import { isUploadingState, setUploadingState } from '../mainState';
 
 beforeEach(() => {
   ;[isUploadingState].forEach(x => x.reset())

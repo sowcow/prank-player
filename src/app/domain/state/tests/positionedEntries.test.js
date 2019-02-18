@@ -1,10 +1,12 @@
 import {
   positionedEntriesDrop,
   positionedEntriesList,
-  positionedEntriesPush
-} from './'
+  positionedEntriesPush,
+} from '../positionedEntries';
+
 
 // let tree   // maybe at some point, also reset has to react to it
+
 let uid = expect.any(Number)
 
 beforeEach(() => {

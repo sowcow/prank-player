@@ -14,6 +14,6 @@ let addBranch = nestedAt(treeRoot, KEY)
 
 // branches definition
 //
-branch = addBranch('uploadDirName', '')
-export const uploadDirName = branch()
-export const uploadDirNameSet = branch().setter()
+branch = addBranch('isUploadingState', true) // key, default value
+export const isUploadingState = branch() // getter - same name!
+export const setUploadingState = branch().mapSet(x => !!x)

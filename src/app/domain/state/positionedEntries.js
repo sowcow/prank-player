@@ -1,13 +1,15 @@
-import { useInternalUid } from '../helpers/uid'
-import nestedAt from '../helpers/nestedAt'
-import treeRoot from '../tree/treeRoot'
+import { useInternalUid } from './helpers/uid';
+import nestedAt from './helpers/nestedAt';
+import treeRoot from './tree/treeRoot';
 
-// constants
-//
-const KEY = ['positioned-entries']
 
 // boilerplate
 //
+let lastPart = /([^/]+).js$/
+let fileName = __filename
+fileName = fileName.match(lastPart)[1]
+const KEY = [fileName]
+
 var branch
 let addBranch = nestedAt(treeRoot, KEY)
 
