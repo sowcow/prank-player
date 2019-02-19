@@ -1,22 +1,21 @@
 import React from 'react'
 
 import { connectTree } from '../domain/state/tree/react'
+import NewEntriesList from '../ui/NewEntriesList';
 import UploadButton from '../ui/UploadButton'
 import doUpload from '../domain/doUpload'
-import getFilesDirName from '../misc/getFilesDirName'
+import { newEntriesList } from '../domain/state/newEntries'
 
-const gotFiles = files => {
-  let dirName = getFilesDirName(files)
-  doUpload(dirName, files)
-}
-
-const MainAreaPure = () => (
+const MainAreaPure = ({newEntriesList}) => (
   <>
-    <UploadButton gotFiles={gotFiles} />
+    <UploadButton gotFiles={doUpload} />
+    <NewEntriesList given={newEntriesList} />
   </>
 )
 
-let connection = []
+let connection = [
+  newEntriesList
+]
 
 export { MainAreaPure }
 export default connectTree(connection)(MainAreaPure)

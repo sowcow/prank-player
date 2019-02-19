@@ -14,19 +14,20 @@
 this BDD approach seems to make it less useful to have storybook
 because I develop incomplete vertical paths and not trying stuff in units
 
-* [0/7] main scenario
-** WIP [1/2] user uploads a directory with mp3 files
+* [2/8] main scenario
+** DONE [2/2] user uploads a directory with mp3 files
 *** DONE e2e test
-*** WIP [5/6] code
+*** DONE [6/6] code
 - [X] user uploads directory
 - [X] get new architectural idea
 - [X] old code -> trash
 - [X] define some structure & domain
 - [X] enter the cycle
-- [ ] test passes
-** TODO meta: refactoring + ui improvement
+- [X] test passes
+** DONE refactoring?
+** TODO ui improvement
 ** TODO user sees buttons that play sounds
-** TODO user sets positions of buttons
+** TODO user sets positions of buttons by dragging
 ** TODO user saves changes as a file into the same directory
 ** TODO after page reload: user loads that directory and positions
 ** TODO user can assign positions for newly added files

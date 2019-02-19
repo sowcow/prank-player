@@ -4,6 +4,9 @@ require_relative 'paths'
 require_relative 'see'
 require_relative 'temp_dir_files'
 
+HEADLESS_BROWSER = false
+# HEADLESS_BROWSER = true
+
 class Browser
   attr_reader :watir
 
@@ -13,9 +16,9 @@ class Browser
       {
         chromeOptions: {
           args: [
-            '--headless',
+            HEADLESS_BROWSER ? '--headless' : nil,
             '--window-size=800x600'
-          ]
+          ].compact
         }
       }
     )

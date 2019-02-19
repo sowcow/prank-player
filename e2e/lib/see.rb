@@ -4,7 +4,7 @@ module See
 
   with_question_mark.push \
   def new_button bro, text
-    bro.button name: text
+    bro.button text: text
   end
 
   with_question_mark.each { |name|
