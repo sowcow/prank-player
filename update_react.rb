@@ -15,8 +15,12 @@ END {
   run_commands <<-end
     npx -p @storybook/cli sb init
 
+    yarn add --dev flow-bin
     yarn add --dev flow-watch
+
     yarn add --dev onchange
+    yarn add --dev create-index
+
     yarn add --dev prettier-standard
 
     yarn add @material-ui/core
@@ -37,7 +41,10 @@ END {
     yarn add typeface-roboto
   end
 
-  add_to_json 'package.json', scripts: {
+  add_to_json 'package.json',
+    name: 'prank-player',
+    license: 'WTFPL',
+    scripts: {
     "dev": "tmuxinator start -p ./tmuxinator.yml",
     "autorun-dev-stuff": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn generate-index-js",
     "generate-index-js": "create-index src/stories",
