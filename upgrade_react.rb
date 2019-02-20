@@ -82,6 +82,9 @@ def replace_with_the_newest_ejected_cra_stuff entries
     Dir.chdir dir do
       system 'npx create-react-app latest'
       Dir.chdir 'latest' do
+        eject_here
+        # p Dir.pwd
+        # p Dir['*']
         entries.each { |x|
           FileUtils.rm_r root + x
           FileUtils.cp_r x, root
@@ -89,6 +92,13 @@ def replace_with_the_newest_ejected_cra_stuff entries
       end
     end
   }
+end
+
+def eject_here
+  io = IO.popen %w[ yarn eject ], 'r+'
+  sleep 5
+  io.puts ?y
+  Process.wait io.pid
 end
 
 def run_commands text
