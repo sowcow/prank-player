@@ -38,6 +38,8 @@ END {
     yarn add reflexbox
 
     yarn add styled-components
+    yarn add react-jss
+
     yarn add typeface-roboto
   end
 
@@ -61,7 +63,18 @@ END {
   add_line_after 'config/webpack.config.js',
     'node: {',
     %|"__filename": true, // ADDED|
+
+  add_line_after '.storybook/config.js',
+    'const req =',
+    %|const req = require.context('../src/stories', false, /.js$/)|,
+    also: do_prepend('// ')
 }
+
+def do_prepend str
+  -> line {
+    line.replace "#{str}#{line}"
+  }
+end
 
 def add_to_json file, hash
   hash = JSON.parse JSON.dump hash
@@ -73,12 +86,17 @@ def add_to_json file, hash
   File.write file, text
 end
 
-def add_line_after file, after, to_add
+def add_line_after file, after, to_add, also: []
   text = File.read file
   lines = text.lines
-  lines.find { |x|
+  line = lines.find { |x|
     x[after]
-  } << "#{ to_add }\n"
+  }
+  line << "#{ to_add }\n"
+  [*also].each { |x|
+    x.call line
+  }
+
   text = lines.join
   File.write file, text
 end

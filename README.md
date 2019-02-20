@@ -104,3 +104,4 @@ It can be used to create soundboards for phone pranking.
 `update_react.rb` is used to keep it actual despite being ejected.
 And it rewrites `package.json`.
 So all changes to it should be ideally done through this script.
+Also it rewrites storybook config.
