@@ -18,6 +18,8 @@ function collect (connect, monitor) {
 }
 
 let rootStyle = {
+  cursor: 'move',
+
   margin: 0,
   padding: 0,
   display: 'flex',

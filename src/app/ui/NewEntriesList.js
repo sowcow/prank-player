@@ -3,6 +3,28 @@ import { Paper, Slide } from '@material-ui/core'
 import React from 'react'
 import indigo from '@material-ui/core/colors/indigo'
 import withStyles from 'react-jss'
+import styled from 'styled-components'
+
+let Divider = styled.div`
+  width: 1px;
+  height: 100%;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  position: relative;
+`
+
+let DividerInside = styled.div`
+  background-color: white;
+  opacity: 0.2;
+
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+`
 
 // import {
 //   getNewButtonOpened,
@@ -35,9 +57,16 @@ let NewEntriesList = ({
       <div className={classes.root}>
         <Paper>
           <Flex className={classes.insidePaper}>
-            {entries.map((x, i) => (
-              <Entry entry={x} key={i} />
-            ))}
+            {entries.map((x, i) =>
+              <div key={i} style={{ display: 'flex' }}>
+                { i === 0 ? null :
+                  <Divider>
+                    <DividerInside />
+                  </Divider>
+                }
+                <Entry entry={x} />
+              </div>
+            )}
           </Flex>
         </Paper>
       </div>
