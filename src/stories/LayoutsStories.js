@@ -1,30 +1,9 @@
 import React from 'react'
 
 import CentralLayout from '../app/layout/CentralLayout'
+import Distinct from './helpers/Distinct';
 import featuresFor from './helpers/featuresFor'
-import styled from 'styled-components'
 
-let Distinct = styled.div`
-  border: solid 1px #333;
-  color: #333;
-  padding: 10px;
-  white-space: pre;
-  background-color: ${p => randomColor()};
-  text-align: center;
-`
-
-function randomColor () {
-  let result = '#'
-  result += randomLetter()
-  result += randomLetter()
-  result += randomLetter()
-  return result
-}
-const LETTERS = ['9', 'c', 'f']
-function randomLetter () {
-  let items = LETTERS
-  return items[Math.floor(Math.random() * items.length)]
-}
 
 featuresFor(
   'layouts',

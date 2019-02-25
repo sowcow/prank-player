@@ -9,6 +9,10 @@
 - [X] watir for e2e scenarios
 - [X] unit tests using default create-react-app way
 - [X] react + baobab + materail-ui
+- [X] styled-components as a conservative choice
+- [ ] try linaria later and see if you can preprocess for better syntax!
+      see if it is ok to use it near material-ui
+- [ ] try react-window for new entries list
 * meta
 ** DONE is storybook relevant? - yes - for layouts
 this BDD approach seems to make it less useful to have storybook
@@ -25,7 +29,7 @@ because I develop incomplete vertical paths and not trying stuff in units
 - [X] enter the cycle
 - [X] test passes
 ** DONE refactoring?
-** TODO ui improvement
+** TODO ui part
 ** TODO user sees buttons that play sounds
 ** TODO user sets positions of buttons by dragging
 ** TODO user saves changes as a file into the same directory

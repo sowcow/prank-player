@@ -1,4 +1,5 @@
 import { newEntriesSet } from './state/newEntries'
+import { setUploadingState } from './state/mainState';
 import { uploadDirNameSet } from './state/dirName'
 import UrlsService from './services/UrlsService';
 import getFilesDirName from '../misc/getFilesDirName';
@@ -7,6 +8,8 @@ import getFilesDirName from '../misc/getFilesDirName';
 // boundary - so it takes fileObjects
 // and sends domain/state related messages to the specialists
 export default function (fileObjects) {
+  setUploadingState(null, false)
+
   let dirName = getFilesDirName(fileObjects)
   uploadDirNameSet(null, dirName)
 

@@ -1,17 +1,18 @@
 import React from 'react'
 
 import { connectTree } from '../domain/state/tree/react'
-import MainArea from './MainArea'
-import TopBar from './TopBar'
+import { isUploadingState } from '../domain/state/mainState';
+import MainState from './MainState';
+import UploadingState from '../page/UploadingState';
 
-const AppPure = () => (
-  <>
-    <TopBar />
-    <MainArea />
-  </>
-)
+const AppPure = ({ isUploadingState }) => {
+  if (isUploadingState) return <UploadingState />
+  return <MainState />
+}
 
-let connection = []
+let connection = [
+  isUploadingState,
+]
 
 export { AppPure }
 export default connectTree(connection)(AppPure)

@@ -49,6 +49,7 @@ class Browser
   extend Forwardable
   delegate %i[
     button
+    div
     goto
   ] => :@watir
 end

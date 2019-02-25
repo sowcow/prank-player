@@ -3,7 +3,7 @@ import React from 'react'
 import classnames from 'classnames'
 import Dropzone from 'react-dropzone'
 
-const UploadButton = ({ gotFiles: onDrop }) => {
+const UploadButton = ({ ok: onDrop }) => {
   return (
     <Dropzone onDrop={onDrop}>
       {({ getRootProps, getInputProps, isDragActive }) => (

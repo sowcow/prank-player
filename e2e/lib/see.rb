@@ -3,8 +3,8 @@ module See
   with_question_mark = []
 
   with_question_mark.push \
-  def new_button bro, text
-    bro.button text: text
+  def new_entry bro, text
+    bro.div class: 'new-entries-item', text: text
   end
 
   with_question_mark.each { |name|
