@@ -59,7 +59,7 @@ component = withStyles({
     // outline: 'solid 3px orange',
   },
   insidePaper: {
-    overflowX: 'scroll',
+    overflowX: 'auto',
     backgroundColor: indigo[500],
     // minHeight: 'min-content'
   }
