@@ -10,3 +10,19 @@ Archived entries from file /home/pyro/MY/CODE/JAN/prank-player/process.org
   :ARCHIVE_FILE: ~/MY/CODE/JAN/prank-player/process.org
   :ARCHIVE_CATEGORY: process
   :END:
+
+* TODO [0/7] code
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2019-02-26 Tue 11:45
+  :ARCHIVE_FILE: ~/MY/CODE/JAN/prank-player/process.org
+  :ARCHIVE_OLPATH: main scenario/USER arranges sound board while previewing audios
+  :ARCHIVE_CATEGORY: process
+  :ARCHIVE_TODO: TODO
+  :END:
+- [ ] add fabric object to the story
+- [ ] try it
+- [ ] try integrating with current draggable entries
+- [ ] entries are accepted
+- [ ] a "button" with text is placed at the right position
+- [ ] the text is editable and it is movable
+- [ ] it plays audio on the right click

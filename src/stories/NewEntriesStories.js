@@ -4,10 +4,11 @@ import NewEntriesList from '../app/ui/NewEntriesList';
 import featuresFor from './helpers/featuresFor'
 
 featuresFor(
-  'new entries',
-  'todo',
+  'new entries view',
+  'with some new entries',
   `
-    todo
+  x new entries list looks ok
+    user can drag and place stuff to the main area
 `,
   <NewEntriesList
     opened={true}

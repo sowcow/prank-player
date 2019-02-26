@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    org-ruby (0.9.12)
+      rubypants (~> 0.2)
+    rake (12.3.2)
+    rubypants (0.7.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  org-ruby
+  rake
+
+BUNDLED WITH
+   2.0.1

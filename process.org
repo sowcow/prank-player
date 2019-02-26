@@ -17,21 +17,82 @@
 ** DONE is storybook relevant? - yes - for layouts
 this BDD approach seems to make it less useful to have storybook
 because I develop incomplete vertical paths and not trying stuff in units
+also some dynamic stuff that makes sense to spike without tests (canvas)
+** TODO so lists at story book vs orgmode?
+idk both seems nice then there will be some kind of duplication?
+** TODO story book screens as initial states of tests!
+so you can generate progress of the screen (TODO/WIP) from tests that use it
+sounds like a real BDD but orgmode seems nice for planning and notes
+** WIP gotta find a process that incorporates orgmode into tests/storybook doc
+gotta have some standartized structure
+* scenarios
+** [2/2] toy scenario
+So here goes the structure.
 
-* [2/8] main scenario
-** DONE [2/2] user uploads a directory with mp3 files
-*** DONE e2e test
-*** DONE [6/6] code
+each step is about certain initial state in which it happens
+and this mapping is currently in the storybooks
+
+there will be a script that generates checklist for that scenario/state
+the storybooks use that list
+the script takes it from org-mode file(s)!
+
+each step = one bdd iteration with spikes
+(smaller iterations may be recorded in tests/commits but not here),
+stuff that does not have questionmark (or to find another way)
+is not considered as an acheivement and does not go to storybook
+also stuff starting with "try" or maybe with "to"
+or maybe opt-in for acheivements somehow: like "!"
+makes sense cause code-related stuff should not go in the storybook
+and it is very explicit.
+*** DONE [4/4] step 1: user this
+**** DONE spike this
+**** DONE [2/2] spike that
+- [X] try this
+- [X] this works! (goes to the step checklist)
+**** DONE automated testing
+**** [2/2] implementation
+any notes can be left here
+- [X] this part has been acheived!
+- [X] that part has been acheived!
+**** DONE [3/3] ui polishing
+notes can be left here
+- [X] and todos as well
+- [X] try this
+- [X] research that
+**** refactoring
+*** DONE [/] step 2: user that
+** [1/5] main usage example
+*** DONE [4/4] USER uploads a directory with mp3 files
+**** DONE e2e test
+**** DONE [6/6] code
 - [X] user uploads directory
 - [X] get new architectural idea
 - [X] old code -> trash
 - [X] define some structure & domain
 - [X] enter the cycle
 - [X] test passes
-** DONE refactoring?
-** TODO ui part
-** TODO user sees buttons that play sounds
-** TODO user sets positions of buttons by dragging
-** TODO user saves changes as a file into the same directory
-** TODO after page reload: user loads that directory and positions
-** TODO user can assign positions for newly added files
+**** DONE refactoring?
+**** DONE ui part
+*** TODO [0/4] USER arranges sound board while previewing audios
+**** TODO [0/7] code
+- [ ] add fabric object to the story
+- [ ] try it
+- [ ] try integrating with current draggable entries
+- [ ] entries are accepted
+- [ ] a "button" with text is placed at the right position!
+- [ ] the text is editable and it is movable!
+- [ ] it plays audio on the right click!
+**** TODO [0/6] ui part
+- [ ] to find some default styling that is ok
+- [ ] allow further styling
+- [ ] allow to add filters?
+- [ ] allow to upload svg/images?
+- [ ] allow to draw shapes/lines?
+- [ ] allow to add custom text?
+**** TODO [0/2] testing!
+- [ ] drag-drop - research
+- [ ] playing audio - mock js player and see method being called
+**** TODO find some refactoring opportunities
+*** TODO USER saves changes as a file into the same directory
+*** TODO after page reload: user loads that directory and positions
+*** TODO user can assign positions for newly added files

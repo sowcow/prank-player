@@ -4,6 +4,7 @@ import React from 'react'
 import indigo from '@material-ui/core/colors/indigo'
 import withStyles from 'react-jss'
 import styled from 'styled-components'
+import Entry from './Entry'
 
 let Divider = styled.div`
   width: 1px;
@@ -30,9 +31,8 @@ let DividerInside = styled.div`
 //   getNewButtonOpened,
 //   toggleNewButton
 // } from '../../state/ui'
-import Entry from './Entry'
-let getNewButtonOpened = () => {}
-let toggleNewButton = () => {}
+// let getNewButtonOpened = () => {}
+// let toggleNewButton = () => {}
 
 // connected component in ui dir...
 
@@ -96,9 +96,9 @@ component = withStyles({
 
 // todo: use the new way
 
-let mapStateToProps = state => ({
-  opened: getNewButtonOpened(state)
-})
+// let mapStateToProps = state => ({
+//   opened: getNewButtonOpened(state)
+// })
 
 // component = connect(
 //   mapStateToProps,
