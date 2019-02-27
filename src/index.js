@@ -10,6 +10,7 @@ import App from './app/structure/App'
 import AppContext from './basement/AppContext'
 import * as serviceWorker from './basement/serviceWorker'
 
+
 let app = (
   <AppContext>
     <App />

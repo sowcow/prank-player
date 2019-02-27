@@ -1,4 +1,5 @@
 describe 'User uploads file' do
+  # older way to do it (raw)
   example do
     @bro.goto @app.url
     @bro.upload dir: 'album', files: %w[

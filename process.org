@@ -73,6 +73,7 @@ notes can be left here
 - [X] test passes
 **** DONE refactoring?
 **** DONE ui part
+
 *** TODO [0/4] USER arranges sound board while previewing audios
 **** TODO [0/7] code
 - [ ] add fabric object to the story

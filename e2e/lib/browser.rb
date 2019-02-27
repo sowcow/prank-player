@@ -46,6 +46,10 @@ class Browser
     See.public_send question, self, info
   end
 
+  def run js
+    @watir.execute_script js
+  end
+
   extend Forwardable
   delegate %i[
     button

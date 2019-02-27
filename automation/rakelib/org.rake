@@ -1,8 +1,8 @@
 require 'org-ruby'
-require 'pathname'
 require 'json'
 
 require_relative './lib/book'
+require_relative './lib/paths'
 
 # NOTE: gona try canvas and this introduces new questions to tests
 #       so this nice feature will wait
@@ -28,16 +28,11 @@ require_relative './lib/book'
 # to check/review the app at different stages
 # and to document of course
 
-PROJECT_ROOT = Pathname(__dir__) + '..' + '..'
-ORG_FILE = PROJECT_ROOT + 'process.org'
-
-GENERATED_DIR = PROJECT_ROOT + 'generated'
-JSON_OUTPUT_FILE = GENERATED_DIR + 'org_to_stories.json'
 
 # special stories category (=steps)?
 desc '.org steps -> checklists/states for stories'
 task :org do
-  text = File.read ORG_FILE
+  text = File.read Paths.org_file
   doc = Orgmode::Parser.new text
 
   book = Book.new
@@ -62,8 +57,9 @@ task :org do
     end
   }
   text = JSON.pretty_generate book.show
-  JSON_OUTPUT_FILE.parent.mkpath
-  File.write JSON_OUTPUT_FILE, text
+  file = Paths.org_to_stories
+  file.parent.mkpath
+  File.write file, text
 end
 
 module Orgmode
