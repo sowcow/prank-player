@@ -3,6 +3,11 @@ require 'pathname'
 
 require_relative './lib/book'
 
+# NOTE: gona try canvas and this introduces new questions to tests
+#       so this nice feature will wait
+# ALSO: this may be a part of slideshow/video generation so
+#       the feature is a must-have
+
 # headline named "scenarios" has many Scenario
 # Scenario has many Step
 # Step has nested stuff that is ignored

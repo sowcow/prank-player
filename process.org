@@ -94,5 +94,5 @@ notes can be left here
 - [ ] playing audio - mock js player and see method being called
 **** TODO find some refactoring opportunities
 *** TODO USER saves changes as a file into the same directory
-*** TODO after page reload: user loads that directory and positions
-*** TODO user can assign positions for newly added files
+*** TODO after page reload: USER loads that directory and positions
+*** TODO USER can assign positions for newly added files
