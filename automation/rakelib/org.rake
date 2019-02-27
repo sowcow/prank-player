@@ -1,5 +1,6 @@
 require 'org-ruby'
 require 'pathname'
+require 'json'
 
 require_relative './lib/book'
 
@@ -7,6 +8,8 @@ require_relative './lib/book'
 #       so this nice feature will wait
 # ALSO: this may be a part of slideshow/video generation so
 #       the feature is a must-have
+# ALTHOUGH: it will simplify stories so much that
+#           I really wanna do this now
 
 # headline named "scenarios" has many Scenario
 # Scenario has many Step
@@ -27,6 +30,9 @@ require_relative './lib/book'
 
 PROJECT_ROOT = Pathname(__dir__) + '..' + '..'
 ORG_FILE = PROJECT_ROOT + 'process.org'
+
+GENERATED_DIR = PROJECT_ROOT + 'generated'
+JSON_OUTPUT_FILE = GENERATED_DIR + 'org_to_stories.json'
 
 # special stories category (=steps)?
 desc '.org steps -> checklists/states for stories'
@@ -55,7 +61,9 @@ task :org do
       book.add_other x
     end
   }
-  puts book.show
+  text = JSON.pretty_generate book.show
+  JSON_OUTPUT_FILE.parent.mkpath
+  File.write JSON_OUTPUT_FILE, text
 end
 
 module Orgmode

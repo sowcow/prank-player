@@ -19,8 +19,11 @@ class Book
 
   def show
     data = { scenarios: @scenarios.map { |x| x.show } }
+  end
+
+  def show_yaml
     require 'yaml'
-    YAML.dump data
+    YAML.dump show
   end
 end
 
