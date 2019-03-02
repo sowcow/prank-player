@@ -1,11 +1,12 @@
 require 'singleton'
 require_relative '../../../automation/rakelib/lib/paths'
+require_relative './app_state_format'
 
 class AppStateSaverService
   include Singleton
 
   def perform browser, step
-    step_id = step.join('--')
+    step_id = AppStateFormat.step_to_id step
 
     file = Paths.steps_contexts
     unless file.exist?
