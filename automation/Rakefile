@@ -1,7 +1,0 @@
-# see ./rakelib/*
-
-task :org_all => %i[
-  org
-  org_to_tests
-  tests_to_stories_data
-]

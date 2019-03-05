@@ -4,7 +4,7 @@ require_relative './misc/method_builder'
 module Paths
   extend MethodBuilder
   build_methods do
-    project_root Pathname(__dir__) + '..' + '..' + '..'
+    project_root Pathname(__dir__) + '..' + '..'
     org_file project_root + 'process.org'
 
     generated_dir project_root + 'generated'

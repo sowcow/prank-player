@@ -1,11 +1,11 @@
 require 'erb'
 
 
-
-# task :default => %i[
-#   structure_tests
-#   ui_tests
-# ]
+desc 'obviously'
+task :generate_js_tests => %i[
+  structure_tests
+  ui_tests
+]
 
 STRUCTURE_DIR = File.join __dir__, '..', 'src', 'structure'
 STR_TEST_FILE = File.join STRUCTURE_DIR, 'test.js'

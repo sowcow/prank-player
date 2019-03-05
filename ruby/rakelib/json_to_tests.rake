@@ -1,4 +1,4 @@
-require_relative './lib/paths'
+require 'paths'
 
 file_name = -> name {
   name = name.strip
@@ -16,7 +16,7 @@ end
 doc
 }
 
-task :org_to_tests do
+task :json_to_tests do
   data = JSON.load File.read Paths.org_to_stories
   p data
 

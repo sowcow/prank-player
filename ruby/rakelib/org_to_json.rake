@@ -1,8 +1,7 @@
-require 'org-ruby'
 require 'json'
 
-require_relative './lib/book'
-require_relative './lib/paths'
+require 'org_to_book'
+require 'paths'
 
 # NOTE: gona try canvas and this introduces new questions to tests
 #       so this nice feature will wait
@@ -31,47 +30,13 @@ require_relative './lib/paths'
 
 # special stories category (=steps)?
 desc '.org steps -> checklists/states for stories'
-task :org do
+task :org_to_json do
   text = File.read Paths.org_file
-  doc = Orgmode::Parser.new text
+  book = OrgToBook.convert text
 
-  book = Book.new
-  inside = false
-  doc.headlines.each { |x|
-    if x.clean_headline_text == 'scenarios'
-      inside = true
-      next
-    end
-    next unless inside
-    if x.level == 1
-      inside = false
-    end
-    next unless inside
-
-    if x.level == 2
-      book.add_scenario x
-    elsif x.level == 3
-      book.add_step x
-    else
-      book.add_other x
-    end
-  }
   text = JSON.pretty_generate book.show
+
   file = Paths.org_to_stories
   file.parent.mkpath
   File.write file, text
-end
-
-module Orgmode
-  class Headline < Line
-    CLEARERS = [
-      -> x { x.sub /^\[\d*\/\d*\]\s+/, '' },
-      -> x { x.sub /^WIP\s+/, '' },
-    ]
-    def clean_headline_text
-      text = headline_text
-      CLEARERS.each { |x| text = x.call text }
-      text
-    end
-  end
 end
