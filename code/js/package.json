@@ -40,19 +40,19 @@
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
-    "polished": "^3.0.0",
+    "polished": "^3.0.3",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.5.0",
     "postcss-safe-parser": "4.0.1",
     "ramda": "^0.26.1",
-    "react": "^16.8.2",
+    "react": "^16.8.3",
     "react-app-polyfill": "^0.2.1",
     "react-dev-utils": "^7.0.3",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",
-    "react-dom": "^16.8.2",
-    "react-dropzone": "^8.1.0",
+    "react-dom": "^16.8.3",
+    "react-dropzone": "^9.0.0",
     "react-helmet": "^5.2.0",
     "react-jss": "^8.6.1",
     "reflexbox": "^3.0.1",
@@ -131,8 +131,8 @@
       "node"
     ],
     "watchPlugins": [
-      "/tmp/upgrade_react20190220-30554-1n9r2tv/latest/node_modules/jest-watch-typeahead/filename.js",
-      "/tmp/upgrade_react20190220-30554-1n9r2tv/latest/node_modules/jest-watch-typeahead/testname.js"
+      "/tmp/upgrade_react20190305-8790-1x6tl3f/latest/node_modules/jest-watch-typeahead/filename.js",
+      "/tmp/upgrade_react20190305-8790-1x6tl3f/latest/node_modules/jest-watch-typeahead/testname.js"
     ]
   },
   "babel": {
@@ -141,12 +141,12 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^4.1.12",
-    "@storybook/addon-links": "^4.1.12",
-    "@storybook/addons": "^4.1.12",
-    "@storybook/react": "^4.1.12",
+    "@storybook/addon-actions": "^4.1.13",
+    "@storybook/addon-links": "^4.1.13",
+    "@storybook/addons": "^4.1.13",
+    "@storybook/react": "^4.1.13",
     "create-index": "^2.4.0",
-    "flow-bin": "^0.93.0",
+    "flow-bin": "^0.94.0",
     "flow-watch": "^1.1.4",
     "onchange": "^5.2.0",
     "prettier-standard": "^9.1.1"

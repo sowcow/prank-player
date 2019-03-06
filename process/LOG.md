@@ -13,6 +13,10 @@ Started: *2019*.
 Decisions:
 Stuff that has interesting alternative paths but is fixed.
 
+# Uncertanty
+
+- orgmode has a potential
+
 # Activity log
 
 ## March
@@ -21,12 +25,8 @@ Stuff that has interesting alternative paths but is fixed.
 
 - reorganize directories by language, common lib for all ruby code, process directory
 
-# Decisions
+### 5th
 
-- orgmode stays as a main source for scenarios
-  it has a potential
-
-# Backlog
-
-- to have ruby code generating module being testable
-- finish tests/storybook generation!
+- bigger directory structure change
+- also tools should be made testable (cowboy development debt)
+- omg I gotta stop reimplementing cucumber on top of rspec...

@@ -4,6 +4,12 @@ require 'pathname'
 require 'fileutils'
 
 
+# updates ejected create-react-app
+# reinstalls all the libraries
+
+
+DIR_MARKER = '_____DIR_MARKER_____'
+
 END {
   replace_with_the_newest_ejected_cra_stuff %w[
     config/
@@ -68,6 +74,10 @@ END {
     'const req =',
     %|const req = require.context('../src/stories', false, /.js$/)|,
     also: do_prepend('// ')
+
+  replace_in_file 'package.json',
+    DIR_MARKER,
+    Dir.pwd
 }
 
 def do_prepend str
@@ -114,9 +124,19 @@ def replace_with_the_newest_ejected_cra_stuff entries
           FileUtils.rm_r root + x
           FileUtils.cp_r x, root
         }
+
+        replace_in_file 'package.json',
+          Dir.pwd,
+          DIR_MARKER
       end
     end
   }
+end
+
+def replace_in_file file, find, replace_with
+  text = File.read file
+  text.gsub! find, replace_with
+  File.write file, text
 end
 
 def eject_here

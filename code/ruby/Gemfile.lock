@@ -1,18 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    kramdown (2.1.0)
     minitest (5.11.3)
-    org-ruby (0.9.12)
-      rubypants (~> 0.2)
     rake (12.3.2)
-    rubypants (0.7.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  kramdown
   minitest
-  org-ruby
   rake
 
 BUNDLED WITH

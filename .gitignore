@@ -1,6 +1,6 @@
 ### mine
 
-/generated
+/tmp
 
 
 ### default
@@ -8,15 +8,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
+/code/js/node_modules
+/code/js/.pnp
 .pnp.js
 
 # testing
-/coverage
+/code/js/coverage
 
 # production
-/build
+/code/js/build
 
 # misc
 .DS_Store
