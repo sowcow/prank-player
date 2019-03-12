@@ -4,6 +4,7 @@ import { connectTree } from '../domain/state/tree/react'
 import { newEntriesList } from '../domain/state/newEntries';
 import NewEntriesList from '../ui/NewEntriesList';
 
+
 const MainStatePure = ({ newEntriesList }) => (
   <NewEntriesList
     entries={newEntriesList}

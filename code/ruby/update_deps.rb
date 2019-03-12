@@ -4,6 +4,12 @@ require 'pathname'
 require 'fileutils'
 
 
+# FIXME: add this into exports hash into root:.storybook/webpack.config.js
+#
+# node: {
+# "__filename": true, // ADDED
+# },
+
 # updates ejected create-react-app
 # reinstalls all the libraries
 

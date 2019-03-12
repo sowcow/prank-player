@@ -3,9 +3,13 @@ require 'cucumber/rake/task'
 task :default => :run
 
 Cucumber::Rake::Task.new :run do |t|
-  t.cucumber_opts = '--format pretty --tags "not @wip"'
+  t.cucumber_opts = '--tags "not @wip and not @next"'
 end
 
 Cucumber::Rake::Task.new :wip do |t|
-  t.cucumber_opts = '--format pretty --tags "@wip"'
+  t.cucumber_opts = '--tags "@wip"'
 end
+
+# Cucumber::Rake::Task.new :html do |t|
+#   t.cucumber_opts = '--format html --tags "not @wip and not @next" --out report.html'
+# end

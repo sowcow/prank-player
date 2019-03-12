@@ -1,21 +1,15 @@
+// import './basement/loadFirst'
 import 'typeface-roboto'
-
-import './basement/loadFirst'
 import './basement/style.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './app/structure/App'
-import AppContext from './basement/AppContext'
+import Application from './Application'
 import * as serviceWorker from './basement/serviceWorker'
 
 
-let app = (
-  <AppContext>
-    <App />
-  </AppContext>
-)
+let app = <Application />
 
 let element = document.getElementById('root')
 

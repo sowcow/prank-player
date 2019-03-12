@@ -15,4 +15,7 @@ module.exports = {
       // add your custom rules.
     ],
   },
+  node: {
+"__filename": true, // ADDED
+  },
 };

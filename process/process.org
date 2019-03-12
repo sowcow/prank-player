@@ -3,97 +3,38 @@
 #+STARTUP: indent
 #+STARTUP: hidestars
 
-* process and tools
-- [X] two step TDD
-- [X] usage scenario
-- [X] watir for e2e scenarios
-- [X] unit tests using default create-react-app way
-- [X] react + baobab + materail-ui
-- [X] styled-components as a conservative choice
-- [ ] try linaria later and see if you can preprocess for better syntax!
-      see if it is ok to use it near material-ui
-- [ ] try react-window for new entries list
-* meta
-** DONE is storybook relevant? - yes - for layouts
-this BDD approach seems to make it less useful to have storybook
-because I develop incomplete vertical paths and not trying stuff in units
-also some dynamic stuff that makes sense to spike without tests (canvas)
-** TODO so lists at story book vs orgmode?
-idk both seems nice then there will be some kind of duplication?
-** TODO story book screens as initial states of tests!
-so you can generate progress of the screen (TODO/WIP) from tests that use it
-sounds like a real BDD but orgmode seems nice for planning and notes
-** WIP gotta find a process that incorporates orgmode into tests/storybook doc
-gotta have some standartized structure
-* scenarios
-** [2/2] toy scenario
-So here goes the structure.
+NOTE: the structure of this file is not subject to change or experiments!
+(KISS)
 
-each step is about certain initial state in which it happens
-and this mapping is currently in the storybooks
-
-there will be a script that generates checklist for that scenario/state
-the storybooks use that list
-the script takes it from org-mode file(s)!
-
-each step = one bdd iteration with spikes
-(smaller iterations may be recorded in tests/commits but not here),
-stuff that does not have questionmark (or to find another way)
-is not considered as an acheivement and does not go to storybook
-also stuff starting with "try" or maybe with "to"
-or maybe opt-in for acheivements somehow: like "!"
-makes sense cause code-related stuff should not go in the storybook
-and it is very explicit.
-*** DONE [4/4] step 1: user this
-**** DONE spike this
-**** DONE [2/2] spike that
-- [X] try this
-- [X] this works! (goes to the step checklist)
-**** DONE automated testing
-**** [2/2] implementation
-any notes can be left here
-- [X] this part has been acheived!
-- [X] that part has been acheived!
-**** DONE [3/3] ui polishing
-notes can be left here
-- [X] and todos as well
-- [X] try this
-- [X] research that
-**** refactoring
-*** DONE [/] step 2: user that
-** [1/5] main usage example
-*** DONE [4/4] USER uploads a directory with mp3 files
-**** DONE e2e test
-**** DONE [6/6] code
-- [X] user uploads directory
-- [X] get new architectural idea
-- [X] old code -> trash
-- [X] define some structure & domain
-- [X] enter the cycle
-- [X] test passes
-**** DONE refactoring?
-**** DONE ui part
-
-*** TODO [0/4] USER arranges sound board while previewing audios
-**** TODO [0/7] code
-- [ ] add fabric object to the story
-- [ ] try it
-- [ ] try integrating with current draggable entries
-- [ ] entries are accepted
-- [ ] a "button" with text is placed at the right position!
-- [ ] the text is editable and it is movable!
-- [ ] it plays audio on the right click!
-**** TODO [0/6] ui part
-- [ ] to find some default styling that is ok
-- [ ] allow further styling
-- [ ] allow to add filters?
-- [ ] allow to upload svg/images?
-- [ ] allow to draw shapes/lines?
-- [ ] allow to add custom text?
-**** TODO [0/2] testing!
-- [ ] drag-drop - research
-- [ ] playing audio - mock js player and see method being called
-**** TODO find some refactoring opportunities
-*** TODO USER saves changes as a file into the same directory
-*** TODO after page reload: USER loads that directory and positions
-*** TODO USER can assign positions for newly added files
+* todos
+- [X] cucumber runs tests
+  nothing unusual - just copied previous rspec stuff
+- [X] decide what is the state that is saved - are files included?
+  so: global state - maybe also current working directory
+      it points to a "new" clear dir at the start of each scenario
+      stuff gets copied there when scenario continues another snapshot
+      and it gets copied itself when new snapshot is created
+      application state is a file inside it "application_state.json"
+      other files take new subdirectories
+- [X] try allure, see if you can create widgets to open the app at each state
+  the existing libs are outdated and cucumber is going to hit new major version
+  so storybook looks good for certain states to inspect
+  and it is best to wait with allure-cucumber
+  if allure is worthy then probably I should check its and cucumbers code
+  when cucumber is stabilized
+- [X] cleanup: cucumber
+- [X] cucumber writes state data when it is stated
+- [X] uploads are part of the data
+  two steps for uploading: 1 - generate files, 2 - upload them
+  in future one should save a file there, add other mp3s
+  and then upload from the initial state to make assertions
+- [X] cucumber loads saved data when it is stated
+- [X] use project temp directory
+- [X] storybook loads and previews the app at the saved states
+* notes
+** on this file
+I'll try this as a todo list and maybe even activity tracker!
+Also for random notes.
+But more static things should go into readme or so.
+Also there are entries that do not contribute to scenarios.
+Scenario entries should be more distinct somehow.
