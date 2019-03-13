@@ -2,6 +2,7 @@ import React from 'react'
 
 import App from './app/structure/App'
 import AppContext from './basement/AppContext'
+import './app/automation' // TODO: place
 
 
 class Application extends React.Component {

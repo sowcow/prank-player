@@ -26,6 +26,10 @@ class Browser
     )
   end
 
+  def at_the_page?
+    @at_the_page
+  end
+
   def done
     @watir.close
   end
@@ -40,6 +44,12 @@ class Browser
     @watir.file_field.set path
   end
 
+  def click what
+    (kind, info) = what.first
+    target = See.public_send kind, self, info
+    target.click
+  end
+
   def see? what
     (kind, info) = what.first
     question = "#{kind}?"
@@ -50,10 +60,19 @@ class Browser
     @watir.execute_script js
   end
 
+  def goto url
+    @watir.goto url
+    @at_the_page = true
+  end
+
+  def relevant_events app
+    json = app.get_events self
+    JSON.load json
+  end
+
   extend Forwardable
   delegate %i[
     button
     div
-    goto
   ] => :@watir
 end

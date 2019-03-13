@@ -3,10 +3,13 @@ state_name = -> name {
 }
 
 Given 'initial state' do
-  @bro.goto @app.url # old way! fixme
+  @bro.goto @app.url unless @bro.at_the_page?
+  # TODO: reset tree state
 end
 
 Given 'the state {string}' do |name|
+  step 'initial state' unless @bro.at_the_page?
+
   name = state_name.call name
   @storage.take_current_state_from name
   @app.set_state @bro, @storage.app_state

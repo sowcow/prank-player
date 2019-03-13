@@ -14,7 +14,8 @@ if __FILE__ == $0
   exit 0
 end
 
-Pathname(dir).rmtree if Dir.exist? dir
+# NOTE: it never removes old dirs in tmp/...
+# Pathname(dir).rmtree if Dir.exist? dir
 Pathname(dir).mkpath
 
 $storage = Storage.new dir

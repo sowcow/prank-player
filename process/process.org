@@ -31,6 +31,13 @@ NOTE: the structure of this file is not subject to change or experiments!
 - [X] cucumber loads saved data when it is stated
 - [X] use project temp directory
 - [X] storybook loads and previews the app at the saved states
+- [X] audio previewing TDD way
+- [ ] use real player (not just a mock - non-testable)
+  so there are <Audio /> components that preload audio or so
+  and you can have a ref on them to play it?
+  they can use a service that ensures that only one is playing at a time
+- [ ] ?to save screenshots in these directories as well
+  so I can view them in the storybook?
 * notes
 ** on this file
 I'll try this as a todo list and maybe even activity tracker!

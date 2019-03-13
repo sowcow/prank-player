@@ -14,6 +14,12 @@ module App
     browser.run GET_STATE_JS
   end
 
+  def get_events browser
+    browser.run GET_EVENTS_JS
+  end
+
   GET_STATE_JS = 'return JSON.stringify(window.getAppState(),null,2)'
   SET_STATE_JS = 'window.setAppState(%s)'
+
+  GET_EVENTS_JS = 'return JSON.stringify(window.AppEvents.toArray())'
 end

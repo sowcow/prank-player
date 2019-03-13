@@ -22,13 +22,11 @@ Feature: Main app usage scenario
     Then user sees new entry "punch"
     And this state is "after upload"
 
+  @wip @deltas
   Scenario: User previews audios
-    Given initial state
-    Then wait
     Given the state "after upload"
-    Then wait
-    # When user clicks "greeting"
-    # Then it should play "greeting.mp3"
+    When user clicks "new entry: greeting"
+    Then it should play "greeting.mp3"
 
   @next
   Scenario: User arranges soundboard

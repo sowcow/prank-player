@@ -45,6 +45,14 @@ let Ellipsis = styled.div`
   margin: auto;
 `
 
+const playAudio = x => {
+  // TODO: call in the real player
+  window.AppEvents.push({
+    type: 'play_audio',
+    filename: x.fileName
+  })
+}
+
 let Entry = ({ entry, isDragging, connectDragSource }) => {
   let name = isDragging ? '' : entry.name
 
@@ -52,6 +60,7 @@ let Entry = ({ entry, isDragging, connectDragSource }) => {
     <div
       className='new-entries-item'
       style={rootStyle}
+      onClick={() => playAudio(entry)}
     >
         <Ellipsis>
           {name}

@@ -24,10 +24,6 @@ When 'user adds files for uploading:' do |string|
   pending
 end
 
-When 'user adds files for uploading:' do |string|
-  pending
-end
-
 When 'user saves the progress file into {string}' do |string|
   pending
 end
