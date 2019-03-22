@@ -12,9 +12,10 @@ class Urls {
   }
 
   // it is fed with a collection of actual file objects
-  thisIsTheGirl(files) {
+  thisIsTheGirl(updateSrc, files) {
     this._revokeUrls()
     this.urls = this._getUrls(files)
+    updateSrc(this.urls)
   }
 
   // it can be asked for url by name (or object that has name)

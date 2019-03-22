@@ -7,7 +7,7 @@ import getFilesDirName from '../misc/getFilesDirName';
 
 // boundary - so it takes fileObjects
 // and sends domain/state related messages to the specialists
-export default function (fileObjects) {
+export default function (updateSrc, fileObjects) {
   setUploadingState(null, false)
 
   let dirName = getFilesDirName(fileObjects)
@@ -16,7 +16,7 @@ export default function (fileObjects) {
   let files = fileObjects.map(preprocessFile)
   newEntriesSet(null, files)
 
-  UrlsService.thisIsTheGirl(fileObjects)
+  UrlsService.thisIsTheGirl(updateSrc, fileObjects)
 }
 
 const PREPARE_NAME = [

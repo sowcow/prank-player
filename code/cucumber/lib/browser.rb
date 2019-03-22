@@ -3,26 +3,33 @@ require 'forwardable'
 require_relative 'paths'
 require_relative 'see'
 
-# omg
-unless defined? HEADLESS_BROWSER
+
+SELENIUM = {
+  url: 'http://localhost:4444/wd/hub',
+  loggingPrefs: {browser: 'ALL'}
+}
+
 
 HEADLESS_BROWSER = false
 # HEADLESS_BROWSER = true
-
-end
 
 class Browser
   attr_reader :watir
 
   def initialize
-    @watir = Watir::Browser.new(
-      :chrome,
+    options = {
       chromeOptions: {
         args: [
           HEADLESS_BROWSER ? '--headless' : nil,
-          '--window-size=800x600'
+          '--window-size=800x600',
+          # '--disable-web-security',
         ].compact
       }
+    }
+    options.merge! SELENIUM
+    @watir = Watir::Browser.new(
+      :chrome,
+      options
     )
   end
 

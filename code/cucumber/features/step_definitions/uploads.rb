@@ -15,8 +15,7 @@ When 'user has a directory:' do |string|
 end
 
 When 'user uploads the directory {string}' do |string|
-  path = @storage.directory string
-  path = path.to_s
+  path = @storage.upload_directory string
   @bro.upload path
 end
 

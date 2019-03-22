@@ -10,6 +10,12 @@ class Storage
     enter_clean_state
   end
 
+  def upload_directory x
+    path = directory x
+    # path = path.sub /.*\/tmp\//, '/tmp/'
+    path.to_s
+  end
+
   def enter_clean_state
     @state_name = CURRENT_STATE
     no_files

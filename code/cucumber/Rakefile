@@ -2,6 +2,11 @@ require 'cucumber/rake/task'
 
 task :default => :run
 
+desc 'run selenium before all'
+task :pre do
+  system 'sudo docker-compose up'
+end
+
 Cucumber::Rake::Task.new :run do |t|
   t.cucumber_opts = '--tags "not @wip and not @next"'
 end

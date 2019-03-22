@@ -34,10 +34,11 @@ NOTE: the structure of this file is not subject to change or experiments!
 - [X] audio previewing TDD way
 - [X] to have a static audio + storybook test entry to play audio
 - [X] more complete storybook test
-- [ ] use real player (not completely testable)
+- [X] use real player (not completely testable)
   so there are <Audio /> components that preload audio or so
   and you can have a ref on them to play it?
   they can use a service that ensures that only one is playing at a time
+- [X] fix selenuim with docker
 - [ ] ?to save screenshots in these directories as well
   so I can view them in the storybook?
 * notes

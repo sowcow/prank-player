@@ -1,6 +1,8 @@
 import { DragSource } from 'react-dnd'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
-import React from 'react'
+
+import Audio from '../components/Audio';
 
 const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'
 
@@ -45,8 +47,10 @@ let Ellipsis = styled.div`
   margin: auto;
 `
 
-const playAudio = x => {
-  // TODO: call in the real player
+const playAudio = (x, audio) => {
+  audio.play()
+
+  // TODO: move, automation-only btw
   window.AppEvents.push({
     type: 'play_audio',
     filename: x.fileName
@@ -54,17 +58,20 @@ const playAudio = x => {
 }
 
 let Entry = ({ entry, isDragging, connectDragSource }) => {
-  let name = isDragging ? '' : entry.name
+  let { name, fileName } = entry
+  let text = isDragging ? '' : name
+  let audioRef = useRef()
 
   return connectDragSource(
     <div
       className='new-entries-item'
       style={rootStyle}
-      onClick={() => playAudio(entry)}
+      onClick={() => playAudio(entry, audioRef.current)}
     >
-        <Ellipsis>
-          {name}
-        </Ellipsis>
+      <Audio name={fileName} ref={audioRef} />
+      <Ellipsis>
+        {text}
+      </Ellipsis>
     </div>
   )
 }

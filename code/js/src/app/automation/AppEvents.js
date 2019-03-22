@@ -31,7 +31,7 @@ if (PRODUCTION) {
 }
 const AppEvents = omg
 
-let service = new AppEvents
+let service = new AppEvents()
 
 if (!PRODUCTION) window.AppEvents = service
 
