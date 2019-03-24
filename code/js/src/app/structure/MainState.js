@@ -2,14 +2,18 @@ import React from 'react'
 
 import { connectTree } from '../domain/state/tree/react'
 import { newEntriesList } from '../domain/state/newEntries';
+import Interactive from '../ui/Interactive';
 import NewEntriesList from '../ui/NewEntriesList';
 
 
 const MainStatePure = ({ newEntriesList }) => (
-  <NewEntriesList
-    entries={newEntriesList}
-    opened={true}
-  />
+  <>
+    <Interactive />
+    <NewEntriesList
+      entries={newEntriesList}
+      opened={true}
+    />
+  </>
 )
 
 let connection = [

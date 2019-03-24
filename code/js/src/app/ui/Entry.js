@@ -1,20 +1,29 @@
 import { DragSource } from 'react-dnd'
-import React, { useRef } from 'react'
+import { getEmptyImage } from 'react-dnd-html5-backend';
+import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Audio from '../components/Audio';
+import doArrange from '../domain/doArrange';
 
 const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'
 
 const cardSource = {
   beginDrag (props) {
     return {}
+  },
+  endDrag(props, monitor) {
+    if (!monitor.getDropResult()) return
+    let { entry } = props
+    let { dropPoint } = monitor.getDropResult()
+    doArrange(entry, dropPoint)
   }
 }
 
 function collect (connect, monitor) {
   return {
     connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
   }
 }
@@ -30,9 +39,12 @@ let rootStyle = {
   width: 150,
 
   flexShrink: 0,
-  color: 'white',
   textAlign: 'center',
   height: 50,
+
+  // color: 'white',
+  color: '#f2f3f4',
+  fontFamily: 'Courier',
 }
 
 let Ellipsis = styled.div`
@@ -47,26 +59,30 @@ let Ellipsis = styled.div`
   margin: auto;
 `
 
-const playAudio = (x, audio) => {
-  audio.play()
-
-  // TODO: move, automation-only btw
-  window.AppEvents.push({
-    type: 'play_audio',
-    filename: x.fileName
-  })
-}
-
-let Entry = ({ entry, isDragging, connectDragSource }) => {
+let Entry = ({ entry, isDragging, connectDragSource,
+  connectDragPreview
+}) => {
   let { name, fileName } = entry
   let text = isDragging ? '' : name
   let audioRef = useRef()
+
+  useEffect(() => {
+    if (connectDragPreview) {
+      connectDragPreview(
+        getEmptyImage(),
+        {
+        // IE fallback: specify that we'd rather screenshot the node
+        // when it already knows it's being dragged so we can hide it with CSS.
+        captureDraggingState: true,
+      });
+    }
+  },[])
 
   return connectDragSource(
     <div
       className='new-entries-item'
       style={rootStyle}
-      onClick={() => playAudio(entry, audioRef.current)}
+      onClick={() => audioRef.current && audioRef.current.play()}
     >
       <Audio name={fileName} ref={audioRef} />
       <Ellipsis>

@@ -39,8 +39,26 @@ NOTE: the structure of this file is not subject to change or experiments!
   and you can have a ref on them to play it?
   they can use a service that ensures that only one is playing at a time
 - [X] fix selenuim with docker
-- [ ] ?to save screenshots in these directories as well
-  so I can view them in the storybook?
+- [X] interact.js - storybook page
+- [X] can arrange items
+- [X] check coordinates
+- [X] check look
+- [X] fabric has it's own state
+  - [X] no need to be notified about state change
+  - [X] but I should write fileName into that state
+  - [X] I should see new attributes in serailization
+  - [X] so I only add things on doArrange
+- [X] can rearrange items
+- [X] can edit text
+- [X] can delete
+- [X] kind of strange way to handle state at this point - multiple lists 
+- [X] NOPE: new entries are calculated
+- [X] can play sound from the sound-board
+- [ ] can download arrrangement file
+- [ ] can load the saved file also process added/deleted files
+- [ ] can choose sound output device
+- [ ] git pages page is there, handle service worker
+- [ ] can upload svg, images
 * notes
 ** on this file
 I'll try this as a todo list and maybe even activity tracker!
@@ -48,3 +66,10 @@ Also for random notes.
 But more static things should go into readme or so.
 Also there are entries that do not contribute to scenarios.
 Scenario entries should be more distinct somehow.
+** ui ideas
+- fabric.js drawn dragged entry for arrangement
+** other ideas and thoughts
+- [ ] uids seems useless since filenames are unique
+- [ ] ?to save screenshots in these directories as well
+  so I can view them in the storybook?
+  

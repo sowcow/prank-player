@@ -12,7 +12,14 @@ let Audio = ({ name, children }, ref) => {
   useImperativeHandle(ref, () => ({
     play: () => {
       let audio = audioRef.current
-      if (audio.readyState === HAVE_ENOUGH_DATA) audio.play()
+      if (audio.readyState !== HAVE_ENOUGH_DATA) return
+      audio.play()
+
+      // NOTE: automation-only btw
+      window.AppEvents.push({
+        type: 'play_audio',
+        filename: name
+      })
     }
   }))
 
