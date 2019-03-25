@@ -62,8 +62,14 @@ let Interactive = ({
       })
     })
     canvas.on('object:moving', options => {
-      snapToGrid(options.target)
+      snapToGrid(options)
       styleMoving(options)
+    })
+    canvas.on('object:scaling', options => {
+      snapScale(options)
+    })
+    canvas.on('selection:created', options => {
+      omgStyle(options.target)
     })
     // canvas.on('mouse:over', options => {
     //   hoverStyle(options.target)
@@ -72,9 +78,9 @@ let Interactive = ({
     //   defaultStyle(options.target)
     // })
 
-    // canvas.on('object:rotating', options => {
-    //   snapAngleToGrid(options.target)
-    // })
+    canvas.on('object:rotating', options => {
+      snapAngleToGrid(options)
+    })
     canvas.on('mouse:up', ({ e, target }) => {
       if (e.button === 2) {
         if (!target) return
@@ -86,6 +92,11 @@ let Interactive = ({
     canvas.on('mouse:up', options => {
       // saveChange(options.target)
       // styleMoving(options.target)
+      let { transform } = options
+      if (!transform) return
+      let drag = transform.action == 'drag'
+      if (!drag) return
+
       if (isInDeleteCorner(options)) {
         canvas.getActiveObjects().forEach(
           x => {
@@ -153,6 +164,7 @@ let Interactive = ({
       })
       text.set('fileName', x.fileName)
       text.set('entryData', x)
+      omgStyle(text)
       canvas.add(text)
     })
     canvas.renderAll()
@@ -199,17 +211,79 @@ function pointSnapToGrid(point) {
     y: Math.round(point.y / grid) * grid
   }
 }
-function snapToGrid(obj) {
+function useSnapBehavior(e) {
+  let someKey = e.shiftKey || e.ctrlKey || e.metaKey
+  return !someKey
+}
+function scaleGrid(value) {
+  let grid = 1
+  if (value < 1) grid = 0.5
+  if (value >= 3) grid = 2
+  return grid
+}
+function snapScale({ e, target }) {
+  if (!useSnapBehavior(e)) return
+  let obj = target
+  let value = obj.scaleX
+  let grid = scaleGrid(value)
+  value = Math.round(value / grid) * grid
+
+  obj.set({
+    scaleX: value,
+    scaleY: value
+  }).setCoords()
+}
+function snapToGrid({ e, target }) {
+  if (!useSnapBehavior(e)) return
+  let obj = target
+
   obj.set({
     left: Math.round(obj.left / grid) * grid,
     top: Math.round(obj.top / grid) * grid
   }).setCoords()
 }
-function snapAngleToGrid(obj) {
+function snapAngleToGrid({ e, target }) {
+  if (!useSnapBehavior(e)) return
+  let obj = target
+
+  setOriginToCenter(obj)
+
   obj.set({
     angle: Math.round(obj.angle / angleGrid) * angleGrid,
   }).setCoords()
+
+  setCenterToOrigin(obj)
 }
+
+
+function setOriginToCenter (obj) {
+    obj._originalOriginX = obj.originX;
+    obj._originalOriginY = obj.originY;
+
+    var center = obj.getCenterPoint();
+
+    obj.set({
+        originX: 'center',
+        originY: 'center',
+        left: center.x,
+        top: center.y
+    });
+};
+
+function setCenterToOrigin (obj) {
+    var originPoint = obj.translateToOriginPoint(
+    obj.getCenterPoint(),
+    obj._originalOriginX,
+    obj._originalOriginY);
+
+    obj.set({
+        originX: obj._originalOriginX,
+        originY: obj._originalOriginY,
+        left: originPoint.x,
+        top: originPoint.y
+    });
+};
+
 
 function hoverStyle(obj) {
   if (!obj) return
@@ -233,6 +307,7 @@ function defaultStyle(obj) {
 
 function defaultTextStyle() {
   return {
+    padding: 16,
         fontSize: 24,
         fontFamily: 'Courier',
         lockUniScaling: true,
@@ -285,6 +360,15 @@ function playPreview(refs,entry) {
   console.log(refs)
   if (!audio) return
   audio.play()
+}
+
+function omgStyle(x) {
+  x.lockScalingFlip = true
+  x.setControlsVisibility({
+    tl: false,
+    tr: false,
+    bl: false,
+  })
 }
 
 Interactive = withSize({ monitorHeight: true })(Interactive)

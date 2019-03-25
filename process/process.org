@@ -54,8 +54,9 @@ NOTE: the structure of this file is not subject to change or experiments!
 - [X] kind of strange way to handle state at this point - multiple lists 
 - [X] NOPE: new entries are calculated
 - [X] can play sound from the sound-board
+- [X] snap
 - [ ] can download arrrangement file
-- [ ] can load the saved file also process added/deleted files
+- [ ] can upload the saved file also process added/deleted files
 - [ ] can choose sound output device
 - [ ] git pages page is there, handle service worker
 - [ ] can upload svg, images
@@ -68,6 +69,10 @@ Also there are entries that do not contribute to scenarios.
 Scenario entries should be more distinct somehow.
 ** ui ideas
 - fabric.js drawn dragged entry for arrangement
+- nested bubbles or so - clipped groups?
+  there is a problem with mouse interactions
+  and animation for clipping area + border
+  also use selectable: false
 ** other ideas and thoughts
 - [ ] uids seems useless since filenames are unique
 - [ ] ?to save screenshots in these directories as well
