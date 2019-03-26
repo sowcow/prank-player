@@ -32,9 +32,7 @@ class Points {
       } else if (given !== UNSET) {
         usedState.set(mapping(given))
       } else {
-        console.log(
-          'FIXME: give value in .setter() or on use!'
-        )
+        console.log('FIXME: give value in .setter() or on use!')
       }
     }
   }

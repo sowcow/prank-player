@@ -3,6 +3,7 @@ import { setUploadingState } from './state/mainState';
 import { uploadDirNameSet } from './state/dirName'
 import UrlsService from './services/UrlsService';
 import getFilesDirName from '../misc/getFilesDirName';
+import loadSavedData from './services/loadSavedData';
 
 
 // boundary - so it takes fileObjects
@@ -10,14 +11,29 @@ import getFilesDirName from '../misc/getFilesDirName';
 export default function (updateSrc, fileObjects) {
   setUploadingState(null, false)
 
-  let dirName = getFilesDirName(fileObjects)
+  let entryFileObjects = fileObjects.filter(validEntry)
+
+  let dirName = getFilesDirName(entryFileObjects)
   uploadDirNameSet(null, dirName)
 
-  let files = fileObjects.map(preprocessFile)
+  let files = entryFileObjects.map(preprocessFile)
   newEntriesSet(null, files)
 
-  UrlsService.thisIsTheGirl(updateSrc, fileObjects)
+  UrlsService.thisIsTheGirl(updateSrc, entryFileObjects)
+
+  let dataFile = fileObjects.find(isDataFile)
+  if (dataFile) {
+    let reader = new FileReader()
+    reader.onload = () => loadSavedData(reader.result)
+    reader.readAsText(dataFile)
+  }
 }
+
+const VALID_EXT = /\.mp3$/
+const validEntry = x => VALID_EXT.test(x.name)
+
+const DATA_NAME = 'soundboard.html'
+const isDataFile = x => x.name === DATA_NAME
 
 const PREPARE_NAME = [
   x => x.replace('.mp3', ''),

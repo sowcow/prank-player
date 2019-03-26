@@ -1,7 +1,9 @@
+import { ArrowUpward } from '@material-ui/icons';
 import { Button } from '@material-ui/core'
-import React from 'react'
-import classnames from 'classnames'
 import Dropzone from 'react-dropzone'
+import React from 'react'
+
+import classnames from 'classnames'
 
 const UploadButton = ({ ok: onDrop }) => {
   return (

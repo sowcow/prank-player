@@ -55,11 +55,19 @@ NOTE: the structure of this file is not subject to change or experiments!
 - [X] NOPE: new entries are calculated
 - [X] can play sound from the sound-board
 - [X] snap
-- [ ] can download arrrangement file
-- [ ] can upload the saved file also process added/deleted files
+- [X] the menu is back
+- [X] can download arrrangement file from the menu
+  fabric: ..., positionedEntries, newEntries
+- [X] can upload the saved file
+- [X] audio is playing?
+- [ ] process added/deleted files
 - [ ] can choose sound output device
-- [ ] git pages page is there, handle service worker
 - [ ] can upload svg, images
+- [ ] git pages page is there, handle service worker
+- [ ] tweaks
+  for added entries use last performed scale/rotation or
+  just use values from last edited entry
+- [ ] go back to tdd
 * notes
 ** on this file
 I'll try this as a todo list and maybe even activity tracker!

@@ -9,6 +9,22 @@ import Audio from '../components/Audio';
 import doUnArrange from '../domain/doUnArrange';
 
 
+let globalFabricCanvas = null
+
+function getFabricState() {
+  if (!globalFabricCanvas) return
+  return globalFabricCanvas.toJSON(['fileName', 'entryData'])
+}
+function setFabricState(data) {
+  if (!globalFabricCanvas) return setTimeout(
+    () => setFabricState(data),
+    500
+  )
+  return globalFabricCanvas.loadFromJSON(data)
+}
+
+export { getFabricState, setFabricState }
+
 const GRID_STEP = 20
 const SOME_DELTA = -24 // acconts for padding or so
 const DELTA_X = -10
@@ -56,6 +72,7 @@ let Interactive = ({
       stopContextMenu: true,
       fireRightClick: true,
     })
+    globalFabricCanvas = canvas
     canvas.on('selection:created', options => {
       options.target.set({
         lockUniScaling: true,
@@ -71,10 +88,12 @@ let Interactive = ({
     canvas.on('selection:created', options => {
       omgStyle(options.target)
     })
+
     // canvas.on('mouse:over', options => {
     //   hoverStyle(options.target)
     // })
     // canvas.on('mouse:out', options => {
+    //   if (!options.target.entryData) return
     //   defaultStyle(options.target)
     // })
 
@@ -118,13 +137,8 @@ let Interactive = ({
         //     canvas.remove(canvas.getActiveObject())
         //   }
         // }
-        // console.log(options.target)
         // options.target.remove()
       }
-    })
-    canvas.on('object:modified', () => {
-      // console.log(333)
-      // console.log(canvas.toJSON(['fileName', 'entryData']))
     })
 
 		canvasRef.current = canvas
@@ -176,6 +190,7 @@ let Interactive = ({
 			let div = rootRef.current
 			let elementCanvas = elementCanvasRef.current
 
+      globalFabricCanvas = null
       canvas.dispose()
       div.removeChild(elementCanvas)
 		}
@@ -196,11 +211,6 @@ let Interactive = ({
     </div>
   )
 }
-
-// function saveChange(obj) {
-//   console.log(555)
-//   console.log(obj)
-// }
 
 const grid = GRID_STEP
 const angleGrid = 18
@@ -307,7 +317,9 @@ function defaultStyle(obj) {
 
 function defaultTextStyle() {
   return {
-    padding: 16,
+    // padding: 16,
+    padding: 10,
+    // padding: 20,
         fontSize: 24,
         fontFamily: 'Courier',
         lockUniScaling: true,
@@ -349,15 +361,10 @@ function isInDeleteCorner(given) {
 }
 
 function playPreview(refs,entry) {
-  console.log(11111)
-  console.log(entry)
   if (!entry) return
   let { fileName } = entry
-  console.log(fileName)
   if (!fileName) return
   let audio = refs[fileName]
-  console.log(audio)
-  console.log(refs)
   if (!audio) return
   audio.play()
 }

@@ -1,5 +1,4 @@
 import {
-  Divider,
   Drawer,
   IconButton,
   List,
@@ -7,10 +6,19 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
+import { SaveAlt as Save } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu'
 import React, { Component } from 'react';
+import styled from 'styled-components'
+
+import doSave from '../domain/doSave';
+
+let Root = styled.div`
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  top: 0;
+`
 
 let style = {
   // '& .button': {
@@ -39,32 +47,32 @@ let style = {
 const sideList = (
   <div>
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-        (text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? (
-                <InboxIcon />
-              ) : (
-                <MailIcon />
-              )}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        )
-      )}
+      <ListItem button onClick={() => doSave()}>
+        <ListItemIcon>
+          <Save />
+        </ListItemIcon>
+        <ListItemText primary='Save' />
+      </ListItem>
+
+  {/*
+      <input
+        id='file-upload-menu'
+        webkitdirectory='true'
+        mozdirectory='true'
+      />
+
+      <label for='file-upload-menu'>
+      <ListItem button onClick={() => {}}>
+        <ListItemIcon>
+          <ArrowUpward />
+        </ListItemIcon>
+        <ListItemText primary='Upload' />
+      </ListItem>
+      </label>
+    */}
+
     </List>
-    <Divider />
-    <List>
-      {['All mail', 'Trash', 'Spam'].map((text, index) => (
-        <ListItem button key={text}>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
-      ))}
-    </List>
+    {/*<Divider />*/}
   </div>
 )
 
@@ -79,10 +87,8 @@ class MainMenu extends Component {
     // let [ isOpen, setOpen ] = useState(false)
     let { isOpen } = this.state
 
-    let { className } = this.props
-
     return (
-      <div className={className}>
+      <Root>
         <IconButton
           className='button body-bg'
           onClick={this.openIt}
@@ -100,7 +106,7 @@ class MainMenu extends Component {
             {sideList}
           </div>
         </Drawer>
-      </div>
+      </Root>
     )
   }
 }
