@@ -6,7 +6,7 @@ import {
 } from './state/positionedEntries';
 
 export default function (entry, position) {
-  let finder = x => x.fileName == entry.fileName
+  let finder = x => x.fileName === entry.fileName
   deleteFromList(newEntriesList.get(), newEntriesSet, finder)
   deleteFromList(positionedEntriesList.get(), positionedEntriesSet, finder)
   let item = { ...entry, position }

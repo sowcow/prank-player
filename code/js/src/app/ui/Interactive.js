@@ -4,6 +4,7 @@ import { withSize } from 'react-sizeme'
 import React, { useRef, useEffect } from 'react'
 
 import { connectTree } from '../domain/state/tree/react';
+import { deletedEntriesList } from '../domain/state/deletedEntries';
 import { positionedEntriesList } from '../domain/state/positionedEntries';
 import Audio from '../components/Audio';
 import doUnArrange from '../domain/doUnArrange';
@@ -18,9 +19,32 @@ function getFabricState() {
 function setFabricState(data) {
   if (!globalFabricCanvas) return setTimeout(
     () => setFabricState(data),
-    500
+    100
   )
-  return globalFabricCanvas.loadFromJSON(data)
+  globalFabricCanvas.loadFromJSON(data)
+  fabricUpdateDeletedStyle()
+}
+function fabricUpdateDeletedStyle() {
+  let recurse = () => fabricUpdateDeletedStyle()
+  if (!globalFabricCanvas) return setTimeout(recurse, 100)
+
+  let deleted = deletedEntriesList.get()
+  globalFabricCanvas.getObjects().forEach( x =>
+    updateOneDeletedStyle(x, deleted)
+  )
+}
+
+function updateOneDeletedStyle(obj, deleted) {
+  let { entryData } = obj
+  if (!entryData) return
+
+  let { fileName } = entryData
+  if (!fileName) return
+
+  if (deleted.find(x => x.fileName === fileName)) {
+    obj.set({ linethrough: true })
+    obj.canvas.renderAll()
+  }
 }
 
 export { getFabricState, setFabricState }
@@ -56,6 +80,7 @@ function collect(connect, monitor) {
 
 let Interactive = ({
   positionedEntriesList,
+  // deletedEntriesList,
   isOver, connectDropTarget, size: { width, height } }) => {
 
   let rootRef = useRef()
@@ -159,22 +184,33 @@ let Interactive = ({
 
     let them = canvas.getObjects()
 
+    let extractFileName = x =>
+      x && x.entryData && x.entryData.fileName
+
     // XXX: some bs behavior...
     if (!them) return
-    let having = them.map(x => x.fileName)
+    let having = them.map(extractFileName)
       .filter(x => !!x)
     let toAdd = positionedEntriesList.filter(x =>
-      !having.find(y => y == x.fileName)
+      !having.find(y => extractFileName(x) == x.fileName)
     )
 
 		// canvas.clear()
     // let toAdd = positionedEntriesList
 
     toAdd.forEach(x => {
+      // let dynamicStyle = {}
+      // if (deletedEntriesList.find(y => y.fileName == x.fileName)) {
+      //   dynamicStyle = {
+      //     color: 'orange'
+      //   }
+      // }
+
       let text = new fabric.IText(x.name, {
         left: x.position.x,
         top: x.position.y,
         ...TEXT_STYLE,
+        // ...dynamicStyle
       })
       text.set('fileName', x.fileName)
       text.set('entryData', x)
@@ -383,6 +419,7 @@ Interactive = DropTarget(DRAGGABLE_ENTRY, squareTarget, collect)(Interactive)
 
 let connection = [
   positionedEntriesList,
+  // deletedEntriesList,
 ]
 
 let InteractivePureIsh = Interactive

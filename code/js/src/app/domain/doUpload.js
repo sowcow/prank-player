@@ -1,4 +1,4 @@
-import { newEntriesSet } from './state/newEntries'
+import { setDeletedEntries, setFilesForTray } from './services/filesService';
 import { setUploadingState } from './state/mainState';
 import { uploadDirNameSet } from './state/dirName'
 import UrlsService from './services/UrlsService';
@@ -16,16 +16,16 @@ export default function (updateSrc, fileObjects) {
   let dirName = getFilesDirName(entryFileObjects)
   uploadDirNameSet(null, dirName)
 
-  let files = entryFileObjects.map(preprocessFile)
-  newEntriesSet(null, files)
-
   UrlsService.thisIsTheGirl(updateSrc, entryFileObjects)
 
   let dataFile = fileObjects.find(isDataFile)
   if (dataFile) {
     let reader = new FileReader()
-    reader.onload = () => loadSavedData(reader.result)
+    reader.onload = () => loadSavedData(reader.result, entryFileObjects)
     reader.readAsText(dataFile)
+  } else {
+    setFilesForTray(entryFileObjects)
+    setDeletedEntries([])
   }
 }
 
@@ -34,20 +34,3 @@ const validEntry = x => VALID_EXT.test(x.name)
 
 const DATA_NAME = 'soundboard.html'
 const isDataFile = x => x.name === DATA_NAME
-
-const PREPARE_NAME = [
-  x => x.replace('.mp3', ''),
-  x => x.replace(/^[\d\s]+/, ''),
-  x => x.replace(/_/g, ' '),
-  x => x.replace(/\s+/g, ' '),
-  x => x.trim(),
-]
-
-function preprocessFile(file) {
-  let fileName = file.name
-  let name = fileName
-  PREPARE_NAME.forEach( x => {
-    name = x(name)
-  })
-  return { name, fileName }
-}

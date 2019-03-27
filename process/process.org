@@ -60,7 +60,9 @@ NOTE: the structure of this file is not subject to change or experiments!
   fabric: ..., positionedEntries, newEntries
 - [X] can upload the saved file
 - [X] audio is playing?
-- [ ] process added/deleted files
+- [X] process added/deleted files
+  - [X] test data
+  - [X] passing
 - [ ] can choose sound output device
 - [ ] can upload svg, images
 - [ ] git pages page is there, handle service worker
