@@ -1,10 +1,14 @@
-import React, { useContext, useRef, useImperativeHandle } from 'react'
+import React, { useContext, useRef, useImperativeHandle, useEffect } from 'react'
 
 import { AudioSrcValue } from './AudioSrc';
+import { connectTree } from '../domain/state/tree/react';
 
 const HAVE_ENOUGH_DATA = 4
 
-let Audio = ({ name, children }, ref) => {
+// NOTE: very ugly manual passing of audioDeviceGet from all parents
+// cuz imperative stuff breaks if ya wrap this
+// gotta use context the next time!
+let Audio = ({ name, children, audioDeviceGet }, ref) => {
   let audioRef = useRef()
   let urls = useContext(AudioSrcValue)
   let url = urls[name]
@@ -23,6 +27,13 @@ let Audio = ({ name, children }, ref) => {
     }
   }))
 
+  let { deviceId } = audioDeviceGet
+  useEffect(() => {
+    let audio = audioRef.current
+    if (!audio) return
+    audio.setSinkId(deviceId)
+  }, [deviceId])
+
   return <audio preload='auto' key={url} ref={audioRef}>
     <source
       src={url}
@@ -30,6 +41,7 @@ let Audio = ({ name, children }, ref) => {
   </audio>
 }
 
-Audio = React.forwardRef(Audio)
+let result = Audio
+result = React.forwardRef(result)
 
-export default Audio
+export default result

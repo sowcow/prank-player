@@ -63,12 +63,20 @@ NOTE: the structure of this file is not subject to change or experiments!
 - [X] process added/deleted files
   - [X] test data
   - [X] passing
-- [ ] can choose sound output device
+- [X] can choose sound output device
+  - [X] ui
+  - [X] options
+  - [X] effect
+    - [X] state
+    - [X] targets
+  - [X] status
 - [ ] can upload svg, images
 - [ ] git pages page is there, handle service worker
 - [ ] tweaks
-  for added entries use last performed scale/rotation or
-  just use values from last edited entry
+  - [ ] for added entries use last performed scale/rotation or
+    just use values from last edited entry
+  - [ ] preview is always by right click
+  - [ ] normal mode with no editing and fixed play/pause behavior
 - [ ] go back to tdd
 * notes
 ** on this file

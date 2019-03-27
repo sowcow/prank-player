@@ -3,6 +3,8 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
+import { audioDeviceGet } from '../domain/state/audioDevice';
+import { connectTree } from '../domain/state/tree/react';
 import Audio from '../components/Audio';
 import doArrange from '../domain/doArrange';
 
@@ -60,6 +62,7 @@ let Ellipsis = styled.div`
 `
 
 let Entry = ({ entry, isDragging, connectDragSource,
+  audioDeviceGet,
   connectDragPreview
 }) => {
   let { name, fileName } = entry
@@ -84,7 +87,9 @@ let Entry = ({ entry, isDragging, connectDragSource,
       style={rootStyle}
       onClick={() => audioRef.current && audioRef.current.play()}
     >
-      <Audio name={fileName} ref={audioRef} />
+      <Audio name={fileName} ref={audioRef}
+        audioDeviceGet={audioDeviceGet}
+      />
       <Ellipsis>
         {text}
       </Ellipsis>
@@ -98,4 +103,9 @@ let draggable = DragSource(
   collect
 )(Entry)
 
-export default draggable
+let connection = [
+  audioDeviceGet,
+]
+let result = connectTree(connection)(draggable)
+
+export default result

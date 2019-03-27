@@ -3,6 +3,7 @@ import { fabric } from 'fabric'
 import { withSize } from 'react-sizeme'
 import React, { useRef, useEffect } from 'react'
 
+import { audioDeviceGet } from '../domain/state/audioDevice';
 import { connectTree } from '../domain/state/tree/react';
 import { deletedEntriesList } from '../domain/state/deletedEntries';
 import { positionedEntriesList } from '../domain/state/positionedEntries';
@@ -80,6 +81,7 @@ function collect(connect, monitor) {
 
 let Interactive = ({
   positionedEntriesList,
+  audioDeviceGet,
   // deletedEntriesList,
   isOver, connectDropTarget, size: { width, height } }) => {
 
@@ -192,7 +194,7 @@ let Interactive = ({
     let having = them.map(extractFileName)
       .filter(x => !!x)
     let toAdd = positionedEntriesList.filter(x =>
-      !having.find(y => extractFileName(x) == x.fileName)
+      !having.find(y => y == x.fileName)
     )
 
 		// canvas.clear()
@@ -239,6 +241,7 @@ let Interactive = ({
 			</div>
       {positionedEntriesList.map( x =>
         <Audio name={x.fileName} key={x.fileName}
+          audioDeviceGet={audioDeviceGet}
           ref={y => {
             refs.current[x.fileName] = y
           }}
@@ -258,7 +261,7 @@ function pointSnapToGrid(point) {
   }
 }
 function useSnapBehavior(e) {
-  let someKey = e.shiftKey || e.ctrlKey || e.metaKey
+  let someKey = e.shiftKey || e.ctrlKey || e.metaKey || e.altKey
   return !someKey
 }
 function scaleGrid(value) {
@@ -419,6 +422,7 @@ Interactive = DropTarget(DRAGGABLE_ENTRY, squareTarget, collect)(Interactive)
 
 let connection = [
   positionedEntriesList,
+  audioDeviceGet,
   // deletedEntriesList,
 ]
 

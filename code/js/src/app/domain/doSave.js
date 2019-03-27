@@ -1,12 +1,10 @@
 import { getFabricState } from '../ui/Interactive';
-import { newEntriesList } from './state/newEntries';
-import { positionedEntriesList } from './state/positionedEntries';
 
 export default () => {
   // let name = 'soundboard.json'
   let data = {
-    newEntriesList: newEntriesList.get(),
-    positionedEntriesList: positionedEntriesList.get(),
+    // newEntriesList: newEntriesList.get(),
+    // positionedEntriesList: positionedEntriesList.get(),
     fabric: getFabricState(),
   }
   let text = JSON.stringify(data)
