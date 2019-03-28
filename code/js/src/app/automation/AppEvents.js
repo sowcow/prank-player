@@ -33,6 +33,6 @@ const AppEvents = omg
 
 let service = new AppEvents()
 
-if (!PRODUCTION) window.AppEvents = service
+if (!PRODUCTION) window.AppEvents = service // for external js
 
 export default service

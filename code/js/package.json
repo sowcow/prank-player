@@ -1,5 +1,6 @@
 {
   "name": "prank-player",
+  "homepage" : "http://sowcow.github.io/prank-player",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -71,6 +72,8 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "tmuxinator start -p ./tmuxinator.yml",
     "autorun-dev-stuff": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn generate-index-js",
     "generate-index-js": "create-index src/stories",
@@ -150,6 +153,7 @@
     "create-index": "^2.4.0",
     "flow-bin": "^0.94.0",
     "flow-watch": "^1.1.4",
+    "gh-pages": "^2.0.1",
     "onchange": "^5.2.0",
     "prettier-standard": "^9.1.1"
   },

@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useImperativeHandle, useEffect } from 'react'
 
 import { AudioSrcValue } from './AudioSrc';
-import { connectTree } from '../domain/state/tree/react';
+import AppEvents from '../automation/AppEvents';
 
 const HAVE_ENOUGH_DATA = 4
 
@@ -20,7 +20,7 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
       audio.play()
 
       // NOTE: automation-only btw
-      window.AppEvents.push({
+      AppEvents.push({
         type: 'play_audio',
         filename: name
       })
