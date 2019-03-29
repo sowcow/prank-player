@@ -70,14 +70,18 @@ NOTE: the structure of this file is not subject to change or experiments!
     - [X] state
     - [X] targets
   - [X] status
-- [ ] can upload svg, images
-- [ ] git pages page is there, handle service worker
+- [X] git pages page is there, handle service worker
+- [X] can upload svg, images
+  - [X] test data
+  - [X] passing
+  - [X] on load - fix the urls
 - [ ] tweaks
   - [ ] for added entries use last performed scale/rotation or
     just use values from last edited entry
   - [ ] preview is always by right click
   - [ ] normal mode with no editing and fixed play/pause behavior
-- [ ] go back to tdd
+  - [ ] show an icon instedad of making it red to mark delete action
+- [ ] go back to the tdd process
 * notes
 ** on this file
 I'll try this as a todo list and maybe even activity tracker!

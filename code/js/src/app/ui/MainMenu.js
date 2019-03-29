@@ -62,12 +62,14 @@ const sideList = that =>
         </ListItemIcon>
         <ListItemText primary='Save' />
       </ListItem>
+      {/*
       <ListItem button onClick={() => {}}>
         <ListItemIcon>
           <Publish />
         </ListItemIcon>
         <ListItemText primary='Upload' />
       </ListItem>
+      */}
 
   {/*
       <input

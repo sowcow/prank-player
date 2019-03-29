@@ -1,5 +1,21 @@
 import { getFabricState } from '../ui/Interactive';
 
+let text_to_send = null
+
+export function sendUpdatesOnNeed() {
+  const channel = new BroadcastChannel('saving_mode')
+  channel.onmessage = function(e) {
+    if (e.data.type === 'get_text') {
+      channel.postMessage({
+        type: 'text_value',
+        value: text_to_send
+      })
+    }
+  }
+}
+// channel.close();
+
+
 export default () => {
   // let name = 'soundboard.json'
   let data = {
@@ -8,10 +24,19 @@ export default () => {
     fabric: getFabricState(),
   }
   let text = JSON.stringify(data)
+  text_to_send = text
+
+
 
   // var html = '<html><head></head><body>ohai</body></html>';
 // var uri = "data:text/html," + encodeURIComponent(html);
-  let param = encodeURIComponent(text)
+  // let param = encodeURIComponent(text)
+  // let param = encodeURIComponent(text)
+
+
+  let param = 'to-save'
+  // param = btoa(param)
+  param = encodeURIComponent(param)
   var uri = 'http://localhost:3000?text=' + param
   var newWindow = window.open(uri);
 

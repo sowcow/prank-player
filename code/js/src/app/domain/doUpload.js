@@ -1,4 +1,9 @@
-import { setDeletedEntries, setFilesForTray } from './services/filesService';
+import {
+  isDataFile,
+  isValidEntry,
+  setDeletedEntries,
+  setFilesForTray
+} from './services/filesService';
 import { setUploadingState } from './state/mainState';
 import { uploadDirNameSet } from './state/dirName'
 import UrlsService from './services/UrlsService';
@@ -11,7 +16,7 @@ import loadSavedData from './services/loadSavedData';
 export default function (updateSrc, fileObjects) {
   setUploadingState(null, false)
 
-  let entryFileObjects = fileObjects.filter(validEntry)
+  let entryFileObjects = fileObjects.filter(isValidEntry)
 
   let dirName = getFilesDirName(entryFileObjects)
   uploadDirNameSet(null, dirName)
@@ -28,9 +33,3 @@ export default function (updateSrc, fileObjects) {
     setDeletedEntries([])
   }
 }
-
-const VALID_EXT = /\.mp3$/
-const validEntry = x => VALID_EXT.test(x.name)
-
-const DATA_NAME = 'soundboard.html'
-const isDataFile = x => x.name === DATA_NAME

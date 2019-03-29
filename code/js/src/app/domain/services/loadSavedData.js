@@ -1,8 +1,9 @@
 import { setFabricState } from '../../ui/Interactive';
 import { setFilesForTray, setPositionedEntries, setDeletedEntries } from './filesService';
+import UrlsService from './UrlsService';
 
-let extractFileName = x =>
-  x && x.entryData && x.entryData.fileName
+// let extractFileName = x =>
+//   x && x.entryData && x.entryData.fileName
 
 export default (text, entryFileObjects) => {
   let parser = new DOMParser()
@@ -15,6 +16,8 @@ export default (text, entryFileObjects) => {
   let deleted = []
   let positioned = []
   let nonPositioned = []
+
+  setImageUrls(data.fabric.objects)
 
   let givenFiles = entryFileObjects.map(x => x.name)
   let hasFile = x => !!givenFiles.find(y => y === x)
@@ -43,4 +46,17 @@ export default (text, entryFileObjects) => {
   setDeletedEntries(deleted)
 
   setFabricState(data.fabric)
+}
+
+const IMAGE = 'IMAGE'
+
+function setImageUrls(xs) {
+  let urls = UrlsService.urls
+  xs.forEach(x => {
+    let { kind, fileName } = x.entryData
+    if (kind !== IMAGE) return
+
+    let url = urls[fileName]
+    x.src = url
+  })
 }

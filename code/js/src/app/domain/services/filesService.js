@@ -16,8 +16,10 @@ export function setDeletedEntries(xs) {
 }
 
 
+const EXTENSION = /\.([^\.]+)$/
+
 const PREPARE_NAME = [
-  x => x.replace('.mp3', ''),
+  x => x.replace(EXTENSION, ''),
   x => x.replace(/^[\d\s]+/, ''),
   x => x.replace(/_/g, ' '),
   x => x.replace(/\s+/g, ' '),
@@ -30,5 +32,23 @@ function preprocessFile(file) {
   PREPARE_NAME.forEach( x => {
     name = x(name)
   })
-  return { name, fileName }
+  let kind = getEntryKind(fileName)
+  return { name, fileName, kind }
 }
+
+
+const IS_IMAGE = /\.(svg|jpeg|jpg|bmp|png|gif)$/
+const IS_AUDIO = /\.(mp3)$/
+const IMAGE = 'IMAGE'
+const AUDIO = 'AUDIO'
+
+const getEntryKind = fileName => {
+  if (IS_IMAGE.test(fileName)) return IMAGE
+  if (IS_AUDIO.test(fileName)) return AUDIO
+  return null
+}
+const isValidEntry = x => getEntryKind(x.name) != null
+
+const DATA_NAME = 'soundboard.html'
+const isDataFile = x => x.name === DATA_NAME
+export { isValidEntry, isDataFile }

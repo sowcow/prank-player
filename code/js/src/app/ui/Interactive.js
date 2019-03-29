@@ -1,8 +1,9 @@
 import { DropTarget } from 'react-dnd';
 import { fabric } from 'fabric'
 import { withSize } from 'react-sizeme'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 
+import { AudioSrcValue } from '../components/AudioSrc';
 import { audioDeviceGet } from '../domain/state/audioDevice';
 import { connectTree } from '../domain/state/tree/react';
 import { deletedEntriesList } from '../domain/state/deletedEntries';
@@ -89,7 +90,6 @@ let Interactive = ({
   let canvasRef = useRef()
 	let elementCanvasRef = useRef()
 	let refs = useRef({})
-
 
   useEffect(() => {
     let div = rootRef.current
@@ -181,6 +181,8 @@ let Interactive = ({
     [x.name, x.position.x, x.position.y, x.uid].join('+')
   ).join(' - ') || 'empty'
 
+  let urls = useContext(AudioSrcValue)
+
   useEffect(() => {
 		let canvas = canvasRef.current
 
@@ -208,16 +210,26 @@ let Interactive = ({
       //   }
       // }
 
-      let text = new fabric.IText(x.name, {
-        left: x.position.x,
-        top: x.position.y,
-        ...TEXT_STYLE,
-        // ...dynamicStyle
-      })
-      text.set('fileName', x.fileName)
-      text.set('entryData', x)
-      omgStyle(text)
-      canvas.add(text)
+      let style = {
+          left: x.position.x,
+          top: x.position.y,
+          ...TEXT_STYLE,
+      }
+      const AUDIO = 'AUDIO'
+      if (x.kind === AUDIO) {
+        let text = new fabric.IText(x.name, style)
+        text.set('entryData', x)
+        omgStyle(text)
+        canvas.add(text)
+      } else {
+
+        let url = urls[x.fileName]
+        fabric.Image.fromURL(url, function(obj) {
+          obj.set(style)
+          obj.set('entryData', x)
+          canvas.add(obj)
+        })
+      }
     })
     canvas.renderAll()
   },[relevant])
