@@ -53,12 +53,20 @@ END {
     yarn add react-jss
 
     yarn add typeface-roboto
+
+    yarn add fabric
+    yarn add react-sizeme
+    yarn add gh-pages --dev
   end
 
   add_to_json 'package.json',
     name: 'prank-player',
     license: 'WTFPL',
     scripts: {
+
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+
     "dev": "tmuxinator start -p ./tmuxinator.yml",
     "autorun-dev-stuff": "onchange -i 'src/state/*.js' -e 'src/state/index.js' -- yarn generate-index-js",
     "generate-index-js": "create-index src/stories",

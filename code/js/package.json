@@ -1,6 +1,6 @@
 {
   "name": "prank-player",
-  "homepage" : "http://sowcow.github.io/prank-player",
+  "homepage": "http://sowcow.github.io/prank-player",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
