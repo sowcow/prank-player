@@ -1,12 +1,14 @@
 # PPv3
 
+[🇷🇺 описание](https://github.com/sowcow/prank-player/wiki/%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5)
+
 ## status: working with bugs here and there :beetle:
 
 ## usage
 
 1. after first run it should create a directory named `soundboards` near it's executable file
 2. TODO: generate fake sound board there with a couple of hard-coded mp3s
-3. you can put your directories with content (mp3/image files) there
+2. you can put your directories with content (mp3/image files) there
 4. choose a sound board (directory name) in the menu
 5. drag phrase files from the tray below into the main area
 6. right click to play the audio item in the main area or left click in the tray
