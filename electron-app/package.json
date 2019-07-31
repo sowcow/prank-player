@@ -1,0 +1,82 @@
+{
+  "name": "Prank_Player",
+  "version": "3.0.0",
+  "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "@material-ui/core": "^4.2.1",
+    "@material-ui/icons": "^4.2.1",
+    "baobab": "^2.5.2",
+    "baobab-react": "^4.0.0",
+    "classnames": "^2.2.6",
+    "electron-is-dev": "^1.1.0",
+    "fabric": "^3.3.2",
+    "promise-fs": "^2.1.1",
+    "react": "^16.8.6",
+    "react-dnd": "7.0.2",
+    "react-dnd-html5-backend": "7.0.2",
+    "react-dom": "^16.8.6",
+    "react-dropzone": "^10.1.6",
+    "react-hook-mousetrap": "^2.0.2",
+    "react-jss": "^8.6.1",
+    "react-scripts": "3.0.1",
+    "react-sizeme": "^2.6.7",
+    "reflexbox": "^3.0.1",
+    "styled-components": "^4.3.2",
+    "typeface-roboto": "^0.0.75"
+  },
+  "scripts": {
+    "start": "concurrently \"BROWSER=none yarn start-react\" \"wait-on http://localhost:3000 && electron --no-sandbox .\"",
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postinstall": "electron-builder install-app-deps",
+    "prebuild": "yarn build-react",
+    "build": "electron-builder -l"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.11",
+    "@rescripts/rescript-env": "^0.0.10",
+    "concurrently": "^4.1.1",
+    "electron": "^5.0.7",
+    "electron-builder": "^21.0.15",
+    "wait-on": "^3.3.0"
+  },
+  "author": {
+    "name": "Alexander K",
+    "email": "code.alexander.k@gmail.com",
+    "url": "https://github.com/sowcow"
+  },
+  "build": {
+    "appId": "com.noideawhattoinserthere",
+    "productName": "App name is work in progress",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  }
+}
