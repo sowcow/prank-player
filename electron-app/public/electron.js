@@ -29,10 +29,13 @@ let template = [
 ]
 const menu = Menu.buildFromTemplate(template)
 
+function getExecutablePath() {
+  return process.env.PWD || process.env.INIT_CWD || process.env.PORTABLE_EXECUTABLE_DIR
+}
 
 const SOUNDBOARDS_DIR = isDev ?
   path.join(__dirname, '../soundboards') :
-  path.join(process.env.PWD, 'soundboards') // XXX: can throw
+  path.join(getExecutablePath(), 'soundboards') // XXX: can throw
 // var currentPath = process.cwd();
 
 ensurePath(SOUNDBOARDS_DIR)

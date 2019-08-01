@@ -71,6 +71,12 @@
     "mac": {
       "category": "public.app-category.utilities"
     },
+    "win": {
+      "target": ["portable"]
+    },
+    "portable": {
+      "artifactName": "prank-player.exe"
+    },
     "files": [
       "build/**/*",
       "node_modules/**/*"
