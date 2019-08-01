@@ -312,7 +312,7 @@ let Interactive = ({
   function playingStyle(x) {
     x.set({
       underline: true,
-      textBackgroundColor: 'rgba(255,255,255, 1)'
+      textBackgroundColor: 'rgba(255,255,255, 0)'
     })
   }
   function pausedStyle(x) {

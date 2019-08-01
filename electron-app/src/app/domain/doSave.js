@@ -19,9 +19,12 @@ import { uploadDirName } from './state/dirName';
 
 
 export default () => {
-  let board = { name: uploadDirName.get() }
+  let name = uploadDirName.get()
+  if (!name) return Promise.resolve()
+
+  let board = { name }
   let data = { fabric: getFabricState() }
-  saveBoardData(board, data).then(() =>
+  return saveBoardData(board, data).then(() =>
     console.log('saved successfully')
   ).catch(() =>
     console.log('error saving')

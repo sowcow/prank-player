@@ -8,6 +8,7 @@ import withStyles from 'react-jss'
 
 import { setEditingState } from '../domain/state/mainState';
 import Entry from './Entry'
+import doneEditing from '../domain/doneEditing';
 
 let Divider = styled.div`
   width: 1px;
@@ -93,7 +94,7 @@ let NewEntriesList = ({
             <div style={{ position: 'absolute', right: 0 }}>
               <IconButton
                 className='button tray-button'
-                onClick={() => setEditingState(null, false)}
+                onClick={() => doneEditing()}
                 tabIndex='-1'
                 onFocus={() => {
                   document.activeElement.blur()

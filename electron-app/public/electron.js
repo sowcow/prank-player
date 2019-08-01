@@ -21,8 +21,8 @@ const { Menu, MenuItem } = require('electron')
 
 let template = [
   { label: app.getName(), submenu: [
-    { label: 'custom action 1', accelerator: 'CmdOrCtrl+R',       click() { console.log('go!') } },
-    { label: 'custom action 2', accelerator: 'Shift+CmdOrCtrl+R', click() { console.log('go!') } },
+    { label: 'nothing here', accelerator: 'CmdOrCtrl+R',       click() { } },
+    // { label: 'custom action 2', accelerator: 'Shift+CmdOrCtrl+R', click() { console.log('go!') } },
     { type: 'separator' },
     { role: 'quit' }
   ] }
@@ -171,8 +171,22 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   }
   mainWindow.on('closed', () => mainWindow = null);
-  // mainWindow.setMenuBarVisibility(false)
+  mainWindow.setMenuBarVisibility(false)
   Menu.setApplicationMenu(menu)
+
+  let delayExit = true
+  mainWindow.on('close', e => {
+    if (delayExit) {
+      e.preventDefault()
+      mainWindow.webContents.send('will-close')
+    }
+  })
+  let ipc = require('electron').ipcMain
+  ipc.on('now-close', (e) => {
+    delayExit = false
+    mainWindow.close()
+  })
+
   return mainWindow
 }
 

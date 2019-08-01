@@ -4,6 +4,8 @@ import {
   SAVE_BOARD_DATA,
   SET_TITLE
 } from './constants';
+import { isEditingState } from '../app/domain/state/mainState';
+import doSave from '../app/domain/doSave';
 
 function createChannel() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -59,6 +61,27 @@ function logStuff() {
   ipc.on(channel, (event, x) => console.log(x))
 }
 logStuff()
+
+function nowClose() {
+  let ipc = window.require('electron').ipcRenderer
+  ipc.send('now-close', {})
+}
+function saveOnExit() {
+  let ipc = window.require('electron').ipcRenderer
+  let channel = 'will-close'
+  ipc.on(channel, (event, x) => {
+    if (isEditingState.get()) {
+      doSave().then(() =>
+        nowClose()
+      ).catch(() =>
+        alert('Error saving soundboard data!')
+      )
+    } else {
+      nowClose()
+    }
+  })
+}
+saveOnExit()
 
 // import { gotProduceData } from '../app/actions/produceData';
 // import store from '../app/state/store';
