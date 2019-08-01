@@ -20,3 +20,15 @@ export const setCurrentlyPlaying = branch().setter()
 branch = addBranch('currentlyPlayingStatus', null) // key, default value
 export const currentlyPlayingStatus = branch() // getter - same name!
 export const setCurrentlyPlayingStatus = branch().setter()
+
+// branch = addBranch('currentlyPaused', null) // key, default value
+// export const currentlyPaused = branch() // getter - same name!
+// export const setCurrentlyPaused = branch().setter()
+
+// branch = addBranch('currentlyEnded', null) // key, default value
+// export const currentlyEnded = branch() // getter - same name!
+// export const setCurrentlyEnded = branch().setter()
+
+// branch = addBranch('currentlyPlayingStatus', null) // key, default value
+// export const currentlyPlayingStatus = branch() // getter - same name!
+// export const setCurrentlyPlayingStatus = branch().setter()

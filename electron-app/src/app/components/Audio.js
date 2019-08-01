@@ -129,7 +129,11 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
 
   useImperativeHandle(ref, () => ({
     stop: () => {
-      return performStop(audioRef)
+      return performStop(audioRef).then(
+        // () => console.log('ok: performStop')
+      ).catch(
+        () => console.log('error: performStop')
+      )
       // let audio = audioRef.current
       // if (!audio) return
       // if (audio.readyState !== HAVE_ENOUGH_DATA) return
@@ -147,7 +151,7 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
 
     pauseOrResume: () => {
       return performPauseOrResume(audioRef).then(
-        () => console.log('ok: pauseOrResume')
+        // () => console.log('ok: pauseOrResume')
       ).catch(
         () => console.log('error: pauseOrResume')
       )
@@ -161,11 +165,12 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
     // },
 
     playFromStart:  () => {
-      return performPlayFromStart(audioRef).then(
-        () => console.log('ok: playFromStart')
-      ).catch(
-        () => console.log('error: playFromStart')
-      )
+      return performPlayFromStart(audioRef).then(() => {
+        // console.log('ok: playFromStart')
+        playbackUpdate('play', { name })
+      }).catch(() => {
+        console.log('error: playFromStart')
+      })
     },
 
     playOrPause: () => {
@@ -175,10 +180,12 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
 
       if (isPlaying(audio)) {
         audio.pause()
+        playbackUpdate('pause', { name })
         return false
       }
 
       audio.play()
+      playbackUpdate('play', { name })
       return true
     },
 
@@ -214,7 +221,8 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
   useEffect(() => {
     let audio = audioRef.current
     if (!audio) return console.error('impossible')
-    let events = ['ended', 'pause', 'play'] //, 'timeupdate']
+    // let events = ['ended', 'pause', 'play'] //, 'timeupdate']
+    let events = ['ended']
     events.forEach( eventName => {
       audio.addEventListener(eventName, () => {
         playbackUpdate(eventName, { name, url })

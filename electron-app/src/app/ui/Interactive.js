@@ -7,6 +7,12 @@ import { AudioSrcValue } from '../components/AudioSrc';
 import { PlayerInstance } from '../misc/Player';
 import { audioDeviceGet } from '../domain/state/audioDevice';
 import { connectTree } from '../domain/state/tree/react';
+import {
+  // currentlyEnded,
+  // currentlyPaused,
+  currentlyPlaying,
+  currentlyPlayingStatus,
+} from '../domain/state/playbackState';
 import { deletedEntriesList } from '../domain/state/deletedEntries';
 import { isEditingState } from '../domain/state/mainState';
 import { positionedEntriesList } from '../domain/state/positionedEntries';
@@ -15,6 +21,10 @@ import doUnArrange from '../domain/doUnArrange';
 
 
 let getEditingState = isEditingState
+let getCurrentlyPlayingStatus = currentlyPlayingStatus
+let getCurrentlyPlaying = currentlyPlaying
+// let getCurrentlyPaused = currentlyPaused
+// let getCurrentlyEnded = currentlyEnded
 let globalFabricCanvas = null
 
 function getFabricState() {
@@ -87,6 +97,10 @@ let Interactive = ({
   positionedEntriesList,
   audioDeviceGet,
   isEditingState,
+  // currentlyEnded,
+  // currentlyPaused,
+  currentlyPlaying,
+  currentlyPlayingStatus,
   // deletedEntriesList,
   isOver, connectDropTarget, size: { width, height } }) => {
 
@@ -247,8 +261,8 @@ let Interactive = ({
   },[relevant])
 
   useEffect(() => {
-    return () => {
-      let isEditingState = getEditingState.get() // XXX: ugly
+    // return () => {
+      // let isEditingState = getEditingState.get() // XXX: ugly
 			let canvas = canvasRef.current
       // canvas.getObjects().forEach( x =>
       //   reactToEditing(x, isEditingState)
@@ -274,8 +288,122 @@ let Interactive = ({
 			}
 
 			canvas.requestRenderAll()
-		}
+		// }
 	}, [isEditingState])
+
+  function playingStyle(x) {
+    x.set({
+      underline: true,
+      textBackgroundColor: 'rgba(255,255,255, 1)'
+    })
+  }
+  function pausedStyle(x) {
+    x.set({
+      underline: true,
+      textBackgroundColor: 'rgba(255,255,255, 0)'
+    })
+  }
+  function endedStyle(x) {
+    x.set({
+      underline: false,
+      textBackgroundColor: 'rgba(255,255,255, 0)'
+    })
+  }
+
+  useEffect(() => {
+    let status = currentlyPlayingStatus
+    // let status = getCurrentlyPlayingStatus.get()
+    // let currentlyPlaying = getCurrentlyPlaying.get()
+    if (!currentlyPlaying) return
+    let { name: current } = currentlyPlaying
+
+    // let currentlyPaused = getCurrentlyPaused.get()
+    // let currentlyEnded = getCurrentlyEnded.get()
+    // if (!currentlyPlaying) return
+
+    // if (sta)
+
+    let canvas = canvasRef.current
+
+    canvas.forEachObject(function(object){
+      let matched = false
+      let { entryData } = object
+      if (!entryData) return
+      let { fileName } = entryData
+
+      if (fileName === current) {
+        if (status === 'pause') {
+          pausedStyle(object)
+        } else if (status === 'ended') {
+          endedStyle(object)
+        } else if (status === 'play') {
+          playingStyle(object)
+        }
+      } else {
+        if (object.underline) endedStyle(object) // NOTE:
+      }
+    })
+	  canvas.requestRenderAll()
+
+      /*
+        if (object.entryData && currentlyPaused && object.entryData.fileName == currentlyPaused.name) {
+          object.set({
+            underline: true,
+            textBackgroundColor: 'rgba(255,255,255, 0)'
+          })
+          matched = true
+        }
+        if (object.entryData && currentlyPlaying && object.entryData.fileName == currentlyPlaying.name) {
+          object.set({
+            underline: true,
+            textBackgroundColor: 'rgba(255,255,255, 1)'
+          })
+          matched = true
+        }
+        if (object.entryData && currentlyEnded && object.entryData.fileName == currentlyEnded.name) {
+          object.set({
+            underline: false,
+            textBackgroundColor: 'rgba(255,255,255, -1)'
+          })
+          matched = true
+        }
+        */
+          // if (status === 'pause') {
+          //   object.set({
+          //     underline: true,
+          //     textBackgroundColor: 'rgba(255,255,255, 0)'
+          //   })
+          // } else if (status === 'ended') {
+          //   object.set({
+          //     underline: false,
+          //     textBackgroundColor: 'rgba(255,255,255, -1)'
+          //   })
+          // } else if (status === 'play') {
+          //   object.set({
+          //     underline: true,
+          //     textBackgroundColor: 'rgba(255,255,255, 1)'
+          //   })
+          // }
+        // } else if (object.entryData && object.underline) {
+        //   object.set({
+        //     underline: false,
+        //     textBackgroundColor: 'rgba(255,255,255, 0)'
+        //   })
+        // }
+        // if (!matched) {
+        //   if (object.entryData && object.underline) { // XXX: quick mess
+        //     object.set({
+        //       underline: false,
+        //       textBackgroundColor: 'rgba(255,255,255, 0)'
+        //     })
+        //   }
+        // }
+      // })
+
+			// canvas.requestRenderAll()
+		// }
+  }, [currentlyPlaying, currentlyPlayingStatus])
+    //currentlyPaused, currentlyEnded])
 
   useEffect(() => {
     return () => {
@@ -494,6 +622,10 @@ let connection = [
   positionedEntriesList,
   audioDeviceGet,
   isEditingState,
+  currentlyPlaying,
+  currentlyPlayingStatus,
+  // currentlyPaused,
+  // currentlyEnded,
   // deletedEntriesList,
 ]
 
