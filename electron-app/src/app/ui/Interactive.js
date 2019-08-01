@@ -37,13 +37,34 @@ function getFabricState() {
   defaultize(globalFabricCanvas)
   return globalFabricCanvas.toJSON(['fileName', 'entryData'])
 }
-function setFabricState(data) {
-  if (!globalFabricCanvas) return setTimeout(
-    () => setFabricState(data),
-    100
-  )
-  globalFabricCanvas.loadFromJSON(data)
-  fabricUpdateDeletedStyle()
+let makePromise = () => {
+  let doResolve
+  let doReject
+  let promise = new Promise((resolve, reject) => {
+    doResolve = resolve
+    doReject = reject
+  })
+  promise.resolve = doResolve
+  promise.reject = doReject
+  return promise
+}
+
+function setFabricState(data, promise = null) {
+  promise = promise || makePromise()
+
+  if (!globalFabricCanvas) {
+    setTimeout(
+      () => setFabricState(data, promise),
+      10
+    )
+    return promise
+  }
+
+  globalFabricCanvas.loadFromJSON(data, () => {
+    promise.resolve()
+  })
+  // fabricUpdateDeletedStyle()
+  return promise
 }
 function fabricUpdateDeletedStyle() {
   let recurse = () => fabricUpdateDeletedStyle()
@@ -68,7 +89,7 @@ function updateOneDeletedStyle(obj, deleted) {
   }
 }
 
-export { getFabricState, setFabricState }
+export { getFabricState, setFabricState, fabricUpdateDeletedStyle }
 
 const GRID_STEP = 20
 const SOME_DELTA = -24 // acconts for padding or so

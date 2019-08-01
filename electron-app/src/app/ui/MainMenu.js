@@ -7,7 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
-import { Forward, Save } from '@material-ui/icons';
+import { Settings, Save } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu'
 import React, { Component, useContext } from 'react';
 import styled from 'styled-components'
@@ -76,19 +76,21 @@ const sideList = that =>
   <div>
     <List>
       <ListItem button onClick={() => that.chooseOutput()}>
-        <ListItemIcon>
-          <Forward />
+  {/*
+  <ListItemIcon>
+  <Settings />
         </ListItemIcon>
+        */}
         <ListItemText primary={`Output: ${that.outputName()}`} />
       </ListItem>
-      {///*
+      {/*
       <ListItem button onClick={() => doSave()}>
         <ListItemIcon>
           <Save />
         </ListItemIcon>
         <ListItemText primary='Save' />
       </ListItem>
-      //*/
+      */
       }
       <Divider />
       {

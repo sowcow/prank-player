@@ -1,5 +1,5 @@
+import { fabricUpdateDeletedStyle, setFabricState } from '../../ui/Interactive';
 import { setEditingState } from '../state/mainState';
-import { setFabricState } from '../../ui/Interactive';
 import { setFilesForTray, setPositionedEntries, setDeletedEntries } from './filesService';
 import UrlsService from './UrlsService';
 
@@ -7,6 +7,7 @@ import UrlsService from './UrlsService';
 //   x && x.entryData && x.entryData.fileName
 
 export default (data, entryFileObjects) => {
+  let fabricData = data.fabric
   // let parser = new DOMParser()
   // let doc = parser.parseFromString(text, 'text/html')
   // let element = doc.getElementById('json')
@@ -18,11 +19,11 @@ export default (data, entryFileObjects) => {
   let positioned = []
   let nonPositioned = []
 
-  setImageUrls(data.fabric.objects)
+  setImageUrls(fabricData.objects)
 
   let givenFiles = entryFileObjects //.map(x => x.name)
   let hasFile = x => !!givenFiles.find(y => y === x)
-  let fabricEntries = data.fabric.objects.map(x => x.entryData)
+  let fabricEntries = fabricData.objects.map(x => x.entryData)
     .filter(x => !!x)
 
   fabricEntries.forEach(entry => {
@@ -47,11 +48,13 @@ export default (data, entryFileObjects) => {
   } else {
     setEditingState(null, true)
   }
-  setFilesForTray(nonPositioned)
-  setPositionedEntries(positioned)
-  setDeletedEntries(deleted)
 
-  setFabricState(data.fabric)
+  setFabricState(fabricData).then(() => {
+    setFilesForTray(nonPositioned)
+    setPositionedEntries(positioned)
+    setDeletedEntries(deleted)
+    fabricUpdateDeletedStyle()
+  })
 }
 
 const IMAGE = 'IMAGE'

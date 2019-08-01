@@ -34,9 +34,10 @@ export default async function (dirName, updateSrc, fileObjects, data) {
     loadSavedData(data, entryFileObjects)
   } else {
     setEditingState(null, true)
-    setFabricState('{}')
-    setFilesForTray(entryFileObjects)
-    setDeletedEntries([])
-    setPositionedEntries([])
+    setFabricState('{}').then(() => {
+      setFilesForTray(entryFileObjects)
+      setDeletedEntries([])
+      setPositionedEntries([])
+    })
   }
 }
