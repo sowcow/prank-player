@@ -35,6 +35,9 @@
 
 - [ ] auto-saving
 - [ ] to use redux instead of that experimental stuff
+      it is quick to add state in the current system
+      but there are small things that react-redux should be able to handle
+      also event bus can be useful here and there
 - [ ] there are other old experiments artifacts
 - [ ] handle audio in the main electron process and not in html audio
       if it changes anything

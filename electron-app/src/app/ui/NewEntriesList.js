@@ -58,7 +58,7 @@ let NewEntriesList = ({
           <IconButton
             className='button'
             onClick={() => setEditingState(null, true)}
-            KeyboardButtonProps={{ tabIndex: "-1" }}
+            tabIndex='-1'
             onFocus={() => {
               document.activeElement.blur()
             }}
@@ -94,7 +94,7 @@ let NewEntriesList = ({
               <IconButton
                 className='button tray-button'
                 onClick={() => setEditingState(null, false)}
-                KeyboardButtonProps={{ tabIndex: "-1" }}
+                tabIndex='-1'
                 onFocus={() => {
                   document.activeElement.blur()
                 }}

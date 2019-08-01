@@ -3,20 +3,23 @@
 class Player {
   last = null
 
-  playOrPause (audio) {
-    if (audio.playOrPause()) {
-      this.last = audio
-      this.silencePrevious()
-    } else {
-      this.last = null
+  pauseOrResume (audio) {
+    if (this.last) {
+      this.last.pauseOrResume()
     }
-    // if (this.isPlaying(audio)) {
-    //   audio.pause()
-    // } else {
-    //   this.start(audio)
-    // }
   }
 
+  // pauseOrPlay (audio) {
+  playOrPause (audio) {
+    if (audio.playOrPause()) {
+      this.silencePrevious()
+      this.last = audio // started playing new audio
+    } else {
+      this.last = null // just paused that audio
+    }
+  }
+
+  // previous may not exist, so ignore the result
   silencePrevious() {
     if (this.last) this.last.stop()
   }
@@ -33,7 +36,6 @@ class Player {
   // private
 
   start (audio) {
-    console.log(555)
     if (this.last !== audio) {
       this.stop(this.last)
     }
@@ -47,7 +49,7 @@ class Player {
     if (audio) {
       audio.pause()
       audio.currentTime = 0
-      // if (audio.setCurrentTime) audio.setCurrentTime(0)
+      // if (audio.setCurrentTime) audio.setCurrentTime(-1)
     }
   }
 

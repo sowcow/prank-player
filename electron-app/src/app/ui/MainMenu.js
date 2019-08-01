@@ -145,6 +145,13 @@ class MainMenu extends Component {
     selectedAudio: 'default',
     boards: [],
   }
+  toggleIt = () => {
+    if (this.state.isOpen) {
+      this.closeIt()
+    } else {
+      this.openIt()
+    }
+  }
   openIt = () => {
     this.setState({ isOpen: true })
     getBoards().then(xs => {
@@ -197,15 +204,15 @@ class MainMenu extends Component {
           className='button body-bg'
           onClick={this.openIt}
           color='inherit'
-      KeyboardButtonProps={{ tabIndex: "-1" }}
-      onFocus={() => {
-        document.activeElement.blur()
-      }}
+          tabIndex='-1'
+          onFocus={() => {
+            document.activeElement.blur()
+          }}
         >
           { /*onFocusVisible={this.openIt}*/ }
           <MenuIcon />
         </IconButton>
-        <TabHandler action={x => this.setState({ isOpen: !isOpen })} />
+        <TabHandler action={this.toggleIt} />
         <Drawer open={isOpen} onClose={this.closeIt}>
           <div
             tabIndex={0}
