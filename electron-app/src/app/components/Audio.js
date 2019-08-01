@@ -149,6 +149,18 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
       audio.pause()
     },
 
+    // preview: () => {
+    //   let audio = audioRef.current
+    //   if (!audio) return
+    //   if (audio.readyState !== HAVE_ENOUGH_DATA) return
+    //   if (isPlaying(audio)) {
+    //     audio.pause()
+    //     audio.currentTime = 0
+    //   } else {
+    //     audio.play()
+    //   }
+    // },
+
     pauseOrResume: () => {
       return performPauseOrResume(audioRef).then(
         // () => console.log('ok: pauseOrResume')
@@ -164,7 +176,7 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
     //   audio.currentTime = n
     // },
 
-    playFromStart:  () => {
+    playFromStart: (update = true) => {
       return performPlayFromStart(audioRef).then(() => {
         // console.log('ok: playFromStart')
         playbackUpdate('play', { name })

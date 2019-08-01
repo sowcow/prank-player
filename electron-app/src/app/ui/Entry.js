@@ -105,7 +105,31 @@ let Entry = ({ entry, isDragging, connectDragSource,
     <div
       className='new-entries-item'
       style={rootStyle}
-      onClick={() => audioRef.current && audioRef.current.play()}
+      onMouseDown={e => {
+        let { current } = audioRef
+        if (!current) return
+
+        let LEFT = 0
+        let RIGHT = 2
+        if (e.button === LEFT) {
+          // current.playOrPause()
+        } else if (e.button === RIGHT) {
+          current.playFromStart()
+        }
+      }}
+      onClick={e => {
+        let { current } = audioRef
+        if (!current) return
+
+        let LEFT = 0
+        let RIGHT = 2
+        if (e.button === LEFT) {
+          current.playOrPause()
+        } else if (e.button === RIGHT) {
+          current.playFromStart()
+        }
+        // current.preview()
+      }}
     >
       <Audio name={fileName} ref={audioRef}
         audioDeviceGet={audioDeviceGet}

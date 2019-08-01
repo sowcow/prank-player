@@ -21,14 +21,20 @@ import doUnArrange from '../domain/doUnArrange';
 
 
 let getEditingState = isEditingState
-let getCurrentlyPlayingStatus = currentlyPlayingStatus
-let getCurrentlyPlaying = currentlyPlaying
+// let getCurrentlyPlayingStatus = currentlyPlayingStatus
+// let getCurrentlyPlaying = currentlyPlaying
 // let getCurrentlyPaused = currentlyPaused
 // let getCurrentlyEnded = currentlyEnded
 let globalFabricCanvas = null
 
+function defaultize(canvas) {
+  canvas.forEachObject(function(object){
+    defaultStyle(object)
+  })
+}
 function getFabricState() {
   if (!globalFabricCanvas) return
+  defaultize(globalFabricCanvas)
   return globalFabricCanvas.toJSON(['fileName', 'entryData'])
 }
 function setFabricState(data) {
@@ -154,7 +160,10 @@ let Interactive = ({
       snapAngleToGrid(options)
     })
     canvas.on('mouse:down', ({ e, target }) => {
-      if (e.button === 2 || (!isEditingState)) {
+      let RIGHT = 2
+      let isEditingState = getEditingState.get()
+
+      if (!isEditingState || e.button === RIGHT) {
         if (!target) return
         let { entryData } = target
         playPreview(refs.current, entryData, isEditingState, e.button)
@@ -260,6 +269,9 @@ let Interactive = ({
     canvas.renderAll()
   },[relevant])
 
+  // function applyEditingStyle(canvasRef, isEditingState) {
+  // }
+
   useEffect(() => {
     // return () => {
       // let isEditingState = getEditingState.get() // XXX: ugly
@@ -272,12 +284,18 @@ let Interactive = ({
       // canvas.deactivateAll()
       // canvas.renderAll()
 
+    // setTimeout(() => {
+        // console.log(444)
       canvas.forEachObject(function(object){
+        defaultStyle(object)
+        // console.log(555)
 			  object.selectable = isEditingState
         if (object.editable != null) {
           object.editable = isEditingState
 				}
       })
+			// canvas.requestRenderAll()
+    // }, 100)
 
       canvas.selection = isEditingState
 
@@ -289,7 +307,7 @@ let Interactive = ({
 
 			canvas.requestRenderAll()
 		// }
-	}, [isEditingState])
+	}, [isEditingState, relevant])
 
   function playingStyle(x) {
     x.set({
@@ -539,6 +557,8 @@ function defaultStyle(obj) {
 
 function defaultTextStyle() {
   return {
+    underline: false,
+    textBackgroundColor: 'rgba(255,255,255, 0)',
     // padding: 16,
     padding: 10,
     // padding: 20,

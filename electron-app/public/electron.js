@@ -16,6 +16,20 @@ const isDev = require('electron-is-dev');
 let fs = require('fs');
 let pfs = require('promise-fs');
 
+
+const { Menu, MenuItem } = require('electron')
+
+let template = [
+  { label: app.getName(), submenu: [
+    { label: 'custom action 1', accelerator: 'CmdOrCtrl+R',       click() { console.log('go!') } },
+    { label: 'custom action 2', accelerator: 'Shift+CmdOrCtrl+R', click() { console.log('go!') } },
+    { type: 'separator' },
+    { role: 'quit' }
+  ] }
+]
+const menu = Menu.buildFromTemplate(template)
+
+
 const SOUNDBOARDS_DIR = isDev ?
   path.join(__dirname, '../soundboards') :
   path.join(process.env.PWD, 'soundboards') // XXX: can throw
@@ -157,7 +171,8 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
   }
   mainWindow.on('closed', () => mainWindow = null);
-  mainWindow.setMenuBarVisibility(false)
+  // mainWindow.setMenuBarVisibility(false)
+  Menu.setApplicationMenu(menu)
   return mainWindow
 }
 
