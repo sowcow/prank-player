@@ -1,6 +1,6 @@
 # PPv3
 
-Electron application to create and use soundboards for prank calling.
+Electron application to create and use soundboards for prank calling for example.
 
 Sound output device is configurable through the menu.
 
