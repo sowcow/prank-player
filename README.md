@@ -11,6 +11,8 @@ Sound output device is configurable through the menu.
 
 Ready for real-world testing.
 
+![screenshot](/screenshot.png?raw=true)
+
 ## Motivation
 
 The motivation was to try some experiments while rewriting
