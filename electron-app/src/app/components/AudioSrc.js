@@ -5,7 +5,6 @@ let UpdateContext = React.createContext()
 
 class AudioSrc extends React.Component {
   state = { value: {} }
-  // filename:string => url:string?
 
   updateValue = value =>
     this.setState({ value })

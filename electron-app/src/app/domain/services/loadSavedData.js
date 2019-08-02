@@ -3,25 +3,16 @@ import { setEditingState } from '../state/mainState';
 import { setFilesForTray, setPositionedEntries, setDeletedEntries } from './filesService';
 import UrlsService from './UrlsService';
 
-// let extractFileName = x =>
-//   x && x.entryData && x.entryData.fileName
-
 export default (data, entryFileObjects) => {
   let fabricData = data.fabric
-  // let parser = new DOMParser()
-  // let doc = parser.parseFromString(text, 'text/html')
-  // let element = doc.getElementById('json')
-  // let json = element.innerText
-  // let data = JSON.parse(json)
 
-  // let added = []
   let deleted = []
   let positioned = []
   let nonPositioned = []
 
   setImageUrls(fabricData.objects)
 
-  let givenFiles = entryFileObjects //.map(x => x.name)
+  let givenFiles = entryFileObjects
   let hasFile = x => !!givenFiles.find(y => y === x)
   let fabricEntries = fabricData.objects.map(x => x.entryData)
     .filter(x => !!x)

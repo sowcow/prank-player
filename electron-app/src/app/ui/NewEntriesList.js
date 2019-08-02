@@ -31,14 +31,6 @@ let DividerInside = styled.div`
   right: 0;
 `
 
-// import {
-//   getNewButtonOpened,
-//   toggleNewButton
-// } from '../../state/ui'
-// let getNewButtonOpened = () => {}
-// let toggleNewButton = () => {}
-
-// connected component in ui dir...
 
 let NewEntriesList = ({
   entries,
@@ -48,10 +40,7 @@ let NewEntriesList = ({
   atABoard,
 }) => {
   let upVisibility = atABoard ? 'visible' : 'hidden'
-  // if (!opened) return null
-  // entries = []
   toggleNewButton = () => {}
-  // opened = true // XXX
 
   return (
     <>
@@ -71,10 +60,6 @@ let NewEntriesList = ({
       direction='up'
       in={opened}
     >
-    {/*
-      mountOnEnter
-      unmountOnExit
-      */}
       <div className={classes.root}>
         <Paper>
           <Flex className={classes.insidePaper}>
@@ -118,29 +103,15 @@ let marginRight = '0px'
 
 component = withStyles({
   root: {
-    // height: 100,
     position: 'absolute',
     bottom: margin,
     left: margin,
     right: marginRight
-    // outline: 'solid 3px orange',
   },
   insidePaper: {
     overflowX: 'auto',
     backgroundColor: indigo[500],
-    // minHeight: 'min-content'
   }
 })(component)
-
-// todo: use the new way
-
-// let mapStateToProps = state => ({
-//   opened: getNewButtonOpened(state)
-// })
-
-// component = connect(
-//   mapStateToProps,
-//   { toggleNewButton }
-// )(component)
 
 export default component

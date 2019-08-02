@@ -30,27 +30,12 @@ let Root = styled.div`
 `
 
 let style = {
-  // '& .button': {
-  //   marginLeft: -12,
-  //   marginRight: 20
-  // }
-
   '& .button': {
     position: 'fixed',
     left: 0,
     top: 0,
     'z-index': 10
   }
-
-  // '& .asterisk': {
-  //   color: '#444',
-  // },
-  // '& .text': {
-  //   color: '#444',
-  // },
-  // position: 'fixed',
-  // bottom: 0,
-  // right: 0,
 }
 
 let BoardItem = ({ item }) => {
@@ -76,56 +61,15 @@ const sideList = that =>
   <div>
     <List>
       <ListItem button onClick={() => that.chooseOutput()}>
-  {/*
-  <ListItemIcon>
-  <Settings />
-        </ListItemIcon>
-        */}
         <ListItemText primary={`Output: ${that.outputName()}`} />
       </ListItem>
-      {/*
-      <ListItem button onClick={() => doSave()}>
-        <ListItemIcon>
-          <Save />
-        </ListItemIcon>
-        <ListItemText primary='Save' />
-      </ListItem>
-      */
-      }
       <Divider />
       {
       that.state.boards.map((x, i) =>
         <BoardItem item={x} key={i} />
       )
       }
-      {/*
-      <ListItem button onClick={() => {}}>
-        <ListItemIcon>
-          <Publish />
-        </ListItemIcon>
-        <ListItemText primary='Upload' />
-      </ListItem>
-      */}
-
-  {/*
-      <input
-        id='file-upload-menu'
-        webkitdirectory='true'
-        mozdirectory='true'
-      />
-
-      <label for='file-upload-menu'>
-      <ListItem button onClick={() => {}}>
-        <ListItemIcon>
-          <ArrowUpward />
-        </ListItemIcon>
-        <ListItemText primary='Upload' />
-      </ListItem>
-      </label>
-    */}
-
     </List>
-    {/*<Divider />*/}
   </div>
 
 function setOutputDevice(x) {
@@ -177,8 +121,6 @@ class MainMenu extends Component {
   }
   chosenOutput = async given => {
     if (given) {
-      // setOutputDevice(given)
-      // this.setState({ selectedAudio: given.deviceId })
       let { deviceId, label } = given
       audioDeviceSet(null, { deviceId, label })
     }
@@ -186,7 +128,6 @@ class MainMenu extends Component {
   }
 
   render () {
-    // let [ isOpen, setOpen ] = useState(false)
     let { isOpen, isChoosingOutput, selectedAudio,
       audioDevices
     } = this.state
@@ -211,7 +152,6 @@ class MainMenu extends Component {
             document.activeElement.blur()
           }}
         >
-          { /*onFocusVisible={this.openIt}*/ }
           <MenuIcon />
         </IconButton>
         <TabHandler action={this.toggleIt} />

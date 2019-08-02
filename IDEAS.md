@@ -49,6 +49,8 @@
 - [ ] editing: create groupings of buttons - modal-like containers
 - [ ] manual placing from tray vs (virtual) button with icon -> button...
 
+- [ ] pause any playing - pauseOrPlay and swap buttons then
+
 # old (irrelevant) notes
 
 - bigger directory structure change

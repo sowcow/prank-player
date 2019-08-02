@@ -1,7 +1,4 @@
 import React from 'react'
-// import ItemTypes from './ItemTypes'
-// import BoxDragPreview from './BoxDragPreview'
-// import snapToGrid from './snapToGrid'
 import { DragLayer } from 'react-dnd'
 
 const DraggedEntry = () =>

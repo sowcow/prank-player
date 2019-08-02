@@ -16,7 +16,7 @@ export function setDeletedEntries(xs) {
 }
 
 
-const EXTENSION = /\.([^\.]+)$/
+const EXTENSION = /\.([^.]+)$/
 
 const PREPARE_NAME = [
   x => x.replace(EXTENSION, ''),
@@ -27,7 +27,7 @@ const PREPARE_NAME = [
 ]
 
 function preprocessFile(file) {
-  let fileName = file //.name
+  let fileName = file
   let name = fileName
   PREPARE_NAME.forEach( x => {
     let newName = x(name)

@@ -6,7 +6,6 @@ let options = {
   immutable: !PRODUCTION,
   monkeyBusiness: false,
 
-  // immutable: false,
   // autoCommit: false,
 }
 

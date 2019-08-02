@@ -17,7 +17,3 @@ branch = addBranch('deletedEntriesList', [])
 export const deletedEntriesList = branch()
 export const deletedEntriesSet = branch().setter()
 export const deletedEntriesClear = branch().setter([])
-
-// export const deletedEntriesPush = branch(
-//   (state, given) => state.push(given)
-// )

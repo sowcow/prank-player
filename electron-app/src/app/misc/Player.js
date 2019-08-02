@@ -9,7 +9,6 @@ class Player {
     }
   }
 
-  // pauseOrPlay (audio) {
   playOrPause (audio) {
     if (audio.playOrPause()) {
       this.silencePrevious()
@@ -28,33 +27,6 @@ class Player {
     this.silencePrevious()
     audio.playFromStart()
     this.last = audio
-    // this.stop()
-    // this.stop(audio)
-    // this.start(audio)
-  }
-
-  // private
-
-  start (audio) {
-    if (this.last !== audio) {
-      this.stop(this.last)
-    }
-
-    audio.play()
-    this.last = audio
-  }
-
-  stop (audio) {
-    audio = audio || this.last
-    if (audio) {
-      audio.pause()
-      audio.currentTime = 0
-      // if (audio.setCurrentTime) audio.setCurrentTime(-1)
-    }
-  }
-
-  isPlaying (audio) {
-    return audio.duration > 0 && !audio.paused
   }
 }
 

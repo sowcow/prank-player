@@ -82,25 +82,3 @@ function saveOnExit() {
   })
 }
 saveOnExit()
-
-// import { gotProduceData } from '../app/actions/produceData';
-// import store from '../app/state/store';
-
-// function gotData(xs) {
-//   store.dispatch(gotProduceData(xs))
-// }
-
-// export function electronSubscribe() {
-//   let ipc = window.require('electron').ipcRenderer
-//   ipc.on('gotData', (event, req, port) => gotData(parseData(req)))
-// }
-
-// function parseData(given) {
-//   let data = JSON.parse(given)
-//   let xs = []
-//   Object.values(data).forEach(x => xs.push(x))
-//   xs.forEach(x => {
-//     x.point = new Date(x.point)
-//   })
-//   return xs
-// }

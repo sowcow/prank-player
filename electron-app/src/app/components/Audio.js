@@ -75,49 +75,6 @@ async function performPauseOrResume(audioRef) {
     audioPlay(audioRef)
   }
 }
-      // let audio = audioRef.current
-      // if (!audio) return
-      // if (audio.readyState !== HAVE_ENOUGH_DATA) return
-
-      // if (isPlaying(audio)) {
-      //   audio.pause()
-      //   return false
-      // }
-
-      // audio.play()
-      // return true
-
-// function doPlayFromStart(audioRef) {
-//   let audio = audioRef.current
-//   if (!audio) return
-//   if (audio.readyState !== HAVE_ENOUGH_DATA) {
-//     return setTimeout(() => { // XXX
-//       doPlayFromStart(audioRef)
-//     },10)
-//   }
-
-//   // if (isPlaying(audio)) return audio.pause()
-
-//   audio.pause()
-//   audio.currentTime = 0
-//   audio.play()
-// }
-
-// function doStop(audioRef, promise = new Promise) {
-//   // let audio = audioRef.current
-//   // if (!audio) return
-//   // if (audio.readyState !== HAVE_ENOUGH_DATA) {
-//   //   setTimeout(() => { // XXX: gotta be simpler but smells somehow still
-//   //     doPlayFromStart(audioRef, promise)
-//   //   },10)
-//   //   return promise
-//   // }
-
-//   // audio.pause()
-//   // audio.currentTime = 0
-//   // promise.reso
-//   // return promise
-// }
 
 // NOTE: very ugly manual passing of audioDeviceGet from all parents
 // cuz imperative stuff breaks if ya wrap this
@@ -129,17 +86,11 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
 
   useImperativeHandle(ref, () => ({
     stop: () => {
-      return performStop(audioRef).then(
-        // () => console.log('ok: performStop')
-      ).catch(
+      return performStop(audioRef).then(() => {
+        // console.log('ok: performStop')
+      }).catch(
         () => console.log('error: performStop')
       )
-      // let audio = audioRef.current
-      // if (!audio) return
-      // if (audio.readyState !== HAVE_ENOUGH_DATA) return
-      // audio.pause()
-      // audio.currentTime = 0
-      // console.log('stop')
     },
 
     pause: () => {
@@ -149,32 +100,13 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
       audio.pause()
     },
 
-    // preview: () => {
-    //   let audio = audioRef.current
-    //   if (!audio) return
-    //   if (audio.readyState !== HAVE_ENOUGH_DATA) return
-    //   if (isPlaying(audio)) {
-    //     audio.pause()
-    //     audio.currentTime = 0
-    //   } else {
-    //     audio.play()
-    //   }
-    // },
-
     pauseOrResume: () => {
-      return performPauseOrResume(audioRef).then(
-        // () => console.log('ok: pauseOrResume')
-      ).catch(
+      return performPauseOrResume(audioRef).then(() => {
+        // console.log('ok: pauseOrResume')
+      }).catch(
         () => console.log('error: pauseOrResume')
       )
     },
-
-    // setCurrentTime: n => {
-    //   let audio = audioRef.current
-    //   if (!audio) return
-    //   if (audio.readyState !== HAVE_ENOUGH_DATA) return
-    //   audio.currentTime = n
-    // },
 
     playFromStart: (update = true) => {
       return performPlayFromStart(audioRef).then(() => {
@@ -206,20 +138,6 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
       if (!audio) return
       if (audio.readyState !== HAVE_ENOUGH_DATA) return
       audio.play()
-
-      // console.log(kind)
-      // console.log(isPlaying(audio))
-      // if (isPlaying(audio)) {
-      //   audio.pause()
-      // } else {
-      //   audio.play()
-      // }
-
-      // NOTE: automation-only btw
-      // AppEvents.push({
-      //   type: 'play_audio',
-      //   filename: name
-      // })
     }
   }))
 
@@ -233,7 +151,6 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
   useEffect(() => {
     let audio = audioRef.current
     if (!audio) return console.error('impossible')
-    // let events = ['ended', 'pause', 'play'] //, 'timeupdate']
     let events = ['ended']
     events.forEach( eventName => {
       audio.addEventListener(eventName, () => {

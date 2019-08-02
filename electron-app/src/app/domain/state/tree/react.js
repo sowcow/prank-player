@@ -25,15 +25,6 @@ export const connectTree = (...configurers) => {
   return component => branch(config, component)
 }
 
-/* usage sketch
-
-component = connectTree(
-  newEntriesOpen,
-  newEntries.to('them'),
-)(component)
-
-*/
-
 function applyConfigurer (config, given) {
   let { name, path } = given
   config[name] && console.log('rewriting the key!:', name)

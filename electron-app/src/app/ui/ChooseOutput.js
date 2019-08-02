@@ -54,51 +54,6 @@ class SimpleDialog extends React.Component {
   }
 }
 
-// SimpleDialog.propTypes = {
-//   classes: PropTypes.object.isRequired,
-//   onClose: PropTypes.func,
-//   selectedValue: PropTypes.string,
-// };
-
 const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
 
 export default SimpleDialogWrapped
-
-
-/*
-class SimpleDialogDemo extends React.Component {
-  state = {
-    open: false,
-    selectedValue: emails[1],
-  };
-
-  handleClickOpen = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  handleClose = value => {
-    this.setState({ selectedValue: value, open: false });
-  };
-
-  render() {
-    return (
-      <div>
-        <Typography variant="subtitle1">Selected: {this.state.selectedValue}</Typography>
-        <br />
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Open simple dialog
-        </Button>
-        <SimpleDialogWrapped
-          selectedValue={this.state.selectedValue}
-          open={this.state.open}
-          onClose={this.handleClose}
-        />
-      </div>
-    );
-  }
-}
-
-export default SimpleDialogDemo;
-*/

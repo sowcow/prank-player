@@ -19,7 +19,6 @@ function addBranch_ (
   defaultValue
 ) {
   let state = treeRoot.select(path)
-  // let reads = (a, b = null) => points(a, path.concat(b || a))
 
   state.exists() && console.log('rewriting the key!:', path)
   let reset = () => state.set(defaultValue)

@@ -4,8 +4,6 @@ import {
   positionedEntriesPush
 } from '../positionedEntries'
 
-// let tree   // maybe at some point, also reset has to react to it
-
 let uid = expect.any(Number)
 
 beforeEach(() => {
@@ -37,13 +35,3 @@ it('deletes item by pattern', () => {
     { a: 2, uid }
   ])
 })
-
-// test('bar', async t => {
-// 	const bar = Promise.resolve('bar')
-// 	t.is(await bar, 'bar')
-// })
-
-// test('bar2', async t => {
-// 	const bar = Promise.resolve('bar')
-// 	t.is(await bar, 'bar')
-// })

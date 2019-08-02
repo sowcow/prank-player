@@ -44,7 +44,6 @@ let rootStyle = {
   textAlign: 'center',
   height: 50,
 
-  // color: 'white',
   color: '#f2f3f4',
   fontFamily: 'Courier',
 }
@@ -84,8 +83,6 @@ let Entry = ({ entry, isDragging, connectDragSource,
       connectDragPreview(
         getEmptyImage(),
         {
-        // IE fallback: specify that we'd rather screenshot the node
-        // when it already knows it's being dragged so we can hide it with CSS.
         captureDraggingState: true,
       });
     }
@@ -112,7 +109,6 @@ let Entry = ({ entry, isDragging, connectDragSource,
         let LEFT = 0
         let RIGHT = 2
         if (e.button === LEFT) {
-          // current.playOrPause()
         } else if (e.button === RIGHT) {
           current.playFromStart()
         }
@@ -128,7 +124,6 @@ let Entry = ({ entry, isDragging, connectDragSource,
         } else if (e.button === RIGHT) {
           current.playFromStart()
         }
-        // current.preview()
       }}
     >
       <Audio name={fileName} ref={audioRef}

@@ -8,8 +8,6 @@ import { PlayerInstance } from '../misc/Player';
 import { audioDeviceGet } from '../domain/state/audioDevice';
 import { connectTree } from '../domain/state/tree/react';
 import {
-  // currentlyEnded,
-  // currentlyPaused,
   currentlyPlaying,
   currentlyPlayingStatus,
 } from '../domain/state/playbackState';
@@ -21,10 +19,6 @@ import doUnArrange from '../domain/doUnArrange';
 
 
 let getEditingState = isEditingState
-// let getCurrentlyPlayingStatus = currentlyPlayingStatus
-// let getCurrentlyPlaying = currentlyPlaying
-// let getCurrentlyPaused = currentlyPaused
-// let getCurrentlyEnded = currentlyEnded
 let globalFabricCanvas = null
 
 function defaultize(canvas) {
@@ -63,7 +57,6 @@ function setFabricState(data, promise = null) {
   globalFabricCanvas.loadFromJSON(data, () => {
     promise.resolve()
   })
-  // fabricUpdateDeletedStyle()
   return promise
 }
 function fabricUpdateDeletedStyle() {
@@ -100,7 +93,6 @@ const TEXT_STYLE = defaultTextStyle()
 const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'
 const squareTarget = {
   drop(props, monitor) {
-    // let dropPoint = monitor.getSourceClientOffset()
     let dropPoint = monitor.getClientOffset()
     dropPoint.x += SOME_DELTA + DELTA_X
     dropPoint.y += SOME_DELTA + DELTA_Y
@@ -115,20 +107,12 @@ function collect(connect, monitor) {
   }
 }
 
-
-// let Root = styled.div`
-//   height: 100%;
-// `
-
 let Interactive = ({
   positionedEntriesList,
   audioDeviceGet,
   isEditingState,
-  // currentlyEnded,
-  // currentlyPaused,
   currentlyPlaying,
   currentlyPlayingStatus,
-  // deletedEntriesList,
   isOver, connectDropTarget, size: { width, height } }) => {
 
   let rootRef = useRef()
@@ -161,22 +145,6 @@ let Interactive = ({
       omgStyle(options.target)
     })
 
-    // canvas.on('mouse:over', options => {
-    //   hoverStyle(options.target)
-    // })
-    // canvas.on('mouse:out', options => {
-    //   if (!options.target.entryData) return
-    //   defaultStyle(options.target)
-    // })
-
-    // canvas.on('selection:created', ({ e, target }) => {
-    //   // let isEditing = getEditingState.get()
-    //   console.log(e)
-    //   e.preventDefault()
-    //   e.cancelBubble = true
-    //   return false
-    // })
-
     canvas.on('object:rotating', options => {
       snapAngleToGrid(options)
     })
@@ -192,8 +160,6 @@ let Interactive = ({
     })
 
     canvas.on('mouse:up', options => {
-      // saveChange(options.target)
-      // styleMoving(options.target)
       let { transform } = options
       if (!transform) return
       let drag = transform.action == 'drag'
@@ -208,19 +174,6 @@ let Interactive = ({
         )
         canvas.discardActiveObject();
         canvas.requestRenderAll();
-        //     canvas.remove(canvas.getActiveObject())
-        //   }
-        // if (canvas.getActiveGroup()) {
-        //   canvas.getActiveGroup().forEachObject(a => {
-        //     canvas.remove(a)
-        //   })
-        //   canvas.discardActiveGroup()
-        // } else {
-        //   if (canvas.getActiveObject()) {
-        //     canvas.remove(canvas.getActiveObject())
-        //   }
-        // }
-        // options.target.remove()
       }
     })
 
@@ -255,17 +208,7 @@ let Interactive = ({
       !having.find(y => y == x.fileName)
     )
 
-		// canvas.clear()
-    // let toAdd = positionedEntriesList
-
     toAdd.forEach(x => {
-      // let dynamicStyle = {}
-      // if (deletedEntriesList.find(y => y.fileName == x.fileName)) {
-      //   dynamicStyle = {
-      //     color: 'orange'
-      //   }
-      // }
-
       let style = {
           left: x.position.x,
           top: x.position.y,
@@ -290,33 +233,17 @@ let Interactive = ({
     canvas.renderAll()
   },[relevant])
 
-  // function applyEditingStyle(canvasRef, isEditingState) {
-  // }
-
   useEffect(() => {
-    // return () => {
-      // let isEditingState = getEditingState.get() // XXX: ugly
 			let canvas = canvasRef.current
-      // canvas.getObjects().forEach( x =>
-      //   reactToEditing(x, isEditingState)
-      // )
       canvas.discardActiveObject()
 
-      // canvas.deactivateAll()
-      // canvas.renderAll()
-
-    // setTimeout(() => {
-        // console.log(444)
       canvas.forEachObject(function(object){
         defaultStyle(object)
-        // console.log(555)
 			  object.selectable = isEditingState
         if (object.editable != null) {
           object.editable = isEditingState
 				}
       })
-			// canvas.requestRenderAll()
-    // }, 100)
 
       canvas.selection = isEditingState
 
@@ -327,7 +254,6 @@ let Interactive = ({
 			}
 
 			canvas.requestRenderAll()
-		// }
 	}, [isEditingState, relevant])
 
   function playingStyle(x) {
@@ -351,16 +277,8 @@ let Interactive = ({
 
   useEffect(() => {
     let status = currentlyPlayingStatus
-    // let status = getCurrentlyPlayingStatus.get()
-    // let currentlyPlaying = getCurrentlyPlaying.get()
     if (!currentlyPlaying) return
     let { name: current } = currentlyPlaying
-
-    // let currentlyPaused = getCurrentlyPaused.get()
-    // let currentlyEnded = getCurrentlyEnded.get()
-    // if (!currentlyPlaying) return
-
-    // if (sta)
 
     let canvas = canvasRef.current
 
@@ -383,66 +301,7 @@ let Interactive = ({
       }
     })
 	  canvas.requestRenderAll()
-
-      /*
-        if (object.entryData && currentlyPaused && object.entryData.fileName == currentlyPaused.name) {
-          object.set({
-            underline: true,
-            textBackgroundColor: 'rgba(255,255,255, 0)'
-          })
-          matched = true
-        }
-        if (object.entryData && currentlyPlaying && object.entryData.fileName == currentlyPlaying.name) {
-          object.set({
-            underline: true,
-            textBackgroundColor: 'rgba(255,255,255, 1)'
-          })
-          matched = true
-        }
-        if (object.entryData && currentlyEnded && object.entryData.fileName == currentlyEnded.name) {
-          object.set({
-            underline: false,
-            textBackgroundColor: 'rgba(255,255,255, -1)'
-          })
-          matched = true
-        }
-        */
-          // if (status === 'pause') {
-          //   object.set({
-          //     underline: true,
-          //     textBackgroundColor: 'rgba(255,255,255, 0)'
-          //   })
-          // } else if (status === 'ended') {
-          //   object.set({
-          //     underline: false,
-          //     textBackgroundColor: 'rgba(255,255,255, -1)'
-          //   })
-          // } else if (status === 'play') {
-          //   object.set({
-          //     underline: true,
-          //     textBackgroundColor: 'rgba(255,255,255, 1)'
-          //   })
-          // }
-        // } else if (object.entryData && object.underline) {
-        //   object.set({
-        //     underline: false,
-        //     textBackgroundColor: 'rgba(255,255,255, 0)'
-        //   })
-        // }
-        // if (!matched) {
-        //   if (object.entryData && object.underline) { // XXX: quick mess
-        //     object.set({
-        //       underline: false,
-        //       textBackgroundColor: 'rgba(255,255,255, 0)'
-        //     })
-        //   }
-        // }
-      // })
-
-			// canvas.requestRenderAll()
-		// }
   }, [currentlyPlaying, currentlyPlayingStatus])
-    //currentlyPaused, currentlyEnded])
 
   useEffect(() => {
     return () => {
@@ -458,7 +317,6 @@ let Interactive = ({
 
   return connectDropTarget(
 		<div style={{ height: '100%' }}>
-      { /*<CustomDragLayer />*/ }
 			<div ref={rootRef} style={{ height: '100%' }}>
 			</div>
       {positionedEntriesList.map( x =>
@@ -560,8 +418,6 @@ function hoverStyle(obj) {
   if (!obj) return
   obj.set({
     underline: true,
-    // borderColor: 'orange',
-    // hasBorders: true,
   })
   obj.canvas.renderAll()
 }
@@ -570,8 +426,6 @@ function defaultStyle(obj) {
   obj.set({
     underline: false,
     ...TEXT_STYLE
-    // borderColor: 'orange',
-    // hasBorders: false,
   })
   obj.canvas.renderAll()
 }
@@ -580,20 +434,11 @@ function defaultTextStyle() {
   return {
     underline: false,
     textBackgroundColor: 'rgba(255,255,255, 0)',
-    // padding: 16,
     padding: 10,
-    // padding: 20,
         fontSize: 24,
         fontFamily: 'Courier',
         lockUniScaling: true,
         fill: '#373d3f',
-
-        // originX: 'center',
-        // originY: 'center',
-        // fill: 'white',
-        // textBackgroundColor: '#3f51b5',
-        // textBackgroundColor: 'rgb(0,200,0)'
-        // fill: '#093145',
   }
 }
 
@@ -604,11 +449,9 @@ function styleMoving(given) {
   if (isInDeleteCorner(given)) {
     let them = obj.canvas.getActiveObjects()
     them.forEach(x => x.set({ fill: 'red' }) )
-    // obj.set({ fill: 'red' })
   } else {
     let them = obj.canvas.getActiveObjects()
     them.forEach(x => x.set(TEXT_STYLE) )
-    // obj.set(TEXT_STYLE)
   }
 }
 function isInDeleteCorner(given) {
@@ -640,7 +483,6 @@ function playPreview(refs,entry,isEditing, mouseButton) {
   } else if (!isEditing && mouseButton === RIGHT) {
     PlayerInstance.playFromStart(audio, isEditing)
   }
-  // audio.play()
 }
 
 function omgStyle(x) {
@@ -665,9 +507,6 @@ let connection = [
   isEditingState,
   currentlyPlaying,
   currentlyPlayingStatus,
-  // currentlyPaused,
-  // currentlyEnded,
-  // deletedEntriesList,
 ]
 
 let InteractivePureIsh = Interactive
