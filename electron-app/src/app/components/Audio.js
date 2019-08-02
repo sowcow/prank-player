@@ -18,7 +18,6 @@ function sleep(ms) {
 }
 
 async function waitForReady(audioRef, tries = 100, pause = 10) {
-  let currentTry = 0
   for (let i = 0; i < tries; i++) {
     if (isAudioReady(audioRef)) return true
     await sleep(pause)
@@ -157,6 +156,7 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
         playbackUpdate(eventName, { name, url })
       })
     })
+  // eslint-disable-next-line
   }, [])
 
   return <audio preload='auto' key={url} ref={audioRef}>

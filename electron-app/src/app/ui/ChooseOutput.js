@@ -1,6 +1,5 @@
 import { MusicNote } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
 import Avatar from '@material-ui/core/Avatar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -10,8 +9,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import React from 'react';
 import blue from '@material-ui/core/colors/blue';
-
-import PropTypes from 'prop-types';
 
 const styles = {
   avatar: {

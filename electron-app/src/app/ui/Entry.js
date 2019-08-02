@@ -86,6 +86,7 @@ let Entry = ({ entry, isDragging, connectDragSource,
         captureDraggingState: true,
       });
     }
+  // eslint-disable-next-line
   },[])
 
   if (fake) {

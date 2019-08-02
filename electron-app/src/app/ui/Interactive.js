@@ -162,7 +162,7 @@ let Interactive = ({
     canvas.on('mouse:up', options => {
       let { transform } = options
       if (!transform) return
-      let drag = transform.action == 'drag'
+      let drag = transform.action === 'drag'
       if (!drag) return
 
       if (isInDeleteCorner(options)) {
@@ -205,7 +205,7 @@ let Interactive = ({
     let having = them.map(extractFileName)
       .filter(x => !!x)
     let toAdd = positionedEntriesList.filter(x =>
-      !having.find(y => y == x.fileName)
+      !having.find(y => y === x.fileName)
     )
 
     toAdd.forEach(x => {
@@ -231,6 +231,7 @@ let Interactive = ({
       }
     })
     canvas.renderAll()
+  // eslint-disable-next-line
   },[relevant])
 
   useEffect(() => {
@@ -283,7 +284,6 @@ let Interactive = ({
     let canvas = canvasRef.current
 
     canvas.forEachObject(function(object){
-      let matched = false
       let { entryData } = object
       if (!entryData) return
       let { fileName } = entryData
@@ -304,11 +304,11 @@ let Interactive = ({
   }, [currentlyPlaying, currentlyPlayingStatus])
 
   useEffect(() => {
-    return () => {
-			let canvas = canvasRef.current
-			let div = rootRef.current
-			let elementCanvas = elementCanvasRef.current
+    let div = rootRef.current
+    let canvas = canvasRef.current
+    let elementCanvas = elementCanvasRef.current
 
+    return () => {
       globalFabricCanvas = null
       canvas.dispose()
       div.removeChild(elementCanvas)
@@ -414,13 +414,6 @@ function setCenterToOrigin (obj) {
 };
 
 
-function hoverStyle(obj) {
-  if (!obj) return
-  obj.set({
-    underline: true,
-  })
-  obj.canvas.renderAll()
-}
 function defaultStyle(obj) {
   if (!obj) return
   obj.set({
@@ -492,10 +485,6 @@ function omgStyle(x) {
     tr: false,
     bl: false,
   })
-}
-
-function reactToEditing(x, isEditing) {
-	x.set({ hasControls: isEditing, selectable: isEditing })
 }
 
 Interactive = withSize({ monitorHeight: true })(Interactive)

@@ -12,8 +12,6 @@ import MainMenu from '../ui/MainMenu';
 import NewEntriesList from '../ui/NewEntriesList';
 
 
-let getEditingState = isEditingState
-
 const MainStatePure = ({ newEntriesList, uploadDirName, isEditingState }) => {
   let atABoard = !!uploadDirName
   let opened = atABoard && isEditingState

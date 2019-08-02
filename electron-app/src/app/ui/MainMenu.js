@@ -4,10 +4,8 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
-import { Settings, Save } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu'
 import React, { Component, useContext } from 'react';
 import styled from 'styled-components'
@@ -17,7 +15,6 @@ import { audioDeviceGet, audioDeviceSet } from '../domain/state/audioDevice';
 import { connectTree } from '../domain/state/tree/react';
 import { getBoards, getOneBoard } from '../../electron';
 import ChooseOutput from './ChooseOutput';
-import doSave from '../domain/doSave';
 import doUpload from '../domain/doUpload';
 
 import useMousetrap from 'react-hook-mousetrap'
@@ -28,15 +25,6 @@ let Root = styled.div`
   left: 0;
   top: 0;
 `
-
-let style = {
-  '& .button': {
-    position: 'fixed',
-    left: 0,
-    top: 0,
-    'z-index': 10
-  }
-}
 
 let BoardItem = ({ item }) => {
   let updateSrc = useContext(AudioSrcUpdate)
@@ -72,12 +60,6 @@ const sideList = that =>
     </List>
   </div>
 
-function setOutputDevice(x) {
-  console.log(x)
-  console.log(x)
-  console.log(x)
-}
-
 let TabHandler = ({ action }) => {
   useMousetrap('tab', action)
   return null
@@ -88,7 +70,6 @@ class MainMenu extends Component {
     isOpen: false,
     isChoosingOutput: false,
     audioDevices: [],
-    selectedAudio: 'default',
     boards: [],
   }
   toggleIt = () => {
@@ -128,7 +109,7 @@ class MainMenu extends Component {
   }
 
   render () {
-    let { isOpen, isChoosingOutput, selectedAudio,
+    let { isOpen, isChoosingOutput,
       audioDevices
     } = this.state
 
