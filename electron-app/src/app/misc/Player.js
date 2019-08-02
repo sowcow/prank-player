@@ -19,7 +19,7 @@ class Player {
   }
 
   // previous may not exist, so ignore the result
-  silencePrevious() {
+  silencePrevious () {
     if (this.last) this.last.stop()
   }
 

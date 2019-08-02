@@ -1,6 +1,6 @@
-import { isEditingState } from './state/mainState';
-import { uploadDirName } from './state/dirName';
-import doSave from './doSave';
+import { isEditingState } from './state/mainState'
+import { uploadDirName } from './state/dirName'
+import doSave from './doSave'
 
 export default function () {
   let editing = isEditingState.get()

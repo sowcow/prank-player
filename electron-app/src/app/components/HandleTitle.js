@@ -33,7 +33,7 @@ let Title = ({ uploadDirName, audioDeviceGet }) => {
 
 let connection = [
   audioDeviceGet,
-  uploadDirName, // NOTE: inconsistent naming?
+  uploadDirName // NOTE: inconsistent naming?
 ]
 
 export default connectTree(connection)(Title)

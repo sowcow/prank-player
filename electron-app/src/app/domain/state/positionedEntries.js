@@ -15,13 +15,9 @@ let addBranch = nestedAt(treeRoot, KEY)
 //
 branch = addBranch('positionedEntriesList', [])
 export const positionedEntriesList = branch()
-export const positionedEntriesSet = branch(
-  (state, given) => {
-    state.set(given)
-  }
-)
-export const positionedEntriesPush = branch(
-  (state, given) => {
-    state.push(given)
-  }
-)
+export const positionedEntriesSet = branch((state, given) => {
+  state.set(given)
+})
+export const positionedEntriesPush = branch((state, given) => {
+  state.push(given)
+})

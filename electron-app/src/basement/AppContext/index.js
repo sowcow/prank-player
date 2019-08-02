@@ -4,7 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import React from 'react'
 
 import { injectTree } from '../../app/domain/state/tree/react'
-import AudioSrc from '../../app/components/AudioSrc';
+import AudioSrc from '../../app/components/AudioSrc'
 
 let AppContext = ({ children }) => (
   <AudioSrc>

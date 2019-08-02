@@ -1,23 +1,24 @@
-import React, { useContext, useRef, useImperativeHandle, useEffect } from 'react'
+import React, {
+  useContext,
+  useRef,
+  useImperativeHandle,
+  useEffect
+} from 'react'
 
-import { AudioSrcValue } from './AudioSrc';
-import { playbackUpdate } from '../domain/services/playbackUpdate';
+import { AudioSrcValue } from './AudioSrc'
+import { playbackUpdate } from '../domain/services/playbackUpdate'
 
 const HAVE_ENOUGH_DATA = 4
 
-function isPlaying(x) {
-    return x
-        && x.currentTime > 0
-        && !x.paused
-        && !x.ended
-        && x.readyState > -2
+function isPlaying (x) {
+  return x && x.currentTime > 0 && !x.paused && !x.ended && x.readyState > -2
 }
 
-function sleep(ms) {
+function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function waitForReady(audioRef, tries = 100, pause = 10) {
+async function waitForReady (audioRef, tries = 100, pause = 10) {
   for (let i = 0; i < tries; i++) {
     if (isAudioReady(audioRef)) return true
     await sleep(pause)
@@ -26,14 +27,14 @@ async function waitForReady(audioRef, tries = 100, pause = 10) {
 }
 
 // can throw, use inside promises
-function isAudioReady(audioRef) {
+function isAudioReady (audioRef) {
   let audio = audioRef.current
   if (!audio) throw new Error('audio element has been removed or so')
   return audio.readyState === HAVE_ENOUGH_DATA
 }
 
 // can throw, use inside promises
-function audioStop(audioRef) {
+function audioStop (audioRef) {
   let audio = audioRef.current
   if (!audio) throw new Error('audio element has been removed or so')
   audio.pause()
@@ -41,32 +42,32 @@ function audioStop(audioRef) {
 }
 
 // can throw, use inside promises
-function audioPause(audioRef) {
+function audioPause (audioRef) {
   let audio = audioRef.current
   if (!audio) throw new Error('audio element has been removed or so')
   audio.pause()
 }
 
 // can throw, use inside promises
-function audioPlay(audioRef) {
+function audioPlay (audioRef) {
   let audio = audioRef.current
   if (!audio) throw new Error('audio element has been removed or so')
   audio.play()
 }
 
-async function performStop(audioRef) {
+async function performStop (audioRef) {
   await waitForReady(audioRef)
   audioStop(audioRef)
 }
 
-async function performPlayFromStart(audioRef) {
+async function performPlayFromStart (audioRef) {
   await waitForReady(audioRef)
   audioStop(audioRef)
   await waitForReady(audioRef)
   audioPlay(audioRef)
 }
 
-async function performPauseOrResume(audioRef) {
+async function performPauseOrResume (audioRef) {
   await waitForReady(audioRef)
   if (isPlaying(audioRef.current)) {
     audioPause(audioRef)
@@ -85,11 +86,11 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
 
   useImperativeHandle(ref, () => ({
     stop: () => {
-      return performStop(audioRef).then(() => {
-        // console.log('ok: performStop')
-      }).catch(
-        () => console.log('error: performStop')
-      )
+      return performStop(audioRef)
+        .then(() => {
+          // console.log('ok: performStop')
+        })
+        .catch(() => console.log('error: performStop'))
     },
 
     pause: () => {
@@ -100,20 +101,22 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
     },
 
     pauseOrResume: () => {
-      return performPauseOrResume(audioRef).then(() => {
-        // console.log('ok: pauseOrResume')
-      }).catch(
-        () => console.log('error: pauseOrResume')
-      )
+      return performPauseOrResume(audioRef)
+        .then(() => {
+          // console.log('ok: pauseOrResume')
+        })
+        .catch(() => console.log('error: pauseOrResume'))
     },
 
     playFromStart: (update = true) => {
-      return performPlayFromStart(audioRef).then(() => {
-        // console.log('ok: playFromStart')
-        playbackUpdate('play', { name })
-      }).catch(() => {
-        console.log('error: playFromStart')
-      })
+      return performPlayFromStart(audioRef)
+        .then(() => {
+          // console.log('ok: playFromStart')
+          playbackUpdate('play', { name })
+        })
+        .catch(() => {
+          console.log('error: playFromStart')
+        })
     },
 
     playOrPause: () => {
@@ -132,7 +135,7 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
       return true
     },
 
-    play: (kind) => {
+    play: kind => {
       let audio = audioRef.current
       if (!audio) return
       if (audio.readyState !== HAVE_ENOUGH_DATA) return
@@ -151,19 +154,19 @@ let Audio = ({ name, children, audioDeviceGet }, ref) => {
     let audio = audioRef.current
     if (!audio) return console.error('impossible')
     let events = ['ended']
-    events.forEach( eventName => {
+    events.forEach(eventName => {
       audio.addEventListener(eventName, () => {
         playbackUpdate(eventName, { name, url })
       })
     })
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
 
-  return <audio preload='auto' key={url} ref={audioRef}>
-    <source
-      src={url}
-    />
-  </audio>
+  return (
+    <audio preload='auto' key={url} ref={audioRef}>
+      <source src={url} />
+    </audio>
+  )
 }
 
 let result = Audio

@@ -1,32 +1,31 @@
-import { DropTarget } from 'react-dnd';
+import { DropTarget } from 'react-dnd'
 import { fabric } from 'fabric'
 import { withSize } from 'react-sizeme'
 import React, { useRef, useEffect, useContext } from 'react'
 
-import { AudioSrcValue } from '../components/AudioSrc';
-import { PlayerInstance } from '../misc/Player';
-import { audioDeviceGet } from '../domain/state/audioDevice';
-import { connectTree } from '../domain/state/tree/react';
+import { AudioSrcValue } from '../components/AudioSrc'
+import { PlayerInstance } from '../misc/Player'
+import { audioDeviceGet } from '../domain/state/audioDevice'
+import { connectTree } from '../domain/state/tree/react'
 import {
   currentlyPlaying,
-  currentlyPlayingStatus,
-} from '../domain/state/playbackState';
-import { deletedEntriesList } from '../domain/state/deletedEntries';
-import { isEditingState } from '../domain/state/mainState';
-import { positionedEntriesList } from '../domain/state/positionedEntries';
-import Audio from '../components/Audio';
-import doUnArrange from '../domain/doUnArrange';
-
+  currentlyPlayingStatus
+} from '../domain/state/playbackState'
+import { deletedEntriesList } from '../domain/state/deletedEntries'
+import { isEditingState } from '../domain/state/mainState'
+import { positionedEntriesList } from '../domain/state/positionedEntries'
+import Audio from '../components/Audio'
+import doUnArrange from '../domain/doUnArrange'
 
 let getEditingState = isEditingState
 let globalFabricCanvas = null
 
-function defaultize(canvas) {
-  canvas.forEachObject(function(object){
+function defaultize (canvas) {
+  canvas.forEachObject(function (object) {
     defaultStyle(object)
   })
 }
-function getFabricState() {
+function getFabricState () {
   if (!globalFabricCanvas) return
   defaultize(globalFabricCanvas)
   return globalFabricCanvas.toJSON(['fileName', 'entryData'])
@@ -43,14 +42,11 @@ let makePromise = () => {
   return promise
 }
 
-function setFabricState(data, promise = null) {
+function setFabricState (data, promise = null) {
   promise = promise || makePromise()
 
   if (!globalFabricCanvas) {
-    setTimeout(
-      () => setFabricState(data, promise),
-      10
-    )
+    setTimeout(() => setFabricState(data, promise), 10)
     return promise
   }
 
@@ -59,17 +55,17 @@ function setFabricState(data, promise = null) {
   })
   return promise
 }
-function fabricUpdateDeletedStyle() {
+function fabricUpdateDeletedStyle () {
   let recurse = () => fabricUpdateDeletedStyle()
   if (!globalFabricCanvas) return setTimeout(recurse, 100)
 
   let deleted = deletedEntriesList.get()
-  globalFabricCanvas.getObjects().forEach( x =>
-    updateOneDeletedStyle(x, deleted)
-  )
+  globalFabricCanvas
+    .getObjects()
+    .forEach(x => updateOneDeletedStyle(x, deleted))
 }
 
-function updateOneDeletedStyle(obj, deleted) {
+function updateOneDeletedStyle (obj, deleted) {
   let { entryData } = obj
   if (!entryData) return
 
@@ -92,18 +88,18 @@ const TEXT_STYLE = defaultTextStyle()
 
 const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'
 const squareTarget = {
-  drop(props, monitor) {
+  drop (props, monitor) {
     let dropPoint = monitor.getClientOffset()
     dropPoint.x += SOME_DELTA + DELTA_X
     dropPoint.y += SOME_DELTA + DELTA_Y
     dropPoint = pointSnapToGrid(dropPoint)
     return { dropPoint }
-  },
+  }
 }
-function collect(connect, monitor) {
+function collect (connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
+    isOver: monitor.isOver()
   }
 }
 
@@ -113,12 +109,14 @@ let Interactive = ({
   isEditingState,
   currentlyPlaying,
   currentlyPlayingStatus,
-  isOver, connectDropTarget, size: { width, height } }) => {
-
+  isOver,
+  connectDropTarget,
+  size: { width, height }
+}) => {
   let rootRef = useRef()
   let canvasRef = useRef()
-	let elementCanvasRef = useRef()
-	let refs = useRef({})
+  let elementCanvasRef = useRef()
+  let refs = useRef({})
 
   useEffect(() => {
     let div = rootRef.current
@@ -126,12 +124,12 @@ let Interactive = ({
     div.appendChild(elementCanvas)
     let canvas = new fabric.Canvas(elementCanvas, {
       stopContextMenu: true,
-      fireRightClick: true,
+      fireRightClick: true
     })
     globalFabricCanvas = canvas
     canvas.on('selection:created', options => {
       options.target.set({
-        lockUniScaling: true,
+        lockUniScaling: true
       })
     })
     canvas.on('object:moving', options => {
@@ -166,53 +164,50 @@ let Interactive = ({
       if (!drag) return
 
       if (isInDeleteCorner(options)) {
-        canvas.getActiveObjects().forEach(
-          x => {
-            doUnArrange(x.entryData)
-            canvas.remove(x)
-          }
-        )
-        canvas.discardActiveObject();
-        canvas.requestRenderAll();
+        canvas.getActiveObjects().forEach(x => {
+          doUnArrange(x.entryData)
+          canvas.remove(x)
+        })
+        canvas.discardActiveObject()
+        canvas.requestRenderAll()
       }
     })
 
-		canvasRef.current = canvas
-		elementCanvasRef.current = elementCanvas
-	}, [])
+    canvasRef.current = canvas
+    elementCanvasRef.current = elementCanvas
+  }, [])
 
   useEffect(() => {
-		let canvas = canvasRef.current
-		canvas.setDimensions({ width, height })
+    let canvas = canvasRef.current
+    canvas.setDimensions({ width, height })
   }, [width, height])
 
-  let relevant = positionedEntriesList.map(x =>
-    [x.name, x.position.x, x.position.y, x.uid].join('+')
-  ).join(' - ') || 'empty'
+  let relevant =
+    positionedEntriesList
+      .map(x => [x.name, x.position.x, x.position.y, x.uid].join('+'))
+      .join(' - ') || 'empty'
 
   let urls = useContext(AudioSrcValue)
 
   useEffect(() => {
-		let canvas = canvasRef.current
+    let canvas = canvasRef.current
 
     let them = canvas.getObjects()
 
-    let extractFileName = x =>
-      x && x.entryData && x.entryData.fileName
+    let extractFileName = x => x && x.entryData && x.entryData.fileName
 
     // XXX: some bs behavior...
     if (!them) return
-    let having = them.map(extractFileName)
-      .filter(x => !!x)
-    let toAdd = positionedEntriesList.filter(x =>
-      !having.find(y => y === x.fileName)
+    let having = them.map(extractFileName).filter(x => !!x)
+    let toAdd = positionedEntriesList.filter(
+      x => !having.find(y => y === x.fileName)
     )
 
     toAdd.forEach(x => {
       let style = {
-          left: x.position.x,
-          top: x.position.y,
-          ...TEXT_STYLE,
+        left: x.position.x,
+        top: x.position.y,
+        ...TEXT_STYLE
       }
       const AUDIO = 'AUDIO'
       if (x.kind === AUDIO) {
@@ -221,9 +216,8 @@ let Interactive = ({
         omgStyle(text)
         canvas.add(text)
       } else {
-
         let url = urls[x.fileName]
-        fabric.Image.fromURL(url, function(obj) {
+        fabric.Image.fromURL(url, function (obj) {
           obj.set(style)
           obj.set('entryData', x)
           canvas.add(obj)
@@ -231,45 +225,45 @@ let Interactive = ({
       }
     })
     canvas.renderAll()
-  // eslint-disable-next-line
-  },[relevant])
+    // eslint-disable-next-line
+  }, [relevant])
 
   useEffect(() => {
-			let canvas = canvasRef.current
-      canvas.discardActiveObject()
+    let canvas = canvasRef.current
+    canvas.discardActiveObject()
 
-      canvas.forEachObject(function(object){
-        defaultStyle(object)
-			  object.selectable = isEditingState
-        if (object.editable != null) {
-          object.editable = isEditingState
-				}
-      })
+    canvas.forEachObject(function (object) {
+      defaultStyle(object)
+      object.selectable = isEditingState
+      if (object.editable != null) {
+        object.editable = isEditingState
+      }
+    })
 
-      canvas.selection = isEditingState
+    canvas.selection = isEditingState
 
-      if (isEditingState) {
-        canvas.hoverCursor = 'move'
-			} else {
-        canvas.hoverCursor = 'default'
-			}
+    if (isEditingState) {
+      canvas.hoverCursor = 'move'
+    } else {
+      canvas.hoverCursor = 'default'
+    }
 
-			canvas.requestRenderAll()
-	}, [isEditingState, relevant])
+    canvas.requestRenderAll()
+  }, [isEditingState, relevant])
 
-  function playingStyle(x) {
+  function playingStyle (x) {
     x.set({
       underline: true,
       textBackgroundColor: 'rgba(255,255,255, 0)'
     })
   }
-  function pausedStyle(x) {
+  function pausedStyle (x) {
     x.set({
       underline: true,
       textBackgroundColor: 'rgba(255,255,255, 0)'
     })
   }
-  function endedStyle(x) {
+  function endedStyle (x) {
     x.set({
       underline: false,
       textBackgroundColor: 'rgba(255,255,255, 0)'
@@ -283,7 +277,7 @@ let Interactive = ({
 
     let canvas = canvasRef.current
 
-    canvas.forEachObject(function(object){
+    canvas.forEachObject(function (object) {
       let { entryData } = object
       if (!entryData) return
       let { fileName } = entryData
@@ -300,7 +294,7 @@ let Interactive = ({
         if (object.underline) endedStyle(object) // NOTE:
       }
     })
-	  canvas.requestRenderAll()
+    canvas.requestRenderAll()
   }, [currentlyPlaying, currentlyPlayingStatus])
 
   useEffect(() => {
@@ -312,21 +306,22 @@ let Interactive = ({
       globalFabricCanvas = null
       canvas.dispose()
       div.removeChild(elementCanvas)
-		}
-	}, [])
+    }
+  }, [])
 
   return connectDropTarget(
-		<div style={{ height: '100%' }}>
-			<div ref={rootRef} style={{ height: '100%' }}>
-			</div>
-      {positionedEntriesList.map( x =>
-        <Audio name={x.fileName} key={x.fileName}
+    <div style={{ height: '100%' }}>
+      <div ref={rootRef} style={{ height: '100%' }} />
+      {positionedEntriesList.map(x => (
+        <Audio
+          name={x.fileName}
+          key={x.fileName}
           audioDeviceGet={audioDeviceGet}
           ref={y => {
             refs.current[x.fileName] = y
           }}
         />
-      )}
+      ))}
     </div>
   )
 }
@@ -334,87 +329,92 @@ let Interactive = ({
 const grid = GRID_STEP
 const angleGrid = 18
 
-function pointSnapToGrid(point) {
+function pointSnapToGrid (point) {
   return {
     x: Math.round(point.x / grid) * grid,
     y: Math.round(point.y / grid) * grid
   }
 }
-function withSnapBehavior(e) {
+function withSnapBehavior (e) {
   let someKey = e.shiftKey || e.ctrlKey || e.metaKey || e.altKey
   return !someKey
 }
-function scaleGrid(value) {
+function scaleGrid (value) {
   let grid = 1
   if (value < 1) grid = 0.5
   if (value >= 3) grid = 2
   return grid
 }
-function snapScale({ e, target }) {
+function snapScale ({ e, target }) {
   if (!withSnapBehavior(e)) return
   let obj = target
   let value = obj.scaleX
   let grid = scaleGrid(value)
   value = Math.round(value / grid) * grid
 
-  obj.set({
-    scaleX: value,
-    scaleY: value
-  }).setCoords()
+  obj
+    .set({
+      scaleX: value,
+      scaleY: value
+    })
+    .setCoords()
 }
-function snapToGrid({ e, target }) {
+function snapToGrid ({ e, target }) {
   if (!withSnapBehavior(e)) return
   let obj = target
 
-  obj.set({
-    left: Math.round(obj.left / grid) * grid,
-    top: Math.round(obj.top / grid) * grid
-  }).setCoords()
+  obj
+    .set({
+      left: Math.round(obj.left / grid) * grid,
+      top: Math.round(obj.top / grid) * grid
+    })
+    .setCoords()
 }
-function snapAngleToGrid({ e, target }) {
+function snapAngleToGrid ({ e, target }) {
   if (!withSnapBehavior(e)) return
   let obj = target
 
   setOriginToCenter(obj)
 
-  obj.set({
-    angle: Math.round(obj.angle / angleGrid) * angleGrid,
-  }).setCoords()
+  obj
+    .set({
+      angle: Math.round(obj.angle / angleGrid) * angleGrid
+    })
+    .setCoords()
 
   setCenterToOrigin(obj)
 }
 
-
 function setOriginToCenter (obj) {
-    obj._originalOriginX = obj.originX;
-    obj._originalOriginY = obj.originY;
+  obj._originalOriginX = obj.originX
+  obj._originalOriginY = obj.originY
 
-    var center = obj.getCenterPoint();
+  var center = obj.getCenterPoint()
 
-    obj.set({
-        originX: 'center',
-        originY: 'center',
-        left: center.x,
-        top: center.y
-    });
-};
+  obj.set({
+    originX: 'center',
+    originY: 'center',
+    left: center.x,
+    top: center.y
+  })
+}
 
 function setCenterToOrigin (obj) {
-    var originPoint = obj.translateToOriginPoint(
+  var originPoint = obj.translateToOriginPoint(
     obj.getCenterPoint(),
     obj._originalOriginX,
-    obj._originalOriginY);
+    obj._originalOriginY
+  )
 
-    obj.set({
-        originX: obj._originalOriginX,
-        originY: obj._originalOriginY,
-        left: originPoint.x,
-        top: originPoint.y
-    });
-};
+  obj.set({
+    originX: obj._originalOriginX,
+    originY: obj._originalOriginY,
+    left: originPoint.x,
+    top: originPoint.y
+  })
+}
 
-
-function defaultStyle(obj) {
+function defaultStyle (obj) {
   if (!obj) return
   obj.set({
     underline: false,
@@ -423,31 +423,31 @@ function defaultStyle(obj) {
   obj.canvas.renderAll()
 }
 
-function defaultTextStyle() {
+function defaultTextStyle () {
   return {
     underline: false,
     textBackgroundColor: 'rgba(255,255,255, 0)',
     padding: 10,
-        fontSize: 24,
-        fontFamily: 'Courier',
-        lockUniScaling: true,
-        fill: '#373d3f',
+    fontSize: 24,
+    fontFamily: 'Courier',
+    lockUniScaling: true,
+    fill: '#373d3f'
   }
 }
 
 const DELETE_CORNER = 100
-function styleMoving(given) {
+function styleMoving (given) {
   let obj = given.target
   if (!obj) return
   if (isInDeleteCorner(given)) {
     let them = obj.canvas.getActiveObjects()
-    them.forEach(x => x.set({ fill: 'red' }) )
+    them.forEach(x => x.set({ fill: 'red' }))
   } else {
     let them = obj.canvas.getActiveObjects()
-    them.forEach(x => x.set(TEXT_STYLE) )
+    them.forEach(x => x.set(TEXT_STYLE))
   }
 }
-function isInDeleteCorner(given) {
+function isInDeleteCorner (given) {
   let obj = given.target
   if (!obj) return
   let x = given.e.clientX
@@ -459,7 +459,7 @@ function isInDeleteCorner(given) {
   return x > width - DELETE_CORNER && y > height - DELETE_CORNER
 }
 
-function playPreview(refs,entry,isEditing, mouseButton) {
+function playPreview (refs, entry, isEditing, mouseButton) {
   if (!entry) return
   let { fileName } = entry
   if (!fileName) return
@@ -478,12 +478,12 @@ function playPreview(refs,entry,isEditing, mouseButton) {
   }
 }
 
-function omgStyle(x) {
+function omgStyle (x) {
   x.lockScalingFlip = true
   x.setControlsVisibility({
     tl: false,
     tr: false,
-    bl: false,
+    bl: false
   })
 }
 
@@ -495,7 +495,7 @@ let connection = [
   audioDeviceGet,
   isEditingState,
   currentlyPlaying,
-  currentlyPlayingStatus,
+  currentlyPlayingStatus
 ]
 
 let InteractivePureIsh = Interactive

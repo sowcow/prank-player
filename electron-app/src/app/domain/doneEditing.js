@@ -1,12 +1,12 @@
-import { isEditingState, setEditingState } from './state/mainState';
-import doSave from './doSave';
+import { isEditingState, setEditingState } from './state/mainState'
+import doSave from './doSave'
 
-export default async function doneEditing() {
+export default async function doneEditing () {
   await doSave()
   setEditingState(null, false)
 }
 
-export async function toggleEditing() {
+export async function toggleEditing () {
   let editingState = isEditingState.get()
   if (editingState) {
     doneEditing()

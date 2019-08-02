@@ -1,20 +1,19 @@
-import { deletedEntriesSet } from '../state/deletedEntries';
-import { newEntriesSet } from '../state/newEntries';
-import { positionedEntriesSet } from '../state/positionedEntries';
+import { deletedEntriesSet } from '../state/deletedEntries'
+import { newEntriesSet } from '../state/newEntries'
+import { positionedEntriesSet } from '../state/positionedEntries'
 
-export function setFilesForTray(entryFileObjects) {
+export function setFilesForTray (entryFileObjects) {
   let files = entryFileObjects.map(preprocessFile)
   newEntriesSet(null, files)
 }
 
-export function setPositionedEntries(xs) {
+export function setPositionedEntries (xs) {
   positionedEntriesSet(null, xs)
 }
 
-export function setDeletedEntries(xs) {
+export function setDeletedEntries (xs) {
   deletedEntriesSet(null, xs)
 }
-
 
 const EXTENSION = /\.([^.]+)$/
 
@@ -23,20 +22,19 @@ const PREPARE_NAME = [
   x => x.replace(/^[\d\s\W]+/, ''),
   x => x.replace(/_/g, ' '),
   x => x.replace(/\s+/g, ' '),
-  x => x.trim(),
+  x => x.trim()
 ]
 
-function preprocessFile(file) {
+function preprocessFile (file) {
   let fileName = file
   let name = fileName
-  PREPARE_NAME.forEach( x => {
+  PREPARE_NAME.forEach(x => {
     let newName = x(name)
     if (newName) name = newName
   })
   let kind = getEntryKind(fileName)
   return { name, fileName, kind }
 }
-
 
 const IS_IMAGE = /\.(svg|jpeg|jpg|bmp|png|gif)$/
 const IS_AUDIO = /\.(mp3)$/

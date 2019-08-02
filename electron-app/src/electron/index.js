@@ -3,15 +3,22 @@ import {
   GET_ONE_BOARD,
   SAVE_BOARD_DATA,
   SET_TITLE
-} from './constants';
-import { isEditingState } from '../app/domain/state/mainState';
-import doSave from '../app/domain/doSave';
+} from './constants'
+import { isEditingState } from '../app/domain/state/mainState'
+import doSave from '../app/domain/doSave'
 
-function createChannel() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+function createChannel () {
+  return (
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15)
+  )
 }
 
-export function setTitle(title) {
+export function setTitle (title) {
   let ipc = window.require('electron').ipcRenderer
   let channel = createChannel()
   let message = { channel, title }
@@ -22,7 +29,7 @@ export function setTitle(title) {
   return promise
 }
 
-export function getBoards() {
+export function getBoards () {
   let ipc = window.require('electron').ipcRenderer
   let channel = createChannel()
   let message = { channel }
@@ -33,7 +40,7 @@ export function getBoards() {
   return promise
 }
 
-export function getOneBoard(board) {
+export function getOneBoard (board) {
   let ipc = window.require('electron').ipcRenderer
   let channel = createChannel()
   let message = { channel, board }
@@ -44,7 +51,7 @@ export function getOneBoard(board) {
   return promise
 }
 
-export function saveBoardData(board, data) {
+export function saveBoardData (board, data) {
   let ipc = window.require('electron').ipcRenderer
   let channel = createChannel()
   let message = { channel, board, data }
@@ -55,27 +62,25 @@ export function saveBoardData(board, data) {
   return promise
 }
 
-function logStuff() {
+function logStuff () {
   let ipc = window.require('electron').ipcRenderer
   let channel = 'LOG'
   ipc.on(channel, (event, x) => console.log(x))
 }
 logStuff()
 
-function nowClose() {
+function nowClose () {
   let ipc = window.require('electron').ipcRenderer
   ipc.send('now-close', {})
 }
-function saveOnExit() {
+function saveOnExit () {
   let ipc = window.require('electron').ipcRenderer
   let channel = 'will-close'
   ipc.on(channel, (event, x) => {
     if (isEditingState.get()) {
-      doSave().then(() =>
-        nowClose()
-      ).catch(() =>
-        alert('Error saving soundboard data!')
-      )
+      doSave()
+        .then(() => nowClose())
+        .catch(() => alert('Error saving soundboard data!'))
     } else {
       nowClose()
     }

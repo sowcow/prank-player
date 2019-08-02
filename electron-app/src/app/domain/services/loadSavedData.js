@@ -1,7 +1,11 @@
-import { fabricUpdateDeletedStyle, setFabricState } from '../../ui/Interactive';
-import { setEditingState } from '../state/mainState';
-import { setFilesForTray, setPositionedEntries, setDeletedEntries } from './filesService';
-import UrlsService from './UrlsService';
+import { fabricUpdateDeletedStyle, setFabricState } from '../../ui/Interactive'
+import { setEditingState } from '../state/mainState'
+import {
+  setFilesForTray,
+  setPositionedEntries,
+  setDeletedEntries
+} from './filesService'
+import UrlsService from './UrlsService'
 
 export default (data, entryFileObjects) => {
   let fabricData = data.fabric
@@ -14,8 +18,7 @@ export default (data, entryFileObjects) => {
 
   let givenFiles = entryFileObjects
   let hasFile = x => !!givenFiles.find(y => y === x)
-  let fabricEntries = fabricData.objects.map(x => x.entryData)
-    .filter(x => !!x)
+  let fabricEntries = fabricData.objects.map(x => x.entryData).filter(x => !!x)
 
   fabricEntries.forEach(entry => {
     let fileName = entry.fileName
@@ -50,7 +53,7 @@ export default (data, entryFileObjects) => {
 
 const IMAGE = 'IMAGE'
 
-function setImageUrls(xs) {
+function setImageUrls (xs) {
   let urls = UrlsService.urls
   xs.forEach(x => {
     let { kind, fileName } = x.entryData

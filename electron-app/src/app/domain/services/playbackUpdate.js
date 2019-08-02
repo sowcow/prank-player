@@ -1,9 +1,9 @@
 import {
   setCurrentlyPlaying,
   setCurrentlyPlayingStatus
-} from '../state/playbackState';
+} from '../state/playbackState'
 
-export function playbackUpdate(eventName, payload) {
+export function playbackUpdate (eventName, payload) {
   setCurrentlyPlayingStatus(null, eventName)
   setCurrentlyPlaying(null, payload)
 }

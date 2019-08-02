@@ -23,6 +23,4 @@ export const newEntriesList = branch()
 export const newEntriesSet = branch().setter()
 export const newEntriesClear = branch().setter([])
 
-export const newEntriesPush = branch(
-  (state, given) => state.push(given)
-)
+export const newEntriesPush = branch((state, given) => state.push(given))

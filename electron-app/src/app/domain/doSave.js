@@ -1,6 +1,6 @@
-import { getFabricState } from '../ui/Interactive';
-import { saveBoardData } from '../../electron';
-import { uploadDirName } from './state/dirName';
+import { getFabricState } from '../ui/Interactive'
+import { saveBoardData } from '../../electron'
+import { uploadDirName } from './state/dirName'
 
 export default () => {
   let name = uploadDirName.get()
@@ -8,9 +8,7 @@ export default () => {
 
   let board = { name }
   let data = { fabric: getFabricState() }
-  return saveBoardData(board, data).then(() =>
-    console.log('saved successfully')
-  ).catch(() =>
-    console.log('error saving')
-  )
+  return saveBoardData(board, data)
+    .then(() => console.log('saved successfully'))
+    .catch(() => console.log('error saving'))
 }

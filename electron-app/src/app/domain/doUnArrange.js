@@ -2,11 +2,11 @@ import {
   newEntriesList,
   newEntriesPush,
   newEntriesSet
-} from './state/newEntries';
+} from './state/newEntries'
 import {
   positionedEntriesList,
-  positionedEntriesSet,
-} from './state/positionedEntries';
+  positionedEntriesSet
+} from './state/positionedEntries'
 
 export default function (entry) {
   let finder = x => x.fileName === entry.fileName
@@ -15,8 +15,7 @@ export default function (entry) {
   newEntriesPush(null, entry)
 }
 
-
-function deleteFromList(list, setter, f) {
+function deleteFromList (list, setter, f) {
   if (list.find(f)) {
     list = list.filter(x => !f(x))
     setter(null, list)

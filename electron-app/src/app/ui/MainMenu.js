@@ -4,18 +4,18 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemText,
-} from '@material-ui/core';
+  ListItemText
+} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import React, { Component, useContext } from 'react';
+import React, { Component, useContext } from 'react'
 import styled from 'styled-components'
 
-import { AudioSrcUpdate } from '../components/AudioSrc';
-import { audioDeviceGet, audioDeviceSet } from '../domain/state/audioDevice';
-import { connectTree } from '../domain/state/tree/react';
-import { getBoards, getOneBoard } from '../../electron';
-import ChooseOutput from './ChooseOutput';
-import doUpload from '../domain/doUpload';
+import { AudioSrcUpdate } from '../components/AudioSrc'
+import { audioDeviceGet, audioDeviceSet } from '../domain/state/audioDevice'
+import { connectTree } from '../domain/state/tree/react'
+import { getBoards, getOneBoard } from '../../electron'
+import ChooseOutput from './ChooseOutput'
+import doUpload from '../domain/doUpload'
 
 import useMousetrap from 'react-hook-mousetrap'
 
@@ -29,7 +29,7 @@ let Root = styled.div`
 let BoardItem = ({ item }) => {
   let updateSrc = useContext(AudioSrcUpdate)
   let chooseBoard = item => {
-    getOneBoard(item).then( x => {
+    getOneBoard(item).then(x => {
       let dirName = x.name
       let { files, data } = x
       doUpload(dirName, updateSrc, files, data)
@@ -37,28 +37,25 @@ let BoardItem = ({ item }) => {
   }
 
   return (
-    <ListItem button
-      onClick={() => chooseBoard(item)}
-    >
+    <ListItem button onClick={() => chooseBoard(item)}>
       <ListItemText primary={item.name} />
     </ListItem>
   )
 }
 
-const sideList = that =>
+const sideList = that => (
   <div>
     <List>
       <ListItem button onClick={() => that.chooseOutput()}>
         <ListItemText primary={`Output: ${that.outputName()}`} />
       </ListItem>
       <Divider />
-      {
-      that.state.boards.map((x, i) =>
+      {that.state.boards.map((x, i) => (
         <BoardItem item={x} key={i} />
-      )
-      }
+      ))}
     </List>
   </div>
+)
 
 let TabHandler = ({ action }) => {
   useMousetrap('tab', action)
@@ -70,7 +67,7 @@ class MainMenu extends Component {
     isOpen: false,
     isChoosingOutput: false,
     audioDevices: [],
-    boards: [],
+    boards: []
   }
   toggleIt = () => {
     if (this.state.isOpen) {
@@ -87,8 +84,7 @@ class MainMenu extends Component {
   }
   closeIt = () => this.setState({ isOpen: false })
 
-  outputName = () =>
-    this.props.audioDeviceGet.label
+  outputName = () => this.props.audioDeviceGet.label
 
   chooseOutput = async (isChoosingOutput = true) => {
     if (isChoosingOutput) {
@@ -109,9 +105,7 @@ class MainMenu extends Component {
   }
 
   render () {
-    let { isOpen, isChoosingOutput,
-      audioDevices
-    } = this.state
+    let { isOpen, isChoosingOutput, audioDevices } = this.state
 
     let { audioDeviceGet } = this.props
 
@@ -151,8 +145,6 @@ class MainMenu extends Component {
   }
 }
 
-let connection = [
-  audioDeviceGet,
-]
+let connection = [audioDeviceGet]
 
 export default connectTree(connection)(MainMenu)

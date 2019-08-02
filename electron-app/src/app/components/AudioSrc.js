@@ -6,19 +6,20 @@ let UpdateContext = React.createContext()
 class AudioSrc extends React.Component {
   state = { value: {} }
 
-  updateValue = value =>
-    this.setState({ value })
+  updateValue = value => this.setState({ value })
 
-  render() {
+  render () {
     let { value } = this.state
     let { updateValue } = this
     let { children } = this.props
 
-    return <ValueContext.Provider value={value}>
-      <UpdateContext.Provider value={updateValue}>
-        { children }
-      </UpdateContext.Provider>
-    </ValueContext.Provider>
+    return (
+      <ValueContext.Provider value={value}>
+        <UpdateContext.Provider value={updateValue}>
+          {children}
+        </UpdateContext.Provider>
+      </ValueContext.Provider>
+    )
   }
 }
 

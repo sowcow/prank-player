@@ -4,7 +4,7 @@ import { PRODUCTION } from '../../../misc/debug'
 
 let options = {
   immutable: !PRODUCTION,
-  monkeyBusiness: false,
+  monkeyBusiness: false
 
   // autoCommit: false,
 }

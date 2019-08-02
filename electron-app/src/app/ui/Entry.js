@@ -1,12 +1,12 @@
 import { DragSource } from 'react-dnd'
-import { getEmptyImage } from 'react-dnd-html5-backend';
+import { getEmptyImage } from 'react-dnd-html5-backend'
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components'
 
-import { audioDeviceGet } from '../domain/state/audioDevice';
-import { connectTree } from '../domain/state/tree/react';
-import Audio from '../components/Audio';
-import doArrange from '../domain/doArrange';
+import { audioDeviceGet } from '../domain/state/audioDevice'
+import { connectTree } from '../domain/state/tree/react'
+import Audio from '../components/Audio'
+import doArrange from '../domain/doArrange'
 
 const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'
 
@@ -14,7 +14,7 @@ const cardSource = {
   beginDrag (props) {
     return {}
   },
-  endDrag(props, monitor) {
+  endDrag (props, monitor) {
     if (!monitor.getDropResult()) return
     let { entry } = props
     let { dropPoint } = monitor.getDropResult()
@@ -45,7 +45,7 @@ let rootStyle = {
   height: 50,
 
   color: '#f2f3f4',
-  fontFamily: 'Courier',
+  fontFamily: 'Courier'
 }
 
 let fakeStyle = {
@@ -53,7 +53,7 @@ let fakeStyle = {
   width: 0,
   padding: 0,
   paddingLeft: 0,
-  paddingRight: 0,
+  paddingRight: 0
 }
 
 let Ellipsis = styled.div`
@@ -68,7 +68,10 @@ let Ellipsis = styled.div`
   margin: auto;
 `
 
-let Entry = ({ entry, isDragging, connectDragSource,
+let Entry = ({
+  entry,
+  isDragging,
+  connectDragSource,
   audioDeviceGet,
   connectDragPreview,
   fake
@@ -80,23 +83,15 @@ let Entry = ({ entry, isDragging, connectDragSource,
 
   useEffect(() => {
     if (connectDragPreview) {
-      connectDragPreview(
-        getEmptyImage(),
-        {
-        captureDraggingState: true,
-      });
+      connectDragPreview(getEmptyImage(), {
+        captureDraggingState: true
+      })
     }
-  // eslint-disable-next-line
-  },[])
+    // eslint-disable-next-line
+  }, [])
 
   if (fake) {
-    return (
-      <div
-        className='new-entries-item'
-        style={fakeStyle}
-      >
-      </div>
-    )
+    return <div className='new-entries-item' style={fakeStyle} />
   }
 
   return connectDragSource(
@@ -127,25 +122,15 @@ let Entry = ({ entry, isDragging, connectDragSource,
         }
       }}
     >
-      <Audio name={fileName} ref={audioRef}
-        audioDeviceGet={audioDeviceGet}
-      />
-      <Ellipsis>
-        {text}
-      </Ellipsis>
+      <Audio name={fileName} ref={audioRef} audioDeviceGet={audioDeviceGet} />
+      <Ellipsis>{text}</Ellipsis>
     </div>
   )
 }
 
-let draggable = DragSource(
-  DRAGGABLE_ENTRY,
-  cardSource,
-  collect
-)(Entry)
+let draggable = DragSource(DRAGGABLE_ENTRY, cardSource, collect)(Entry)
 
-let connection = [
-  audioDeviceGet,
-]
+let connection = [audioDeviceGet]
 let result = connectTree(connection)(draggable)
 
 export default result

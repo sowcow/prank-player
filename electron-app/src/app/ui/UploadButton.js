@@ -1,4 +1,4 @@
-import { ArrowUpward } from '@material-ui/icons';
+import { ArrowUpward } from '@material-ui/icons'
 import { Button } from '@material-ui/core'
 import Dropzone from 'react-dropzone'
 import React from 'react'

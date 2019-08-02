@@ -3,14 +3,13 @@ import {
   setDeletedEntries,
   setFilesForTray,
   setPositionedEntries
-} from './services/filesService';
-import { setEditingState, setUploadingState } from './state/mainState';
-import { setFabricState } from '../ui/Interactive';
+} from './services/filesService'
+import { setEditingState, setUploadingState } from './state/mainState'
+import { setFabricState } from '../ui/Interactive'
 import { uploadDirNameSet } from './state/dirName'
-import UrlsService from './services/UrlsService';
-import loadSavedData from './services/loadSavedData';
-import saveIfNeeded from './saveIfNeeded';
-
+import UrlsService from './services/UrlsService'
+import loadSavedData from './services/loadSavedData'
+import saveIfNeeded from './saveIfNeeded'
 
 // boundary - so it takes fileObjects
 // and sends domain/state related messages to the specialists

@@ -1,10 +1,7 @@
 import React from 'react'
 import { DragLayer } from 'react-dnd'
 
-const DraggedEntry = () =>
-  <div>
-    hello
-  </div>
+const DraggedEntry = () => <div>hello</div>
 
 const DRAGGABLE_ENTRY = 'DRAGGABLE_ENTRY'
 
@@ -15,14 +12,14 @@ const layerStyles = {
   left: 0,
   top: 0,
   width: '100%',
-  height: '100%',
+  height: '100%'
 }
 
-function getItemStyles(props) {
+function getItemStyles (props) {
   const { currentOffset } = props
   if (!currentOffset) {
     return {
-      display: 'none',
+      display: 'none'
     }
   }
 
@@ -30,17 +27,17 @@ function getItemStyles(props) {
   const transform = `translate(${x}px, ${y}px)`
   return {
     transform: transform,
-    WebkitTransform: transform,
+    WebkitTransform: transform
   }
 }
 
-function CustomDragLayer(props) {
+function CustomDragLayer (props) {
   let { item, itemType, isDragging } = props
   if (!isDragging) {
     return null
   }
 
-  function renderItem(type, item) {
+  function renderItem (type, item) {
     switch (type) {
       case DRAGGABLE_ENTRY:
         return <DraggedEntry />
@@ -54,12 +51,12 @@ function CustomDragLayer(props) {
   )
 }
 
-function collect(monitor) {
+function collect (monitor) {
   return {
     item: monitor.getItem(),
     itemType: monitor.getItemType(),
     currentOffset: monitor.getSourceClientOffset(),
-    isDragging: monitor.isDragging(),
+    isDragging: monitor.isDragging()
   }
 }
 

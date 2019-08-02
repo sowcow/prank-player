@@ -2,12 +2,7 @@ const UNSET = Symbol()
 const ID = x => x
 
 class Points {
-  constructor (
-    name,
-    path,
-    directState = null,
-    reset = null
-  ) {
+  constructor (name, path, directState = null, reset = null) {
     this.state = directState // used in tests
     this.reset = reset // used in tests
     this.name = name
@@ -24,9 +19,7 @@ class Points {
   setter (value = UNSET, mapping = ID) {
     // messy since it was copied from helpers/nestedAt.js
     return (tree, given = UNSET) => {
-      let usedState = tree
-        ? tree.select(this.path)
-        : this.state
+      let usedState = tree ? tree.select(this.path) : this.state
       if (value !== UNSET) {
         usedState.set(mapping(value))
       } else if (given !== UNSET) {
