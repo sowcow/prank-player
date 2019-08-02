@@ -1,3 +1,0 @@
-export default function (files) {
-  // changes state etc...
-}

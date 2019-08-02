@@ -4,6 +4,10 @@ Electron application to create and use soundboards for prank calling.
 
 Sound output device is configurable through the menu.
 
+The motivation was to try some experiments while rewriting
+my old app using more modern technology.
+Then I cancelled unfinished experiments and moved the app to electron.
+
 * [🇷🇺 описание](https://github.com/sowcow/prank-player/wiki/%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5)
 * [:open_file_folder: download](https://github.com/sowcow/prank-player/releases)
 

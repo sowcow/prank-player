@@ -1,9 +1,0 @@
-version: "3"
-services:
-  chrome:
-    image: selenium/standalone-chrome:3.14
-    volumes:
-      - /dev/shm:/dev/shm
-    network_mode: host
-    volumes:
-      - /tmp/e2e_storage:/tmp/e2e_storage
