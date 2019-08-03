@@ -16,6 +16,7 @@ import { isEditingState } from '../domain/state/mainState'
 import { positionedEntriesList } from '../domain/state/positionedEntries'
 import Audio from '../components/Audio'
 import doUnArrange from '../domain/doUnArrange'
+import useMousetrap from 'react-hook-mousetrap'
 
 let getEditingState = isEditingState
 let globalFabricCanvas = null
@@ -118,6 +119,10 @@ let Interactive = ({
   let elementCanvasRef = useRef()
   let refs = useRef({})
 
+  useMousetrap('del', () => {
+    removeSelected()
+  })
+
   useEffect(() => {
     let div = rootRef.current
     let elementCanvas = document.createElement('canvas')
@@ -164,18 +169,25 @@ let Interactive = ({
       if (!drag) return
 
       if (isInDeleteCorner(options)) {
-        canvas.getActiveObjects().forEach(x => {
-          doUnArrange(x.entryData)
-          canvas.remove(x)
-        })
-        canvas.discardActiveObject()
-        canvas.requestRenderAll()
+        removeSelected()
       }
     })
 
     canvasRef.current = canvas
     elementCanvasRef.current = elementCanvas
   }, [])
+
+  function removeSelected () {
+    let canvas = canvasRef.current
+    if (!canvas) return
+
+    canvas.getActiveObjects().forEach(x => {
+      doUnArrange(x.entryData)
+      canvas.remove(x)
+    })
+    canvas.discardActiveObject()
+    canvas.requestRenderAll()
+  }
 
   useEffect(() => {
     let canvas = canvasRef.current
