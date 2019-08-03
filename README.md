@@ -34,7 +34,7 @@ Also I haven't checked if better alternatives already exist.
 1. Player mode is when the tray is invisible - you can play stuff with left/right mouse buttons;
 1. Shortcuts: space - change mode (editor/player), tab - menu (arrows do not work though);
 1. Use the right click to play the audio item in the main area or in the tray.
-   The left click does same but it also can pauses/resume item that is already playing;
+   The left click does same but it also can pause/resume item that is already playing;
 1. Drag into the lower right corner to remove items from the main area;
 1. In the menu change output device of sound (getUserMedia - takes access to all audio devices);
 1. Changes are saved on switching mode (editor/player), when you switch to another soudboard and at exit so unless powers goes down changes should be preserved
