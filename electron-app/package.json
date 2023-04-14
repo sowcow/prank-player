@@ -7,7 +7,7 @@
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
-    "baobab": "^2.5.2",
+    "baobab": "^2.6.1",
     "baobab-react": "^4.0.0",
     "classnames": "^2.2.6",
     "electron-is-dev": "^1.1.0",
